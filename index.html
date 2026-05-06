@@ -1261,7 +1261,7 @@ Respond with ONLY:
         resultEl.innerHTML = '<span style="color:#dc2626">Enter your API key first</span>';
         return;
       }
-      resultEl.innerHTML = '<span style="color:#6b21a8">Testing...</span>';
+      resultEl.innerHTML = '<span style="color:#6b21a8">Testing models (this takes a few seconds)...</span>';
       try {
         const resp = await fetch('/api/test-models', {
           method: 'POST',
@@ -1269,31 +1269,32 @@ Respond with ONLY:
           body: JSON.stringify({ key })
         });
         if (resp.status === 401) {
-          resultEl.innerHTML = '<span style="color:#dc2626">❌ Token rejected. Make sure your Fine-grained PAT has Account permissions → Models: Read</span>';
+          resultEl.innerHTML = '<span style="color:#dc2626">❌ Token rejected. Create a Fine-grained PAT with Account permissions → Models: Read</span>';
           return;
         }
-        const models = await resp.json();
-        if (Array.isArray(models)) {
-          const chatModels = models.filter(m => m.task === 'chat-completion' || !m.task).map(m => m.id).filter(Boolean);
-          resultEl.innerHTML = `<span style="color:#16a34a">✅ Token works! ${chatModels.length} models available.</span>`;
-          // Update the model dropdown with available models
+        const data = await resp.json();
+        if (data.accessible && data.accessible.length > 0) {
+          resultEl.innerHTML = `<span style="color:#16a34a">✅ ${data.accessible.length} model(s) accessible!</span>`;
+          // Update dropdown with only accessible models
           const select = document.getElementById('github-model');
           const currentVal = select.value;
           select.innerHTML = '';
-          chatModels.forEach(id => {
+          data.accessible.forEach(id => {
             const opt = document.createElement('option');
             opt.value = id;
             opt.textContent = id;
             select.appendChild(opt);
           });
-          if (chatModels.includes(currentVal)) select.value = currentVal;
-          else if (chatModels.length > 0) select.value = chatModels[0];
+          if (data.accessible.includes(currentVal)) select.value = currentVal;
+          else select.value = data.accessible[0];
           localStorage.setItem('iu-mienh-github-model', select.value);
+        } else if (data.all && data.all.length > 0) {
+          resultEl.innerHTML = `<span style="color:#dc2626">❌ Token can see ${data.all.length} models but has no access to use them. Your PAT needs the <strong>models:read</strong> permission under Account permissions.</span>`;
         } else {
-          resultEl.innerHTML = `<span style="color:#dc2626">❌ Unexpected response. Status: ${resp.status}</span>`;
+          resultEl.innerHTML = `<span style="color:#dc2626">❌ No models found. Check your token permissions.</span>`;
         }
       } catch (e) {
-        resultEl.innerHTML = `<span style="color:#dc2626">❌ ${e.message}. Is the server running?</span>`;
+        resultEl.innerHTML = `<span style="color:#dc2626">❌ ${e.message}. Is the server running? (node server.mjs)</span>`;
       }
     });
 

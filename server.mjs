@@ -89,23 +89,20 @@ const server = createServer(async (req, res) => {
     return res.end();
   }
 
-  // API proxy endpoint
+  // API proxy endpoint - test token + find working models
   if (req.method === 'POST' && req.url === '/api/test-models') {
     let body = '';
     for await (const chunk of req) body += chunk;
     const { key } = JSON.parse(body);
 
-    // Test the token by listing available models
-    const result = await new Promise((resolve, reject) => {
+    // Get catalog
+    const catalogResult = await new Promise((resolve, reject) => {
       const req2 = httpsRequest({
         hostname: 'models.github.ai',
         port: 443,
         path: '/catalog/models',
         method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${key}`,
-          'Accept': 'application/json',
-        },
+        headers: { 'Accept': 'application/json' },
       }, (res2) => {
         let data = '';
         res2.on('data', c => { data += c; });
@@ -116,8 +113,60 @@ const server = createServer(async (req, res) => {
       req2.end();
     });
 
-    res.writeHead(result.status, { 'Content-Type': 'application/json' });
-    res.end(result.body);
+    if (catalogResult.status !== 200) {
+      res.writeHead(catalogResult.status, { 'Content-Type': 'application/json' });
+      res.end(catalogResult.body);
+      return;
+    }
+
+    // Now test actual access with a tiny request to a model
+    const models = JSON.parse(catalogResult.body);
+    const chatModels = models.filter(m => m.task === 'chat-completion' || !m.task).map(m => m.id).filter(Boolean);
+
+    // Test a few models to find which ones work
+    const testModel = async (modelId) => {
+      const testBody = JSON.stringify({
+        model: modelId,
+        messages: [{ role: 'user', content: 'hi' }],
+        max_tokens: 1,
+      });
+      return new Promise((resolve) => {
+        const req2 = httpsRequest({
+          hostname: 'models.github.ai',
+          port: 443,
+          path: '/inference/v1/chat/completions',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(testBody),
+            'Authorization': `Bearer ${key}`,
+          },
+        }, (res2) => {
+          let data = '';
+          res2.on('data', c => { data += c; });
+          res2.on('end', () => resolve({ model: modelId, status: res2.statusCode, body: data }));
+        });
+        req2.on('error', () => resolve({ model: modelId, status: 0, body: 'connection error' }));
+        req2.setTimeout(10000, () => { req2.destroy(); resolve({ model: modelId, status: 0, body: 'timeout' }); });
+        req2.write(testBody);
+        req2.end();
+      });
+    };
+
+    // Test a small subset of popular models in parallel
+    const modelsToTest = chatModels.slice(0, 8);
+    console.log('Testing access to models:', modelsToTest.join(', '));
+    const results = await Promise.all(modelsToTest.map(testModel));
+
+    const accessible = results.filter(r => r.status === 200).map(r => r.model);
+    const denied = results.filter(r => r.status !== 200);
+    if (denied.length > 0) {
+      console.log('Denied models:', denied.map(r => `${r.model}(${r.status})`).join(', '));
+    }
+    console.log('Accessible models:', accessible.length > 0 ? accessible.join(', ') : 'NONE');
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ all: chatModels, accessible, denied: denied.map(r => ({ model: r.model, status: r.status })) }));
     return;
   }
 
