@@ -237,6 +237,129 @@
 
     .hidden { display: none; }
 
+    /* Edit/Corrections tab */
+    .edit-section { margin-bottom: 1.5rem; }
+    .edit-section h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .edit-form {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .edit-form label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .edit-form input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .edit-form input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-small {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-small:hover { opacity: 0.85; }
+    .btn-save { background: var(--success); color: white; }
+    .btn-delete { background: #ef4444; color: white; }
+    .btn-export { background: var(--primary); color: white; }
+    .btn-reset { background: var(--text-light); color: white; }
+
+    .edit-search-results {
+      margin-top: 0.75rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .edit-result-item {
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .edit-result-item:hover {
+      background: #f1f5f9;
+    }
+
+    .edit-result-item .term { font-weight: 500; }
+    .edit-result-item .def { color: var(--primary); font-size: 0.9rem; }
+
+    .corrections-list {
+      margin-top: 0.75rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .correction-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .correction-item .correction-info { flex: 1; }
+    .correction-item .correction-type {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+      margin-right: 0.5rem;
+    }
+    .type-edited { background: #fef3c7; color: #92400e; }
+    .type-added { background: #d1fae5; color: #065f46; }
+    .type-deleted { background: #fee2e2; color: #991b1b; }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      z-index: 200;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .toast.show { opacity: 1; }
+
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       header h1 { font-size: 1.4rem; }
@@ -254,6 +377,7 @@
     <div class="tabs">
       <button class="tab-btn active" data-tab="translate">Translate</button>
       <button class="tab-btn" data-tab="dictionary">Dictionary</button>
+      <button class="tab-btn" data-tab="edit">Edit</button>
     </div>
 
     <!-- Translate Tab -->
@@ -277,10 +401,44 @@
       </div>
     </div>
 
+    <!-- Edit/Corrections Tab -->
+    <div id="tab-edit" class="hidden">
+      <div class="card">
+        <div class="edit-section">
+          <h3>✏️ Correct or Add Translations</h3>
+          <div class="edit-form">
+            <label>English word or phrase</label>
+            <input type="text" id="edit-english" placeholder="e.g. my name is">
+            <div class="edit-search-results" id="edit-search-results"></div>
+            <label>Iu Mienh translation</label>
+            <input type="text" id="edit-mienh" placeholder="e.g. yie nyei mbuox heuc">
+            <label>Notes (optional)</label>
+            <input type="text" id="edit-notes" placeholder="e.g. used when introducing yourself">
+            <div class="btn-row">
+              <button class="btn-small btn-save" id="edit-save-btn">Save</button>
+              <button class="btn-small btn-delete" id="edit-delete-btn">Delete Entry</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-section">
+          <h3>📝 Your Corrections</h3>
+          <div class="corrections-list" id="corrections-list">
+            <p style="color: var(--text-light);">No corrections yet.</p>
+          </div>
+          <div class="btn-row" style="margin-top: 1rem;">
+            <button class="btn-small btn-export" id="export-btn">Export Corrections</button>
+            <button class="btn-small btn-reset" id="reset-btn">Reset All</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="stats" id="stats"></div>
   </div>
 
   <div class="word-tooltip" id="tooltip"></div>
+  <div class="toast" id="toast"></div>
 
   <script>
     let dictionary = null;
@@ -294,8 +452,7 @@
       for (const [term, defs] of Object.entries(raw)) {
         dictionary.lookup[term] = defs.map(d => ({ mienh: d.m, context: d.c, full: d.f }));
       }
-      document.getElementById('stats').textContent = 
-        `${Object.keys(dictionary.lookup).length} words & phrases loaded`;
+      applyCorrections();
     }
 
     // Translation engine: longest-match-first word/phrase lookup
@@ -508,6 +665,186 @@
         const tab = btn.dataset.tab;
         document.getElementById('tab-translate').classList.toggle('hidden', tab !== 'translate');
         document.getElementById('tab-dictionary').classList.toggle('hidden', tab !== 'dictionary');
+        document.getElementById('tab-edit').classList.toggle('hidden', tab !== 'edit');
+        if (tab === 'edit') renderCorrectionsList();
+      });
+    });
+
+    // === CORRECTIONS SYSTEM ===
+    const CORRECTIONS_KEY = 'iu-mienh-corrections';
+
+    function getCorrections() {
+      try {
+        return JSON.parse(localStorage.getItem(CORRECTIONS_KEY) || '[]');
+      } catch { return []; }
+    }
+
+    function saveCorrections(corrections) {
+      localStorage.setItem(CORRECTIONS_KEY, JSON.stringify(corrections));
+    }
+
+    function applyCorrections() {
+      const corrections = getCorrections();
+      for (const c of corrections) {
+        if (c.type === 'delete') {
+          delete dictionary.lookup[c.english];
+        } else {
+          // add or edit
+          dictionary.lookup[c.english] = [{
+            mienh: c.mienh,
+            context: c.notes || undefined,
+            full: c.notes ? `${c.mienh} (${c.notes})` : c.mienh
+          }];
+        }
+      }
+      document.getElementById('stats').textContent = 
+        `${Object.keys(dictionary.lookup).length} words & phrases loaded` +
+        (corrections.length ? ` (${corrections.length} corrections applied)` : '');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // Edit tab: search as you type in the English field
+    document.getElementById('edit-english').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const container = document.getElementById('edit-search-results');
+      if (query.length < 1) { container.innerHTML = ''; return; }
+
+      const results = [];
+      for (const [term, defs] of Object.entries(dictionary.lookup)) {
+        if (term.startsWith(query) || term.includes(query)) {
+          results.push({ term, mienh: defs[0].mienh });
+        }
+        if (results.length >= 8) break;
+      }
+
+      if (results.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-light); font-size: 0.85rem; padding: 0.25rem;">New entry — not in dictionary yet.</p>';
+        return;
+      }
+
+      container.innerHTML = results.map(r => 
+        `<div class="edit-result-item" data-term="${r.term}" data-mienh="${r.mienh}">
+          <span class="term">${r.term}</span>
+          <span class="def">${r.mienh}</span>
+        </div>`
+      ).join('');
+
+      container.querySelectorAll('.edit-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+          document.getElementById('edit-english').value = item.dataset.term;
+          document.getElementById('edit-mienh').value = item.dataset.mienh;
+          container.innerHTML = '';
+        });
+      });
+    });
+
+    // Save correction
+    document.getElementById('edit-save-btn').addEventListener('click', () => {
+      const english = document.getElementById('edit-english').value.toLowerCase().trim();
+      const mienh = document.getElementById('edit-mienh').value.trim();
+      const notes = document.getElementById('edit-notes').value.trim();
+
+      if (!english || !mienh) {
+        showToast('Please fill in both English and Iu Mienh fields');
+        return;
+      }
+
+      const corrections = getCorrections();
+      // Remove existing correction for same term
+      const filtered = corrections.filter(c => c.english !== english);
+      const isNew = !dictionary.lookup[english];
+      filtered.push({ 
+        type: isNew ? 'added' : 'edited', 
+        english, 
+        mienh, 
+        notes,
+        date: new Date().toISOString()
+      });
+      saveCorrections(filtered);
+
+      // Apply immediately to dictionary
+      dictionary.lookup[english] = [{
+        mienh, context: notes || undefined, full: notes ? `${mienh} (${notes})` : mienh
+      }];
+
+      showToast(`✓ Saved: "${english}" → "${mienh}"`);
+      document.getElementById('edit-english').value = '';
+      document.getElementById('edit-mienh').value = '';
+      document.getElementById('edit-notes').value = '';
+      document.getElementById('edit-search-results').innerHTML = '';
+      renderCorrectionsList();
+      applyCorrections();
+    });
+
+    // Delete entry
+    document.getElementById('edit-delete-btn').addEventListener('click', () => {
+      const english = document.getElementById('edit-english').value.toLowerCase().trim();
+      if (!english) { showToast('Enter the English term to delete'); return; }
+      if (!dictionary.lookup[english]) { showToast('Term not found in dictionary'); return; }
+
+      const corrections = getCorrections();
+      const filtered = corrections.filter(c => c.english !== english);
+      filtered.push({ type: 'delete', english, date: new Date().toISOString() });
+      saveCorrections(filtered);
+
+      delete dictionary.lookup[english];
+      showToast(`✓ Deleted: "${english}"`);
+      document.getElementById('edit-english').value = '';
+      document.getElementById('edit-mienh').value = '';
+      document.getElementById('edit-notes').value = '';
+      renderCorrectionsList();
+    });
+
+    // Render corrections list
+    function renderCorrectionsList() {
+      const corrections = getCorrections();
+      const container = document.getElementById('corrections-list');
+      if (corrections.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-light);">No corrections yet.</p>';
+        return;
+      }
+
+      container.innerHTML = corrections.map(c => {
+        const typeClass = c.type === 'edited' ? 'type-edited' : c.type === 'added' ? 'type-added' : 'type-deleted';
+        const typeLabel = c.type === 'edited' ? 'edited' : c.type === 'added' ? 'new' : 'deleted';
+        const defText = c.type === 'delete' ? '<em>removed</em>' : `→ ${c.mienh}`;
+        return `<div class="correction-item">
+          <div class="correction-info">
+            <span class="correction-type ${typeClass}">${typeLabel}</span>
+            <strong>${c.english}</strong> ${defText}
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // Export corrections as JSON
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const corrections = getCorrections();
+      if (corrections.length === 0) { showToast('No corrections to export'); return; }
+      const blob = new Blob([JSON.stringify(corrections, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'iu-mienh-corrections.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Corrections exported!');
+    });
+
+    // Reset all corrections
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      if (!confirm('Remove all your corrections? This cannot be undone.')) return;
+      localStorage.removeItem(CORRECTIONS_KEY);
+      // Reload dictionary fresh
+      loadDictionary().then(() => {
+        renderCorrectionsList();
+        showToast('All corrections reset');
       });
     });
 
