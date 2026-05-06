@@ -4,10 +4,20 @@ import { readFileSync, existsSync } from 'fs';
 import { join, extname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { execSync } from 'child_process';
 
 const PORT = process.env.PORT || 3456;
 const __filename = fileURLToPath(import.meta.url);
 const DIR = dirname(__filename);
+
+// Try to get gh CLI token for GitHub Models access
+function getGhToken() {
+  try {
+    return execSync('gh auth token', { encoding: 'utf8' }).trim();
+  } catch {
+    return null;
+  }
+}
 
 const MIME = {
   '.html': 'text/html',
@@ -22,7 +32,19 @@ const PROVIDERS = {
   github: {
     hostname: 'models.github.ai',
     path: '/inference/v1/chat/completions',
-    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
+    headers: (key) => ({
+      'Authorization': `Bearer ${key}`,
+      'X-GitHub-Api-Version': '2025-02-01',
+    }),
+  },
+  copilot: {
+    hostname: 'api.githubcopilot.com',
+    path: '/chat/completions',
+    headers: (key) => ({
+      'Authorization': `Bearer ${key}`,
+      'Editor-Version': 'vscode/1.96.0',
+      'Copilot-Integration-Id': 'vscode-chat',
+    }),
   },
   openai: {
     hostname: 'api.openai.com',
@@ -87,6 +109,47 @@ const server = createServer(async (req, res) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
     return res.end();
+  }
+
+  // Get token from gh CLI
+  if (req.method === 'GET' && req.url === '/api/gh-token') {
+    const token = getGhToken();
+    if (token) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ token: token.slice(0, 4) + '...' + token.slice(-4), hasToken: true }));
+    } else {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ hasToken: false, message: 'gh CLI not found or not logged in. Run: gh auth login' }));
+    }
+    return;
+  }
+
+  // Use gh CLI token for GitHub Models (auto-auth)
+  if (req.method === 'POST' && req.url === '/api/translate-auto') {
+    let body = '';
+    for await (const chunk of req) body += chunk;
+    const { payload } = JSON.parse(body);
+
+    const token = getGhToken();
+    if (!token) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: { message: 'gh CLI not logged in. Run: gh auth login' } }));
+      return;
+    }
+
+    try {
+      const result = await proxyRequest('github', token, payload);
+      if (result.status !== 200) {
+        console.error(`GitHub Models (auto) returned ${result.status}:`, result.body.slice(0, 300));
+      }
+      res.writeHead(result.status, { 'Content-Type': 'application/json' });
+      res.end(result.body);
+    } catch (err) {
+      console.error('Auto proxy error:', err.message);
+      res.writeHead(502, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: { message: err.message } }));
+    }
+    return;
   }
 
   // API proxy endpoint - test token + find working models

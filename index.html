@@ -551,7 +551,8 @@
         <div class="ai-settings hidden" id="ai-settings">
           <label>AI Provider</label>
           <select id="ai-provider">
-            <option value="github">GitHub Models — Free</option>
+            <option value="github-auto">GitHub Models (Auto — uses gh CLI login)</option>
+            <option value="github">GitHub Models (Manual PAT)</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
@@ -1155,7 +1156,7 @@ Respond with ONLY:
       const key = getAIKey();
       const provider = getAIProvider();
 
-      if (!key) {
+      if (provider !== 'github-auto' && !key) {
         throw new Error('Please enter your API key in the settings above.');
       }
 
@@ -1163,13 +1164,30 @@ Respond with ONLY:
 
       // Build provider-specific payload
       let payload;
-      if (provider === 'github') {
-        const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
+      const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
+      if (provider === 'github-auto' || provider === 'github') {
         payload = { model, messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'openai') {
         payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else {
         payload = { model: 'claude-sonnet-4-20250514', max_tokens: 500, messages: [{ role: 'user', content: prompt }] };
+      }
+
+      // For github-auto, use the auto endpoint (server uses gh CLI token)
+      if (provider === 'github-auto') {
+        const resp = await fetch('/api/translate-auto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payload })
+        });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          let msg;
+          try { const j = JSON.parse(errText); msg = j.error?.message || errText; } catch { msg = errText; }
+          throw new Error(msg);
+        }
+        const data = await resp.json();
+        return data.choices[0].message.content.trim();
       }
 
       // Try local proxy first (avoids CORS), fallback to direct API
@@ -1246,7 +1264,16 @@ Respond with ONLY:
 
     document.getElementById('ai-provider').addEventListener('change', (e) => {
       localStorage.setItem(AI_PROVIDER_STORAGE, e.target.value);
-      document.getElementById('github-model-section').style.display = e.target.value === 'github' ? 'block' : 'none';
+      const isGithub = e.target.value === 'github';
+      const isAuto = e.target.value === 'github-auto';
+      document.getElementById('github-model-section').style.display = (isGithub || isAuto) ? 'block' : 'none';
+      document.getElementById('ai-key').parentElement.querySelector('label').style.display = isAuto ? 'none' : '';
+      document.getElementById('ai-key').style.display = isAuto ? 'none' : '';
+      if (isAuto) {
+        document.getElementById('test-result').innerHTML = '<span style="color:#6b21a8">No API key needed — uses your gh CLI login automatically</span>';
+      } else {
+        document.getElementById('test-result').innerHTML = '';
+      }
     });
 
     document.getElementById('github-model').addEventListener('change', (e) => {
@@ -1302,7 +1329,7 @@ Respond with ONLY:
     function restoreAISettings() {
       const enabled = localStorage.getItem('iu-mienh-ai-enabled') === '1';
       const key = localStorage.getItem(AI_KEY_STORAGE) || '';
-      const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'github';
+      const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'github-auto';
       const githubModel = localStorage.getItem('iu-mienh-github-model') || 'openai/gpt-4.1-mini';
 
       document.getElementById('ai-toggle').checked = enabled;
@@ -1310,10 +1337,19 @@ Respond with ONLY:
       document.getElementById('ai-provider').value = provider;
       document.getElementById('github-model').value = githubModel;
       document.getElementById('ai-settings').classList.toggle('hidden', !enabled);
-      document.getElementById('github-model-section').style.display = provider === 'github' ? 'block' : 'none';
+
+      const isAuto = provider === 'github-auto';
+      const isGithub = provider === 'github';
+      document.getElementById('github-model-section').style.display = (isGithub || isAuto) ? 'block' : 'none';
+      document.getElementById('ai-key').style.display = isAuto ? 'none' : '';
+
       const btn = document.getElementById('translate-btn');
       btn.classList.toggle('ai-active', enabled);
       btn.textContent = enabled ? '✨ Translate with AI' : 'Translate';
+
+      if (isAuto) {
+        document.getElementById('test-result').innerHTML = '<span style="color:#6b21a8">No API key needed — uses your gh CLI login automatically</span>';
+      }
     }
 
     // Init
