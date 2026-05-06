@@ -1145,75 +1145,52 @@ Respond with ONLY:
 
       const prompt = buildAIPrompt(englishText);
 
+      // Build provider-specific payload
+      let payload;
       if (provider === 'github') {
-        const resp = await fetch('https://models.inference.ai.github.com/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${key}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o',
-            messages: [{ role: 'user', content: prompt }],
-            temperature: 0.3,
-            max_tokens: 500
-          })
-        });
-
-        if (!resp.ok) {
-          const err = await resp.json().catch(() => ({}));
-          throw new Error(err.error?.message || `API error: ${resp.status}`);
-        }
-
-        const data = await resp.json();
-        return data.choices[0].message.content.trim();
+        payload = { model: 'gpt-4o', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'openai') {
-        const resp = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${key}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            messages: [{ role: 'user', content: prompt }],
-            temperature: 0.3,
-            max_tokens: 500
-          })
-        });
-
-        if (!resp.ok) {
-          const err = await resp.json().catch(() => ({}));
-          throw new Error(err.error?.message || `API error: ${resp.status}`);
-        }
-
-        const data = await resp.json();
-        return data.choices[0].message.content.trim();
+        payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else {
-        // Anthropic Claude
-        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        payload = { model: 'claude-sonnet-4-20250514', max_tokens: 500, messages: [{ role: 'user', content: prompt }] };
+      }
+
+      // Try local proxy first (avoids CORS), fallback to direct API
+      let resp;
+      try {
+        resp = await fetch('/api/translate', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': key,
-            'anthropic-version': '2023-06-01',
-            'anthropic-dangerous-direct-browser-access': 'true'
-          },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 500,
-            messages: [{ role: 'user', content: prompt }]
-          })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ provider, key, payload })
         });
-
-        if (!resp.ok) {
-          const err = await resp.json().catch(() => ({}));
-          throw new Error(err.error?.message || `API error: ${resp.status}`);
+      } catch (e) {
+        // Proxy not available, try direct (works for OpenAI, may fail for others)
+        const directUrls = {
+          github: 'https://models.inference.ai.github.com/chat/completions',
+          openai: 'https://api.openai.com/v1/chat/completions',
+          anthropic: 'https://api.anthropic.com/v1/messages',
+        };
+        const headers = { 'Content-Type': 'application/json' };
+        if (provider === 'anthropic') {
+          headers['x-api-key'] = key;
+          headers['anthropic-version'] = '2023-06-01';
+          headers['anthropic-dangerous-direct-browser-access'] = 'true';
+        } else {
+          headers['Authorization'] = `Bearer ${key}`;
         }
+        resp = await fetch(directUrls[provider], { method: 'POST', headers, body: JSON.stringify(payload) });
+      }
 
-        const data = await resp.json();
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error?.message || `API error: ${resp.status}`);
+      }
+
+      const data = await resp.json();
+      if (provider === 'anthropic') {
         return data.content[0].text.trim();
       }
+      return data.choices[0].message.content.trim();
     }
 
     function renderAIResult(text) {
