@@ -551,12 +551,14 @@
         <div class="ai-settings hidden" id="ai-settings">
           <label>AI Provider</label>
           <select id="ai-provider">
+            <option value="github">GitHub Copilot (GPT-4o)</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
           <label>API Key</label>
-          <input type="password" id="ai-key" placeholder="sk-... or sk-ant-...">
-          <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.</p>
+          <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
+          <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
+          <strong>GitHub Copilot:</strong> Use a <a href="https://github.com/settings/tokens" target="_blank" style="color:#6b21a8">GitHub PAT</a> with "copilot" scope.</p>
         </div>
         <div class="input-area">
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
@@ -1143,7 +1145,29 @@ Respond with ONLY:
 
       const prompt = buildAIPrompt(englishText);
 
-      if (provider === 'openai') {
+      if (provider === 'github') {
+        const resp = await fetch('https://models.inference.ai.github.com/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o',
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.3,
+            max_tokens: 500
+          })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        return data.choices[0].message.content.trim();
+      } else if (provider === 'openai') {
         const resp = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
