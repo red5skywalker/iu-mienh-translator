@@ -19,6 +19,51 @@ function getGhToken() {
   }
 }
 
+// Copilot OAuth token (from device flow) and cached Copilot API token
+let copilotOAuthToken = process.env.COPILOT_OAUTH_TOKEN || '';
+let copilotApiToken = null;
+let copilotApiEndpoint = null;
+let copilotTokenExpiry = 0;
+
+async function getCopilotToken() {
+  // Return cached token if still valid (with 60s buffer)
+  if (copilotApiToken && Date.now() / 1000 < copilotTokenExpiry - 60) {
+    return { token: copilotApiToken, endpoint: copilotApiEndpoint };
+  }
+
+  return new Promise((resolve, reject) => {
+    const req = httpsRequest({
+      hostname: 'api.github.com', port: 443,
+      path: '/copilot_internal/v2/token',
+      method: 'GET',
+      headers: {
+        'authorization': `token ${copilotOAuthToken}`,
+        'user-agent': 'GithubCopilot/1.155.0',
+        'accept': 'application/json',
+        'editor-version': 'vscode/1.96.2',
+        'editor-plugin-version': 'copilot/1.155.0',
+      }
+    }, (res) => {
+      let data = '';
+      res.on('data', c => { data += c; });
+      res.on('end', () => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`Copilot token exchange failed (${res.statusCode}): ${data.slice(0, 200)}`));
+          return;
+        }
+        const json = JSON.parse(data);
+        copilotApiToken = json.token;
+        copilotApiEndpoint = json.endpoints?.api || 'https://api.business.githubcopilot.com';
+        copilotTokenExpiry = json.expires_at || (Date.now() / 1000 + 1800);
+        resolve({ token: copilotApiToken, endpoint: copilotApiEndpoint });
+      });
+    });
+    req.on('error', reject);
+    req.setTimeout(10000, () => { req.destroy(); reject(new Error('Timeout getting Copilot token')); });
+    req.end();
+  });
+}
+
 const MIME = {
   '.html': 'text/html',
   '.json': 'application/json',
@@ -120,6 +165,54 @@ const server = createServer(async (req, res) => {
     } else {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ hasToken: false, message: 'gh CLI not found or not logged in. Run: gh auth login' }));
+    }
+    return;
+  }
+
+  // Use Copilot API (auto-auth via OAuth token exchange)
+  if (req.method === 'POST' && req.url === '/api/translate-copilot') {
+    let body = '';
+    for await (const chunk of req) body += chunk;
+    const { payload } = JSON.parse(body);
+
+    try {
+      const { token, endpoint } = await getCopilotToken();
+      const apiHost = new URL(endpoint).hostname;
+
+      const result = await new Promise((resolve, reject) => {
+        const bodyStr = JSON.stringify(payload);
+        const req2 = httpsRequest({
+          hostname: apiHost, port: 443,
+          path: '/chat/completions',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(bodyStr),
+            'Authorization': `Bearer ${token}`,
+            'User-Agent': 'GitHubCopilotChat/0.25.0',
+            'Editor-Version': 'vscode/1.96.2',
+            'Copilot-Integration-Id': 'vscode-chat',
+          },
+        }, (res2) => {
+          let data = '';
+          res2.on('data', c => { data += c; });
+          res2.on('end', () => resolve({ status: res2.statusCode, body: data }));
+        });
+        req2.on('error', e => reject(new Error(`Copilot API error: ${e.message}`)));
+        req2.setTimeout(30000, () => { req2.destroy(); reject(new Error('Copilot API timeout')); });
+        req2.write(bodyStr);
+        req2.end();
+      });
+
+      if (result.status !== 200) {
+        console.error(`Copilot API returned ${result.status}:`, result.body.slice(0, 300));
+      }
+      res.writeHead(result.status, { 'Content-Type': 'application/json' });
+      res.end(result.body);
+    } catch (err) {
+      console.error('Copilot proxy error:', err.message);
+      res.writeHead(502, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: { message: err.message } }));
     }
     return;
   }
