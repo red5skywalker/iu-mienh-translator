@@ -551,14 +551,30 @@
         <div class="ai-settings hidden" id="ai-settings">
           <label>AI Provider</label>
           <select id="ai-provider">
-            <option value="github">GitHub Models (GPT-4.1-mini) — Free</option>
+            <option value="github">GitHub Models — Free</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
           <label>API Key</label>
           <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
+          <div id="github-model-section" style="margin-top:0.5rem">
+            <label>Model</label>
+            <div style="display:flex;gap:0.5rem;align-items:center">
+              <select id="github-model" style="flex:1">
+                <option value="openai/gpt-4.1-mini">openai/gpt-4.1-mini</option>
+                <option value="openai/gpt-4.1">openai/gpt-4.1</option>
+                <option value="openai/gpt-4o-mini">openai/gpt-4o-mini</option>
+                <option value="openai/gpt-4o">openai/gpt-4o</option>
+                <option value="meta/llama-4-scout-17b-16e-instruct">meta/llama-4-scout</option>
+                <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
+                <option value="mistral-ai/mistral-small-2503">mistral-ai/mistral-small</option>
+              </select>
+              <button type="button" id="test-connection-btn" style="padding:0.4rem 0.7rem;font-size:0.75rem;border-radius:6px;border:1px solid #e9d5ff;background:#faf5ff;cursor:pointer;white-space:nowrap">🔍 Test</button>
+            </div>
+            <p id="test-result" style="margin-top:0.3rem;font-size:0.75rem;color:var(--text-light)"></p>
+          </div>
           <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
-          <strong>GitHub Models:</strong> Use a <a href="https://github.com/settings/tokens" target="_blank" style="color:#6b21a8">GitHub PAT</a> with "models:read" scope (free with GitHub account).</p>
+          <strong>GitHub Models:</strong> Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#6b21a8">Fine-grained PAT</a> → Account permissions → Models: Read.</p>
         </div>
         <div class="input-area">
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
@@ -1148,7 +1164,8 @@ Respond with ONLY:
       // Build provider-specific payload
       let payload;
       if (provider === 'github') {
-        payload = { model: 'openai/gpt-4.1-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
+        const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
+        payload = { model, messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'openai') {
         payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else {
@@ -1182,8 +1199,13 @@ Respond with ONLY:
       }
 
       if (!resp.ok) {
-        const err = await resp.json().catch(() => ({}));
-        throw new Error(err.error?.message || `API error: ${resp.status}`);
+        const errText = await resp.text();
+        let msg;
+        try {
+          const errJson = JSON.parse(errText);
+          msg = errJson.error?.message || errJson.message || errText;
+        } catch { msg = errText || `API error: ${resp.status}`; }
+        throw new Error(msg);
       }
 
       const data = await resp.json();
@@ -1224,18 +1246,70 @@ Respond with ONLY:
 
     document.getElementById('ai-provider').addEventListener('change', (e) => {
       localStorage.setItem(AI_PROVIDER_STORAGE, e.target.value);
+      document.getElementById('github-model-section').style.display = e.target.value === 'github' ? 'block' : 'none';
+    });
+
+    document.getElementById('github-model').addEventListener('change', (e) => {
+      localStorage.setItem('iu-mienh-github-model', e.target.value);
+    });
+
+    // Test connection button
+    document.getElementById('test-connection-btn').addEventListener('click', async () => {
+      const key = document.getElementById('ai-key').value.trim();
+      const resultEl = document.getElementById('test-result');
+      if (!key) {
+        resultEl.innerHTML = '<span style="color:#dc2626">Enter your API key first</span>';
+        return;
+      }
+      resultEl.innerHTML = '<span style="color:#6b21a8">Testing...</span>';
+      try {
+        const resp = await fetch('/api/test-models', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key })
+        });
+        if (resp.status === 401) {
+          resultEl.innerHTML = '<span style="color:#dc2626">❌ Token rejected. Make sure your Fine-grained PAT has Account permissions → Models: Read</span>';
+          return;
+        }
+        const models = await resp.json();
+        if (Array.isArray(models)) {
+          const chatModels = models.filter(m => m.task === 'chat-completion' || !m.task).map(m => m.id).filter(Boolean);
+          resultEl.innerHTML = `<span style="color:#16a34a">✅ Token works! ${chatModels.length} models available.</span>`;
+          // Update the model dropdown with available models
+          const select = document.getElementById('github-model');
+          const currentVal = select.value;
+          select.innerHTML = '';
+          chatModels.forEach(id => {
+            const opt = document.createElement('option');
+            opt.value = id;
+            opt.textContent = id;
+            select.appendChild(opt);
+          });
+          if (chatModels.includes(currentVal)) select.value = currentVal;
+          else if (chatModels.length > 0) select.value = chatModels[0];
+          localStorage.setItem('iu-mienh-github-model', select.value);
+        } else {
+          resultEl.innerHTML = `<span style="color:#dc2626">❌ Unexpected response. Status: ${resp.status}</span>`;
+        }
+      } catch (e) {
+        resultEl.innerHTML = `<span style="color:#dc2626">❌ ${e.message}. Is the server running?</span>`;
+      }
     });
 
     // Restore AI settings
     function restoreAISettings() {
       const enabled = localStorage.getItem('iu-mienh-ai-enabled') === '1';
       const key = localStorage.getItem(AI_KEY_STORAGE) || '';
-      const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'openai';
+      const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'github';
+      const githubModel = localStorage.getItem('iu-mienh-github-model') || 'openai/gpt-4.1-mini';
 
       document.getElementById('ai-toggle').checked = enabled;
       document.getElementById('ai-key').value = key;
       document.getElementById('ai-provider').value = provider;
+      document.getElementById('github-model').value = githubModel;
       document.getElementById('ai-settings').classList.toggle('hidden', !enabled);
+      document.getElementById('github-model-section').style.display = provider === 'github' ? 'block' : 'none';
       const btn = document.getElementById('translate-btn');
       btn.classList.toggle('ai-active', enabled);
       btn.textContent = enabled ? '✨ Translate with AI' : 'Translate';
