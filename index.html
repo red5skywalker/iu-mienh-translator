@@ -360,6 +360,164 @@
 
     .toast.show { opacity: 1; }
 
+    /* AI Mode styles */
+    .ai-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+
+    .ai-toggle-row label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ai-toggle-row .ai-badge {
+      font-size: 0.7rem;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #cbd5e1;
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+
+    .toggle-slider:before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    }
+
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    .ai-settings {
+      margin-bottom: 0.75rem;
+      padding: 0.75rem;
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .ai-settings.hidden { display: none; }
+
+    .ai-settings label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: #6b21a8;
+    }
+
+    .ai-settings input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #e9d5ff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+
+    .ai-settings .ai-note {
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .ai-settings select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #e9d5ff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .translate-btn.ai-active {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    }
+
+    .translate-btn.ai-active:hover {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    }
+
+    .ai-loading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      color: #6b21a8;
+      font-size: 0.9rem;
+    }
+
+    .ai-loading .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #e9d5ff;
+      border-top-color: #8b5cf6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .ai-output {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .ai-output .ai-translation {
+      color: #6b21a8;
+      font-weight: 500;
+    }
+
+    .ai-output .ai-explanation {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       header h1 { font-size: 1.4rem; }
@@ -383,6 +541,23 @@
     <!-- Translate Tab -->
     <div id="tab-translate">
       <div class="card">
+        <div class="ai-toggle-row">
+          <label><span class="ai-badge">✨ AI</span> AI-assisted translation</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="ai-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="ai-settings hidden" id="ai-settings">
+          <label>AI Provider</label>
+          <select id="ai-provider">
+            <option value="openai">OpenAI (GPT-4o-mini)</option>
+            <option value="anthropic">Anthropic (Claude)</option>
+          </select>
+          <label>API Key</label>
+          <input type="password" id="ai-key" placeholder="sk-... or sk-ant-...">
+          <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.</p>
+        </div>
         <div class="input-area">
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
           <button class="translate-btn" id="translate-btn">Translate</button>
@@ -634,11 +809,23 @@
     }
 
     // Event handlers
-    document.getElementById('translate-btn').addEventListener('click', () => {
+    document.getElementById('translate-btn').addEventListener('click', async () => {
       const text = document.getElementById('input-text').value.trim();
       if (!text) return;
-      const tokens = translate(text);
-      renderTranslation(tokens);
+
+      if (getAIEnabled()) {
+        const output = document.getElementById('output-area');
+        output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating with AI...</div>';
+        try {
+          const result = await translateWithAI(text);
+          renderAIResult(result);
+        } catch (err) {
+          output.innerHTML = `<span style="color:#dc2626">⚠️ ${err.message}</span>`;
+        }
+      } else {
+        const tokens = translate(text);
+        renderTranslation(tokens);
+      }
     });
 
     document.getElementById('input-text').addEventListener('keydown', (e) => {
@@ -848,7 +1035,213 @@
       });
     });
 
+    // === AI TRANSLATION ===
+    const AI_KEY_STORAGE = 'iu-mienh-ai-key';
+    const AI_PROVIDER_STORAGE = 'iu-mienh-ai-provider';
+
+    const GRAMMAR_RULES = `
+Iu Mienh (also called Iu Mien or Yao) grammar rules:
+- Word order: Subject-Verb-Object (like English/Mandarin)
+- Possessive: X nyei Y = X's Y (e.g. "yie nyei mbuox" = "my name")
+- Personal pronouns: yie=I/me, meih=you, ninh=he/she, mbuo=plural marker (yie mbuo=we, meih mbuo=you all, ninh mbuo=they)
+- Past tense: add "aqv" or "jiex" after the verb (e.g. "mingh aqv" = went)
+- Future/want: "oix" before verb (e.g. "yie oix mingh" = I want to go / I will go)
+- Negation: "maiv" before verb (e.g. "maiv hiuv" = don't know, "maiv maaih" = don't have)
+- Questions: add "fai" at end (yes/no questions), or use "haaix" (what/which), "haaix dauh" (who), "weic haaix diuc" (why)
+- "nyei" is a linking/possessive particle (similar to Mandarin 的)
+- "se" = is/am/are (equative), "benx" = become/is (transforms into)
+- "maaih" = have/exist, "maiv maaih" = don't have/not exist
+- "haih" = can/able to
+- "oix zuqc" = must/should
+- "duqv" = get/obtain (result complement, like Mandarin 得)
+- Classifiers: "dauh" for people, "norm" for general items, "buonv" for books
+- "wuov" = that/those (demonstrative), "naaiv" = this/these
+- Adjectives can come after nouns: "mienh longx" = good person
+- Serial verb constructions are common: "mingh lorz" = go look for
+- "bun" = give/let/cause (causative, like Mandarin 给/让)
+- "daaih" = come (directional complement)
+- "jienv" = continuous aspect (like -ing)
+- Sentences often end with particles: "aqv" (completed), "nyei" (assertive), "lor" (suggestion), "maah" (tag question)
+`.trim();
+
+    const EXAMPLE_PAIRS = [
+      { eng: "God wants people to enjoy life on earth.", imn: "Tin-Hungh oix mienh maanh duqv njien-yiouh kuv-yiem nyei maengc yiem baamh gen." },
+      { eng: "The true God is the Creator of all things.", imn: "Zien Tin-Hungh se dongh Zeix cuotv maanc muotc Wuov Dauh." },
+      { eng: "No human has ever seen God.", imn: "Maiv maaih haaix dauh baamh mienh duqv buatc jiex Tin-Hungh." },
+      { eng: "Jesus said: Our Father in the heavens, let your name be sanctified.", imn: "Yesu gorngv: Yie mbuo nyei tin-dorngh Diex aah! Tov bun mienh taaih meih nyei cing-nzengc mbuox." },
+      { eng: "God sent his Son to earth.", imn: "Tin-Hungh paaiv ninh nyei Dorn njiec baamh gen." },
+      { eng: "When we die, our brain dies too.", imn: "Taux mbuo daic nyei ziangh hoc, mbuo nyei m'nzuih daic." },
+      { eng: "Jehovah wants you to be happy.", imn: "Yeˆhoˆwaa oix bun meih nyei hnyiouv njien-yiouh." },
+      { eng: "We should learn about God from his Word, the Bible.", imn: "Mbuo oix zuqc hoqc Ging-Sou, hoqc taux Tin-Hungh nyei jauv." },
+      { eng: "How can your family be happy?", imn: "Meih nyei hmuangv-doic hnangv haaix nor haih duqv njien-yiouh?" },
+      { eng: "True religion is uniting people.", imn: "Zien buoqc zangc nyei jauv dorh mienh gapv zunv maaih dongh diuc hnyiouv." },
+    ];
+
+    function getAIEnabled() {
+      return document.getElementById('ai-toggle').checked;
+    }
+
+    function getAIKey() {
+      return document.getElementById('ai-key').value.trim();
+    }
+
+    function getAIProvider() {
+      return document.getElementById('ai-provider').value;
+    }
+
+    function buildAIPrompt(englishText) {
+      // Get dictionary lookups for words in the text
+      const words = englishText.toLowerCase().split(/\s+/);
+      const relevantEntries = [];
+      const seen = new Set();
+
+      // Lookup individual words and phrases
+      for (let i = 0; i < words.length; i++) {
+        for (let len = Math.min(4, words.length - i); len >= 1; len--) {
+          const phrase = words.slice(i, i + len).join(' ');
+          if (dictionary.lookup[phrase] && !seen.has(phrase)) {
+            seen.add(phrase);
+            const defs = dictionary.lookup[phrase].slice(0, 2);
+            relevantEntries.push(`${phrase} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join(', ')}`);
+          }
+        }
+      }
+
+      const vocabSection = relevantEntries.length > 0
+        ? `\nRelevant vocabulary from the dictionary:\n${relevantEntries.join('\n')}\n`
+        : '';
+
+      const examplesSection = EXAMPLE_PAIRS.map(p =>
+        `English: ${p.eng}\nIu Mienh: ${p.imn}`
+      ).join('\n\n');
+
+      return `You are an expert translator for Iu Mienh (a Hmong-Mien language spoken by the Mien people). Translate the following English text into Iu Mienh.
+
+${GRAMMAR_RULES}
+${vocabSection}
+Here are example translations showing natural Iu Mienh sentence structure:
+
+${examplesSection}
+
+Now translate this English text into natural Iu Mienh. Use the vocabulary provided where applicable. Follow the grammar rules. If you're unsure about a word, transliterate it.
+
+English: ${englishText}
+
+Respond with ONLY:
+1. First line: the Iu Mienh translation
+2. Then a blank line
+3. Then a brief explanation of the grammar/word choices (2-3 sentences max)`;
+    }
+
+    async function translateWithAI(englishText) {
+      const key = getAIKey();
+      const provider = getAIProvider();
+
+      if (!key) {
+        throw new Error('Please enter your API key in the settings above.');
+      }
+
+      const prompt = buildAIPrompt(englishText);
+
+      if (provider === 'openai') {
+        const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.3,
+            max_tokens: 500
+          })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        return data.choices[0].message.content.trim();
+      } else {
+        // Anthropic Claude
+        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': key,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 500,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        return data.content[0].text.trim();
+      }
+    }
+
+    function renderAIResult(text) {
+      const output = document.getElementById('output-area');
+      const parts = text.split(/\n\n/);
+      const translation = parts[0] || text;
+      const explanation = parts.slice(1).join('\n\n');
+
+      let html = `<div class="ai-output">`;
+      html += `<div class="ai-translation">${translation}</div>`;
+      if (explanation) {
+        html += `<div class="ai-explanation">${explanation.replace(/\n/g, '<br>')}</div>`;
+      }
+      html += `</div>`;
+      output.innerHTML = html;
+    }
+
+    // AI toggle and settings persistence
+    document.getElementById('ai-toggle').addEventListener('change', (e) => {
+      const settings = document.getElementById('ai-settings');
+      const btn = document.getElementById('translate-btn');
+      settings.classList.toggle('hidden', !e.target.checked);
+      btn.classList.toggle('ai-active', e.target.checked);
+      btn.textContent = e.target.checked ? '✨ Translate with AI' : 'Translate';
+      localStorage.setItem('iu-mienh-ai-enabled', e.target.checked ? '1' : '0');
+    });
+
+    document.getElementById('ai-key').addEventListener('change', (e) => {
+      localStorage.setItem(AI_KEY_STORAGE, e.target.value.trim());
+    });
+
+    document.getElementById('ai-provider').addEventListener('change', (e) => {
+      localStorage.setItem(AI_PROVIDER_STORAGE, e.target.value);
+    });
+
+    // Restore AI settings
+    function restoreAISettings() {
+      const enabled = localStorage.getItem('iu-mienh-ai-enabled') === '1';
+      const key = localStorage.getItem(AI_KEY_STORAGE) || '';
+      const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'openai';
+
+      document.getElementById('ai-toggle').checked = enabled;
+      document.getElementById('ai-key').value = key;
+      document.getElementById('ai-provider').value = provider;
+      document.getElementById('ai-settings').classList.toggle('hidden', !enabled);
+      const btn = document.getElementById('translate-btn');
+      btn.classList.toggle('ai-active', enabled);
+      btn.textContent = enabled ? '✨ Translate with AI' : 'Translate';
+    }
+
     // Init
+    restoreAISettings();
     loadDictionary();
   </script>
 </body>
