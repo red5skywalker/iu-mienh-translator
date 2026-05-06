@@ -551,7 +551,7 @@
         <div class="ai-settings hidden" id="ai-settings">
           <label>AI Provider</label>
           <select id="ai-provider">
-            <option value="github">GitHub Models (GPT-4o) — Free</option>
+            <option value="github">GitHub Models (GPT-4o-mini) — Free</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
@@ -1148,7 +1148,7 @@ Respond with ONLY:
       // Build provider-specific payload
       let payload;
       if (provider === 'github') {
-        payload = { model: 'openai/gpt-4o', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
+        payload = { model: 'openai/gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'openai') {
         payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else {
