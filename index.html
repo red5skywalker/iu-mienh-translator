@@ -1116,14 +1116,42 @@ Iu Mienh (also called Iu Mien or Yao) grammar rules:
       const relevantEntries = [];
       const seen = new Set();
 
+      // Simple stemming: try base forms of English words
+      function getStemForms(word) {
+        const forms = [word];
+        if (word.endsWith('ies') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
+        if (word.endsWith('ied') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
+        if (word.endsWith('s') && word.length > 3) forms.push(word.slice(0, -1));
+        if (word.endsWith('es') && word.length > 4) forms.push(word.slice(0, -2));
+        if (word.endsWith('ed') && word.length > 4) { forms.push(word.slice(0, -1)); forms.push(word.slice(0, -2)); }
+        if (word.endsWith('ing') && word.length > 5) { forms.push(word.slice(0, -3) + 'e'); forms.push(word.slice(0, -3)); }
+        if (word.endsWith('er') && word.length > 4) forms.push(word.slice(0, -2));
+        if (word.endsWith('est') && word.length > 5) forms.push(word.slice(0, -3));
+        return [...new Set(forms)];
+      }
+
       // Lookup individual words and phrases (up to 6 words)
       for (let i = 0; i < words.length; i++) {
         for (let len = Math.min(6, words.length - i); len >= 1; len--) {
           const phrase = words.slice(i, i + len).join(' ');
-          if (dictionary.lookup[phrase] && !seen.has(phrase)) {
-            seen.add(phrase);
-            const defs = dictionary.lookup[phrase].slice(0, 3);
-            relevantEntries.push(`${phrase} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join('; ')}`);
+          // Try exact phrase first, then stem forms for single words
+          let found = null;
+          let lookupKey = phrase;
+          if (dictionary.lookup[phrase]) {
+            found = dictionary.lookup[phrase];
+          } else if (len === 1) {
+            for (const stem of getStemForms(phrase)) {
+              if (dictionary.lookup[stem]) {
+                found = dictionary.lookup[stem];
+                lookupKey = phrase + ' (' + stem + ')';
+                break;
+              }
+            }
+          }
+          if (found && !seen.has(lookupKey)) {
+            seen.add(lookupKey);
+            const defs = found.slice(0, 3);
+            relevantEntries.push(`${lookupKey} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join('; ')}`);
           }
         }
       }
