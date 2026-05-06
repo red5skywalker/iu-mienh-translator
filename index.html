@@ -1173,7 +1173,7 @@ Respond with ONLY:
       // Build provider-specific payload
       let payload;
       if (provider === 'copilot') {
-        payload = { model: 'gpt-4o', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
+        payload = { model: 'gpt-4.1', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'github') {
         const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
         payload = { model, messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
