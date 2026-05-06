@@ -1110,24 +1110,26 @@ Iu Mienh (also called Iu Mien or Yao) grammar rules:
 
     function buildAIPrompt(englishText) {
       // Get dictionary lookups for words in the text
-      const words = englishText.toLowerCase().split(/\s+/);
+      // Strip punctuation for lookup purposes
+      const cleanText = englishText.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '');
+      const words = cleanText.split(/\s+/).filter(w => w.length > 0);
       const relevantEntries = [];
       const seen = new Set();
 
-      // Lookup individual words and phrases
+      // Lookup individual words and phrases (up to 6 words)
       for (let i = 0; i < words.length; i++) {
-        for (let len = Math.min(4, words.length - i); len >= 1; len--) {
+        for (let len = Math.min(6, words.length - i); len >= 1; len--) {
           const phrase = words.slice(i, i + len).join(' ');
           if (dictionary.lookup[phrase] && !seen.has(phrase)) {
             seen.add(phrase);
-            const defs = dictionary.lookup[phrase].slice(0, 2);
-            relevantEntries.push(`${phrase} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join(', ')}`);
+            const defs = dictionary.lookup[phrase].slice(0, 3);
+            relevantEntries.push(`${phrase} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join('; ')}`);
           }
         }
       }
 
       const vocabSection = relevantEntries.length > 0
-        ? `\nRelevant vocabulary from the dictionary:\n${relevantEntries.join('\n')}\n`
+        ? `\n**DICTIONARY (YOU MUST USE THESE TRANSLATIONS — do not invent words):**\n${relevantEntries.join('\n')}\n`
         : '';
 
       const examplesSection = EXAMPLE_PAIRS.map(p =>
@@ -1142,7 +1144,13 @@ Here are example translations showing natural Iu Mienh sentence structure:
 
 ${examplesSection}
 
-Now translate this English text into natural Iu Mienh. Use the vocabulary provided where applicable. Follow the grammar rules. If you're unsure about a word, transliterate it.
+CRITICAL RULES:
+- You MUST use the dictionary translations provided above. Do NOT make up or guess Iu Mienh words.
+- If a word is in the dictionary above, you MUST use that translation.
+- Only if a word is NOT in the dictionary AND you cannot find it in the examples, leave it in English.
+- Never transliterate English words into made-up Mienh-sounding words.
+
+Now translate this English text into natural Iu Mienh:
 
 English: ${englishText}
 
