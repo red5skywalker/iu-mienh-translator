@@ -70,7 +70,7 @@ const server = createServer(async (req, res) => {
       res.end(data);
     } catch (err) {
       res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: { message: `Could not reach ${provider} API: ${err.message}` } }));
+      res.end(JSON.stringify({ error: { message: `Could not reach API: ${err.message}` } }));
     }
     return;
   }
