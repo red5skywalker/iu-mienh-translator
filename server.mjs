@@ -1,9 +1,13 @@
 import { createServer } from 'http';
+import { request as httpsRequest } from 'https';
 import { readFileSync, existsSync } from 'fs';
 import { join, extname } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const PORT = process.env.PORT || 3456;
-const DIR = import.meta.dirname;
+const __filename = fileURLToPath(import.meta.url);
+const DIR = dirname(__filename);
 
 const MIME = {
   '.html': 'text/html',
@@ -16,24 +20,66 @@ const MIME = {
 
 const PROVIDERS = {
   github: {
-    url: 'https://models.inference.ai.github.com/chat/completions',
-    authHeader: (key) => ({ 'Authorization': `Bearer ${key}` }),
+    hostname: 'models.github.ai',
+    path: '/inference/v1/chat/completions',
+    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
   },
   openai: {
-    url: 'https://api.openai.com/v1/chat/completions',
-    authHeader: (key) => ({ 'Authorization': `Bearer ${key}` }),
+    hostname: 'api.openai.com',
+    path: '/v1/chat/completions',
+    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
   },
   anthropic: {
-    url: 'https://api.anthropic.com/v1/messages',
-    authHeader: (key) => ({
+    hostname: 'api.anthropic.com',
+    path: '/v1/messages',
+    headers: (key) => ({
       'x-api-key': key,
       'anthropic-version': '2023-06-01',
     }),
   },
 };
 
+function proxyRequest(provider, key, payload) {
+  return new Promise((resolve, reject) => {
+    const config = PROVIDERS[provider];
+    if (!config) return reject(new Error('Unknown provider: ' + provider));
+
+    const bodyStr = JSON.stringify(payload);
+    const options = {
+      hostname: config.hostname,
+      port: 443,
+      path: config.path,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(bodyStr),
+        ...config.headers(key),
+      },
+    };
+
+    const req = httpsRequest(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        resolve({ status: res.statusCode, body: data });
+      });
+    });
+
+    req.on('error', (err) => {
+      reject(new Error(`Connection to ${config.hostname} failed: ${err.code || err.message}`));
+    });
+
+    req.setTimeout(30000, () => {
+      req.destroy();
+      reject(new Error(`Request to ${config.hostname} timed out after 30s`));
+    });
+
+    req.write(bodyStr);
+    req.end();
+  });
+}
+
 const server = createServer(async (req, res) => {
-  // CORS headers for all responses
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -48,35 +94,31 @@ const server = createServer(async (req, res) => {
     let body = '';
     for await (const chunk of req) body += chunk;
 
+    let parsed;
     try {
-      const { provider, key, payload } = JSON.parse(body);
-      const config = PROVIDERS[provider];
-      if (!config) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Unknown provider' }));
-      }
+      parsed = JSON.parse(body);
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: { message: 'Invalid JSON in request body' } }));
+    }
 
-      const resp = await fetch(config.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...config.authHeader(key),
-        },
-        body: JSON.stringify(payload),
-      });
+    const { provider, key, payload } = parsed;
 
-      const data = await resp.text();
-      res.writeHead(resp.status, { 'Content-Type': 'application/json' });
-      res.end(data);
+    try {
+      const result = await proxyRequest(provider, key, payload);
+      res.writeHead(result.status, { 'Content-Type': 'application/json' });
+      res.end(result.body);
     } catch (err) {
+      console.error('Proxy error:', err.message);
       res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: { message: `Could not reach API: ${err.message}` } }));
+      res.end(JSON.stringify({ error: { message: err.message } }));
     }
     return;
   }
 
   // Static file serving
-  let filePath = req.url === '/' ? '/index.html' : req.url;
+  let filePath = req.url.split('?')[0];
+  filePath = filePath === '/' ? '/index.html' : filePath;
   filePath = join(DIR, filePath);
 
   if (!existsSync(filePath)) {

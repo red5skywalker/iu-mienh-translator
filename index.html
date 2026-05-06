@@ -551,14 +551,14 @@
         <div class="ai-settings hidden" id="ai-settings">
           <label>AI Provider</label>
           <select id="ai-provider">
-            <option value="github">GitHub Copilot (GPT-4o)</option>
+            <option value="github">GitHub Models (GPT-4o) — Free</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
           </select>
           <label>API Key</label>
           <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
           <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
-          <strong>GitHub Copilot:</strong> Use a <a href="https://github.com/settings/tokens" target="_blank" style="color:#6b21a8">GitHub PAT</a> with "copilot" scope.</p>
+          <strong>GitHub Models:</strong> Use a <a href="https://github.com/settings/tokens" target="_blank" style="color:#6b21a8">GitHub PAT</a> with "models:read" scope (free with GitHub account).</p>
         </div>
         <div class="input-area">
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
@@ -1148,7 +1148,7 @@ Respond with ONLY:
       // Build provider-specific payload
       let payload;
       if (provider === 'github') {
-        payload = { model: 'gpt-4o', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
+        payload = { model: 'openai/gpt-4o', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else if (provider === 'openai') {
         payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
       } else {
@@ -1166,7 +1166,7 @@ Respond with ONLY:
       } catch (e) {
         // Proxy not available, try direct (works for OpenAI, may fail for others)
         const directUrls = {
-          github: 'https://models.inference.ai.github.com/chat/completions',
+          github: 'https://models.github.ai/inference/v1/chat/completions',
           openai: 'https://api.openai.com/v1/chat/completions',
           anthropic: 'https://api.anthropic.com/v1/messages',
         };
