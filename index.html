@@ -644,17 +644,23 @@
               <button class="btn-small btn-save" id="edit-save-btn">Save</button>
               <button class="btn-small btn-delete" id="edit-delete-btn">Delete Entry</button>
             </div>
+            <div class="sharing-section" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border)">
+              <label style="font-size:0.82rem;color:var(--text-light)">🔑 Community passphrase (to share corrections with everyone)</label>
+              <input type="password" id="community-passphrase" placeholder="Enter passphrase to share corrections" style="font-size:0.85rem">
+            </div>
           </div>
         </div>
 
         <div class="edit-section">
-          <h3>📝 Your Corrections</h3>
+          <h3>📝 Corrections</h3>
+          <div id="community-status" style="font-size:0.82rem;color:var(--text-light);margin-bottom:0.5rem"></div>
           <div class="corrections-list" id="corrections-list">
             <p style="color: var(--text-light);">No corrections yet.</p>
           </div>
           <div class="btn-row" style="margin-top: 1rem;">
-            <button class="btn-small btn-export" id="export-btn">Export Corrections</button>
-            <button class="btn-small btn-reset" id="reset-btn">Reset All</button>
+            <button class="btn-small btn-save" id="sync-btn">🔄 Sync All to Community</button>
+            <button class="btn-small btn-export" id="export-btn">Export</button>
+            <button class="btn-small btn-reset" id="reset-btn">Reset Local</button>
           </div>
         </div>
       </div>
@@ -669,7 +675,84 @@
   <script>
     let dictionary = null;
     let examplePairs = null;
-    let knownMienhWords = new Set(); // All known Mienh words for output validation
+    let knownMienhWords = new Set();
+    let communityCorrections = []; // Corrections loaded from Supabase
+
+    // Supabase configuration — update these after creating your project
+    const SUPABASE_URL = ''; // e.g. 'https://abc123.supabase.co'
+    const SUPABASE_ANON_KEY = ''; // from Supabase dashboard → Settings → API
+    const PASSPHRASE_KEY = 'iu-mienh-passphrase';
+
+    function getPassphrase() {
+      return document.getElementById('community-passphrase')?.value?.trim() || '';
+    }
+
+    // Fetch community corrections from Supabase
+    async function loadCommunityCorrections() {
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        document.getElementById('community-status').textContent = '⚠️ Community sharing not configured yet.';
+        return;
+      }
+      try {
+        const resp = await fetch(`${SUPABASE_URL}/rest/v1/corrections?select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          }
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        communityCorrections = await resp.json();
+        document.getElementById('community-status').textContent =
+          `🌐 ${communityCorrections.length} community correction${communityCorrections.length !== 1 ? 's' : ''} loaded`;
+        applyCommunityCorrections();
+      } catch (err) {
+        console.error('Failed to load community corrections:', err);
+        document.getElementById('community-status').textContent = '⚠️ Could not load community corrections.';
+      }
+    }
+
+    // Apply community corrections to dictionary (before local corrections)
+    function applyCommunityCorrections() {
+      for (const c of communityCorrections) {
+        if (c.type === 'delete') {
+          delete dictionary.lookup[c.english];
+        } else {
+          dictionary.lookup[c.english] = [{
+            mienh: c.mienh,
+            context: c.notes || undefined,
+            full: c.notes ? `${c.mienh} (${c.notes})` : c.mienh
+          }];
+        }
+      }
+    }
+
+    // Submit a single correction to Supabase via RPC
+    async function submitToSupabase(english, mienh, notes, type) {
+      const passphrase = getPassphrase();
+      if (!passphrase) throw new Error('No passphrase entered');
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) throw new Error('Supabase not configured');
+
+      const resp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_correction`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          p_passphrase: passphrase,
+          p_english: english,
+          p_mienh: mienh || '',
+          p_notes: notes || null,
+          p_type: type || 'edited'
+        })
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.message || `Supabase error: ${resp.status}`);
+      }
+    }
 
     // Load dictionary
     async function loadDictionary() {
@@ -693,6 +776,8 @@
        'corc', 'hnangv', 'haaix', 'dongh', 'dauh', 'norm', 'buonv', 'diuc',
        'ziangh', 'hoc', 'lunx', 'lomh', 'nzoih', 'dungx', 'tov', 'laanh',
        'maanc', 'muotc', 'siang-loz', 'baamh', 'gen', 'tin-dorngh'].forEach(w => knownMienhWords.add(w));
+      // Apply corrections in priority order: community first, then local overrides
+      applyCommunityCorrections();
       applyCorrections();
     }
 
@@ -1027,7 +1112,7 @@
     });
 
     // Save correction
-    document.getElementById('edit-save-btn').addEventListener('click', () => {
+    document.getElementById('edit-save-btn').addEventListener('click', async () => {
       const english = document.getElementById('edit-english').value.toLowerCase().trim();
       const mienh = document.getElementById('edit-mienh').value.trim();
       const notes = document.getElementById('edit-notes').value.trim();
@@ -1038,24 +1123,29 @@
       }
 
       const corrections = getCorrections();
-      // Remove existing correction for same term
       const filtered = corrections.filter(c => c.english !== english);
       const isNew = !dictionary.lookup[english];
-      filtered.push({ 
-        type: isNew ? 'added' : 'edited', 
-        english, 
-        mienh, 
-        notes,
-        date: new Date().toISOString()
-      });
+      const type = isNew ? 'added' : 'edited';
+      filtered.push({ type, english, mienh, notes, date: new Date().toISOString() });
       saveCorrections(filtered);
 
-      // Apply immediately to dictionary
       dictionary.lookup[english] = [{
         mienh, context: notes || undefined, full: notes ? `${mienh} (${notes})` : mienh
       }];
 
-      showToast(`✓ Saved: "${english}" → "${mienh}"`);
+      // Push to Supabase if passphrase is set
+      const passphrase = getPassphrase();
+      if (passphrase && SUPABASE_URL) {
+        try {
+          await submitToSupabase(english, mienh, notes, type);
+          showToast(`✓ Saved & shared: "${english}" → "${mienh}"`);
+        } catch (err) {
+          showToast(`✓ Saved locally (share failed: ${err.message})`);
+        }
+      } else {
+        showToast(`✓ Saved locally: "${english}" → "${mienh}"`);
+      }
+
       document.getElementById('edit-english').value = '';
       document.getElementById('edit-mienh').value = '';
       document.getElementById('edit-notes').value = '';
@@ -1065,7 +1155,7 @@
     });
 
     // Delete entry
-    document.getElementById('edit-delete-btn').addEventListener('click', () => {
+    document.getElementById('edit-delete-btn').addEventListener('click', async () => {
       const english = document.getElementById('edit-english').value.toLowerCase().trim();
       if (!english) { showToast('Enter the English term to delete'); return; }
       if (!dictionary.lookup[english]) { showToast('Term not found in dictionary'); return; }
@@ -1076,7 +1166,19 @@
       saveCorrections(filtered);
 
       delete dictionary.lookup[english];
-      showToast(`✓ Deleted: "${english}"`);
+
+      const passphrase = getPassphrase();
+      if (passphrase && SUPABASE_URL) {
+        try {
+          await submitToSupabase(english, '', '', 'delete');
+          showToast(`✓ Deleted & synced: "${english}"`);
+        } catch (err) {
+          showToast(`✓ Deleted locally (sync failed: ${err.message})`);
+        }
+      } else {
+        showToast(`✓ Deleted locally: "${english}"`);
+      }
+
       document.getElementById('edit-english').value = '';
       document.getElementById('edit-mienh').value = '';
       document.getElementById('edit-notes').value = '';
@@ -1084,26 +1186,74 @@
     });
 
     // Render corrections list
+    // Render corrections list with community/local indicators
     function renderCorrectionsList() {
-      const corrections = getCorrections();
+      const localCorrections = getCorrections();
+      const communityTerms = new Set(communityCorrections.map(c => c.english));
       const container = document.getElementById('corrections-list');
-      if (corrections.length === 0) {
+
+      // Merge: show community + local (local overrides)
+      const allTerms = new Map();
+      for (const c of communityCorrections) {
+        allTerms.set(c.english, { ...c, source: 'community' });
+      }
+      for (const c of localCorrections) {
+        const existing = allTerms.get(c.english);
+        allTerms.set(c.english, {
+          ...c,
+          source: existing ? 'local-override' : 'local'
+        });
+      }
+
+      const allEntries = [...allTerms.values()];
+      if (allEntries.length === 0) {
         container.innerHTML = '<p style="color: var(--text-light);">No corrections yet.</p>';
         return;
       }
 
-      container.innerHTML = corrections.map(c => {
+      container.innerHTML = allEntries.map(c => {
         const typeClass = c.type === 'edited' ? 'type-edited' : c.type === 'added' ? 'type-added' : 'type-deleted';
         const typeLabel = c.type === 'edited' ? 'edited' : c.type === 'added' ? 'new' : 'deleted';
         const defText = c.type === 'delete' ? '<em>removed</em>' : `→ ${c.mienh}`;
+        const sourceIcon = c.source === 'community' ? '🌐' : c.source === 'local-override' ? '📝🌐' : '📝';
+        const sourceTitle = c.source === 'community' ? 'Community' : c.source === 'local-override' ? 'Local (overrides community)' : 'Local only';
         return `<div class="correction-item">
           <div class="correction-info">
             <span class="correction-type ${typeClass}">${typeLabel}</span>
+            <span title="${sourceTitle}" style="font-size:0.75rem">${sourceIcon}</span>
             <strong>${c.english}</strong> ${defText}
           </div>
         </div>`;
       }).join('');
     }
+
+    // Sync all local corrections to Supabase
+    document.getElementById('sync-btn').addEventListener('click', async () => {
+      const passphrase = getPassphrase();
+      if (!passphrase) { showToast('Enter the community passphrase first'); return; }
+      if (!SUPABASE_URL) { showToast('Supabase not configured'); return; }
+
+      const corrections = getCorrections().filter(c => c.type !== 'delete');
+      if (corrections.length === 0) { showToast('No corrections to sync'); return; }
+
+      let synced = 0, failed = 0;
+      for (const c of corrections) {
+        try {
+          await submitToSupabase(c.english, c.mienh, c.notes, c.type);
+          synced++;
+        } catch {
+          failed++;
+        }
+      }
+
+      if (failed > 0) {
+        showToast(`Synced ${synced}, failed ${failed} (check passphrase)`);
+      } else {
+        showToast(`✓ All ${synced} corrections shared with community!`);
+      }
+      await loadCommunityCorrections();
+      renderCorrectionsList();
+    });
 
     // Export corrections as JSON
     document.getElementById('export-btn').addEventListener('click', () => {
@@ -1592,7 +1742,14 @@ Respond with ONLY:
 
     // Init
     restoreAISettings();
-    loadDictionary();
+    // Restore passphrase
+    const savedPassphrase = localStorage.getItem(PASSPHRASE_KEY);
+    if (savedPassphrase) document.getElementById('community-passphrase').value = savedPassphrase;
+    document.getElementById('community-passphrase').addEventListener('change', (e) => {
+      localStorage.setItem(PASSPHRASE_KEY, e.target.value.trim());
+    });
+    // Load dictionary, then community corrections, then examples
+    loadDictionary().then(() => loadCommunityCorrections());
     loadExamples();
   </script>
 </body>
