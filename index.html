@@ -580,7 +580,14 @@
             <option value="github">GitHub Models (Manual PAT)</option>
             <option value="openai">OpenAI (GPT-4o-mini)</option>
             <option value="anthropic">Anthropic (Claude)</option>
+            <option value="custom">Custom / LiteLLM (OpenAI-compatible)</option>
           </select>
+          <div id="custom-url-section" style="display:none;margin-top:0.5rem">
+            <label>API Base URL</label>
+            <input type="text" id="custom-url" placeholder="https://your-litellm-server.com/v1">
+            <label style="margin-top:0.4rem">Model name</label>
+            <input type="text" id="custom-model" placeholder="gpt-4o-mini or any model name">
+          </div>
           <label>API Key</label>
           <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
           <div id="github-model-section" style="margin-top:0.5rem">
@@ -1307,8 +1314,11 @@ Respond with ONLY:
       const key = getAIKey();
       const provider = getAIProvider();
 
-      if (provider !== 'copilot' && !key) {
+      if (provider !== 'copilot' && provider !== 'custom' && !key) {
         throw new Error('Please enter your API key in the settings above.');
+      }
+      if (provider === 'custom' && !document.getElementById('custom-url').value.trim()) {
+        throw new Error('Please enter your API base URL in the settings above.');
       }
 
       const { system, user, coverage, totalWords } = buildAIPrompt(englishText);
@@ -1328,6 +1338,9 @@ Respond with ONLY:
         } else if (provider === 'github') {
           const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
           payload = { model, messages, temperature: 0.3, max_tokens: 500 };
+        } else if (provider === 'custom') {
+          const model = document.getElementById('custom-model').value.trim() || 'gpt-4o-mini';
+          payload = { model, messages, temperature: 0.3, max_tokens: 500 };
         } else {
           payload = { model: 'gpt-4o-mini', messages, temperature: 0.3, max_tokens: 500 };
         }
@@ -1340,6 +1353,23 @@ Respond with ONLY:
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ payload })
         });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          let msg;
+          try { const j = JSON.parse(errText); msg = j.error?.message || errText; } catch { msg = errText; }
+          throw new Error(msg);
+        }
+        const data = await resp.json();
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords };
+      }
+
+      // For custom/LiteLLM, call the user's URL directly (OpenAI-compatible)
+      if (provider === 'custom') {
+        const baseUrl = document.getElementById('custom-url').value.trim().replace(/\/+$/, '');
+        const url = baseUrl + '/chat/completions';
+        const headers = { 'Content-Type': 'application/json' };
+        if (key) headers['Authorization'] = `Bearer ${key}`;
+        const resp = await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
         if (!resp.ok) {
           const errText = await resp.text();
           let msg;
@@ -1458,7 +1488,9 @@ Respond with ONLY:
       localStorage.setItem(AI_PROVIDER_STORAGE, e.target.value);
       const isGithub = e.target.value === 'github';
       const isAuto = e.target.value === 'copilot';
+      const isCustom = e.target.value === 'custom';
       document.getElementById('github-model-section').style.display = (isGithub || isAuto) ? 'block' : 'none';
+      document.getElementById('custom-url-section').style.display = isCustom ? 'block' : 'none';
       document.getElementById('ai-key').parentElement.querySelector('label').style.display = isAuto ? 'none' : '';
       document.getElementById('ai-key').style.display = isAuto ? 'none' : '';
       if (isAuto) {
@@ -1523,16 +1555,22 @@ Respond with ONLY:
       const key = localStorage.getItem(AI_KEY_STORAGE) || '';
       const provider = localStorage.getItem(AI_PROVIDER_STORAGE) || 'copilot';
       const githubModel = localStorage.getItem('iu-mienh-github-model') || 'openai/gpt-4.1-mini';
+      const customUrl = localStorage.getItem('iu-mienh-custom-url') || '';
+      const customModel = localStorage.getItem('iu-mienh-custom-model') || '';
 
       document.getElementById('ai-toggle').checked = enabled;
       document.getElementById('ai-key').value = key;
       document.getElementById('ai-provider').value = provider;
       document.getElementById('github-model').value = githubModel;
+      document.getElementById('custom-url').value = customUrl;
+      document.getElementById('custom-model').value = customModel;
       document.getElementById('ai-settings').classList.toggle('hidden', !enabled);
 
       const isAuto = provider === 'copilot';
       const isGithub = provider === 'github';
+      const isCustom = provider === 'custom';
       document.getElementById('github-model-section').style.display = (isGithub || isAuto) ? 'block' : 'none';
+      document.getElementById('custom-url-section').style.display = isCustom ? 'block' : 'none';
       document.getElementById('ai-key').style.display = isAuto ? 'none' : '';
 
       const btn = document.getElementById('translate-btn');
@@ -1543,6 +1581,14 @@ Respond with ONLY:
         document.getElementById('test-result').innerHTML = '<span style="color:#6b21a8">No API key needed — uses your gh CLI login automatically</span>';
       }
     }
+
+    // Persist custom URL and model
+    document.getElementById('custom-url').addEventListener('change', (e) => {
+      localStorage.setItem('iu-mienh-custom-url', e.target.value.trim());
+    });
+    document.getElementById('custom-model').addEventListener('change', (e) => {
+      localStorage.setItem('iu-mienh-custom-model', e.target.value.trim());
+    });
 
     // Init
     restoreAISettings();
