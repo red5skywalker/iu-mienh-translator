@@ -518,6 +518,31 @@
       line-height: 1.6;
     }
 
+    .suspicious-word {
+      text-decoration: underline wavy #dc2626;
+      text-underline-offset: 3px;
+      cursor: help;
+    }
+
+    .ai-warning {
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ai-warning-yellow {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fbbf24;
+    }
+
+    .ai-warning-red {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #f87171;
+    }
+
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       header h1 { font-size: 1.4rem; }
@@ -636,17 +661,61 @@
 
   <script>
     let dictionary = null;
+    let examplePairs = null;
+    let knownMienhWords = new Set(); // All known Mienh words for output validation
 
     // Load dictionary
     async function loadDictionary() {
       const resp = await fetch('dict-slim.json');
       const raw = await resp.json();
-      // Convert to expected format: { lookup: { term: [{mienh, context, full}] } }
       dictionary = { lookup: {} };
+      knownMienhWords = new Set();
       for (const [term, defs] of Object.entries(raw)) {
-        dictionary.lookup[term] = defs.map(d => ({ mienh: d.m, context: d.c, full: d.f }));
+        dictionary.lookup[term] = defs.map(d => {
+          // Collect all known Mienh words from translations
+          if (d.m) d.m.split(/[\s,;]+/).forEach(w => { if (w) knownMienhWords.add(w.toLowerCase()); });
+          return { mienh: d.m, context: d.c, full: d.f };
+        });
       }
+      // Also add common grammar particles that may not appear as standalone translations
+      ['nyei', 'aqv', 'jiex', 'oix', 'maiv', 'fai', 'se', 'benx', 'maaih', 'haih',
+       'zuqc', 'duqv', 'wuov', 'naaiv', 'bun', 'daaih', 'jienv', 'lor', 'maah',
+       'aah', 'ganh', 'yaac', 'mv', 'baac', 'caux', 'a', 'nor', 'mbuo', 'ninh',
+       'yie', 'meih', 'gorngv', 'mingh', 'taux', 'yiem', 'weic', 'dorh', 'camv',
+       'haic', 'gauh', 'deix', 'jiex', 'cuotv', 'bieqc', 'njiec', 'faaux', 'nzuonx',
+       'corc', 'hnangv', 'haaix', 'dongh', 'dauh', 'norm', 'buonv', 'diuc',
+       'ziangh', 'hoc', 'lunx', 'lomh', 'nzoih', 'dungx', 'tov', 'laanh',
+       'maanc', 'muotc', 'siang-loz', 'baamh', 'gen', 'tin-dorngh'].forEach(w => knownMienhWords.add(w));
       applyCorrections();
+    }
+
+    // Load extended example pairs
+    async function loadExamples() {
+      try {
+        const resp = await fetch('examples.json');
+        examplePairs = await resp.json();
+        // Add Mienh words from examples to known words set
+        for (const p of examplePairs) {
+          p.imn.split(/[\s,;!?.]+/).forEach(w => { if (w) knownMienhWords.add(w.toLowerCase()); });
+        }
+      } catch {
+        examplePairs = null;
+      }
+    }
+
+    // Select the most relevant examples for a given input text (up to limit)
+    function selectRelevantExamples(englishText, limit = 15) {
+      const pairs = examplePairs || EXAMPLE_PAIRS;
+      if (pairs.length <= limit) return pairs;
+
+      const inputWords = new Set(englishText.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '').split(/\s+/));
+      const scored = pairs.map(p => {
+        const exWords = p.eng.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '').split(/\s+/);
+        const overlap = exWords.filter(w => inputWords.has(w)).length;
+        return { pair: p, score: overlap };
+      });
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, limit).map(s => s.pair);
     }
 
     // Translation engine: longest-match-first word/phrase lookup
@@ -1108,33 +1177,51 @@ Iu Mienh (also called Iu Mien or Yao) grammar rules:
       return document.getElementById('ai-provider').value;
     }
 
-    function buildAIPrompt(englishText) {
-      // Get dictionary lookups for words in the text
-      // Strip punctuation for lookup purposes
+    // Validate LLM output — check each Mienh word against known vocabulary
+    function validateTranslation(mienhText) {
+      const words = mienhText.split(/[\s,;!?.]+/).filter(w => w.length > 0);
+      const suspicious = [];
+      for (const word of words) {
+        const clean = word.toLowerCase().replace(/[""''""]/g, '');
+        if (!clean || clean.length < 2) continue;
+        // Skip words that are clearly English (left untranslated intentionally)
+        if (/^[a-z]+$/i.test(clean)) continue;
+        // Check against known Mienh words (also try without hyphens and with partial matches)
+        const parts = clean.split('-');
+        const allPartsKnown = parts.every(p => !p || knownMienhWords.has(p));
+        if (!knownMienhWords.has(clean) && !allPartsKnown) {
+          suspicious.push(word);
+        }
+      }
+      return suspicious;
+    }
+
+    // Simple stemming: try base forms of English words
+    function getStemForms(word) {
+      const forms = [word];
+      if (word.endsWith('ies') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
+      if (word.endsWith('ied') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
+      if (word.endsWith('s') && word.length > 3) forms.push(word.slice(0, -1));
+      if (word.endsWith('es') && word.length > 4) forms.push(word.slice(0, -2));
+      if (word.endsWith('ed') && word.length > 4) { forms.push(word.slice(0, -1)); forms.push(word.slice(0, -2)); }
+      if (word.endsWith('ing') && word.length > 5) { forms.push(word.slice(0, -3) + 'e'); forms.push(word.slice(0, -3)); }
+      if (word.endsWith('er') && word.length > 4) forms.push(word.slice(0, -2));
+      if (word.endsWith('est') && word.length > 5) forms.push(word.slice(0, -3));
+      return [...new Set(forms)];
+    }
+
+    // Look up dictionary entries relevant to the input text
+    function findRelevantVocab(englishText) {
       const cleanText = englishText.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '');
       const words = cleanText.split(/\s+/).filter(w => w.length > 0);
       const relevantEntries = [];
       const seen = new Set();
+      let matchedWords = 0;
 
-      // Simple stemming: try base forms of English words
-      function getStemForms(word) {
-        const forms = [word];
-        if (word.endsWith('ies') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
-        if (word.endsWith('ied') && word.length > 5) forms.push(word.slice(0, -3) + 'y');
-        if (word.endsWith('s') && word.length > 3) forms.push(word.slice(0, -1));
-        if (word.endsWith('es') && word.length > 4) forms.push(word.slice(0, -2));
-        if (word.endsWith('ed') && word.length > 4) { forms.push(word.slice(0, -1)); forms.push(word.slice(0, -2)); }
-        if (word.endsWith('ing') && word.length > 5) { forms.push(word.slice(0, -3) + 'e'); forms.push(word.slice(0, -3)); }
-        if (word.endsWith('er') && word.length > 4) forms.push(word.slice(0, -2));
-        if (word.endsWith('est') && word.length > 5) forms.push(word.slice(0, -3));
-        return [...new Set(forms)];
-      }
-
-      // Lookup individual words and phrases (up to 6 words)
       for (let i = 0; i < words.length; i++) {
+        let wordMatched = false;
         for (let len = Math.min(6, words.length - i); len >= 1; len--) {
           const phrase = words.slice(i, i + len).join(' ');
-          // Try exact phrase first, then stem forms for single words
           let found = null;
           let lookupKey = phrase;
           if (dictionary.lookup[phrase]) {
@@ -1150,24 +1237,49 @@ Iu Mienh (also called Iu Mien or Yao) grammar rules:
           }
           if (found && !seen.has(lookupKey)) {
             seen.add(lookupKey);
+            wordMatched = true;
             const defs = found.slice(0, 3);
             relevantEntries.push(`${lookupKey} = ${defs.map(d => d.mienh + (d.context ? ' ('+d.context+')' : '')).join('; ')}`);
           }
         }
+        if (wordMatched) matchedWords++;
       }
 
-      const vocabSection = relevantEntries.length > 0
-        ? `\n**DICTIONARY (YOU MUST USE THESE TRANSLATIONS — do not invent words):**\n${relevantEntries.join('\n')}\n`
+      const coverage = words.length > 0 ? matchedWords / words.length : 0;
+      return { entries: relevantEntries, coverage, totalWords: words.length };
+    }
+
+    function buildAIPrompt(englishText) {
+      const vocab = findRelevantVocab(englishText);
+
+      const vocabSection = vocab.entries.length > 0
+        ? `\n**DICTIONARY (YOU MUST USE THESE TRANSLATIONS — do not invent words):**\n${vocab.entries.join('\n')}\n`
         : '';
 
-      const examplesSection = EXAMPLE_PAIRS.map(p =>
+      const examples = selectRelevantExamples(englishText);
+      const examplesSection = examples.map(p =>
         `English: ${p.eng}\nIu Mienh: ${p.imn}`
       ).join('\n\n');
 
-      return `You are an expert translator for Iu Mienh (a Hmong-Mien language spoken by the Mien people). Translate the following English text into Iu Mienh.
+      // Include user corrections as high-priority verified examples
+      let correctionsSection = '';
+      const corrections = getCorrections().filter(c => c.type !== 'delete' && c.english && c.mienh);
+      if (corrections.length > 0) {
+        // Prioritize corrections with vocabulary overlap, limit to 20
+        const inputWords = new Set(englishText.toLowerCase().split(/\s+/));
+        const scored = corrections.map(c => {
+          const overlap = c.english.toLowerCase().split(/\s+/).filter(w => inputWords.has(w)).length;
+          return { c, score: overlap };
+        });
+        scored.sort((a, b) => b.score - a.score);
+        const selected = scored.slice(0, 20).map(s => s.c);
+        correctionsSection = `\n**USER-VERIFIED TRANSLATIONS (highest priority — always prefer these):**\n${selected.map(c => `${c.english} = ${c.mienh}${c.notes ? ' (' + c.notes + ')' : ''}`).join('\n')}\n`;
+      }
+
+      const system = `You are an expert translator for Iu Mienh (a Hmong-Mien language spoken by the Mien people).
 
 ${GRAMMAR_RULES}
-${vocabSection}
+${correctionsSection}${vocabSection}
 Here are example translations showing natural Iu Mienh sentence structure:
 
 ${examplesSection}
@@ -1175,10 +1287,11 @@ ${examplesSection}
 CRITICAL RULES:
 - You MUST use the dictionary translations provided above. Do NOT make up or guess Iu Mienh words.
 - If a word is in the dictionary above, you MUST use that translation.
+- User-verified translations take highest priority over dictionary entries.
 - Only if a word is NOT in the dictionary AND you cannot find it in the examples, leave it in English.
-- Never transliterate English words into made-up Mienh-sounding words.
+- Never transliterate English words into made-up Mienh-sounding words.`;
 
-Now translate this English text into natural Iu Mienh:
+      const user = `Translate this English text into natural Iu Mienh:
 
 English: ${englishText}
 
@@ -1186,6 +1299,8 @@ Respond with ONLY:
 1. First line: the Iu Mienh translation
 2. Then a blank line
 3. Then a brief explanation of the grammar/word choices (2-3 sentences max)`;
+
+      return { system, user, coverage: vocab.coverage, totalWords: vocab.totalWords };
     }
 
     async function translateWithAI(englishText) {
@@ -1196,19 +1311,26 @@ Respond with ONLY:
         throw new Error('Please enter your API key in the settings above.');
       }
 
-      const prompt = buildAIPrompt(englishText);
+      const { system, user, coverage, totalWords } = buildAIPrompt(englishText);
 
-      // Build provider-specific payload
+      // Build provider-specific payload with proper system/user message roles
       let payload;
-      if (provider === 'copilot') {
-        payload = { model: 'gpt-4.1', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
-      } else if (provider === 'github') {
-        const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
-        payload = { model, messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
-      } else if (provider === 'openai') {
-        payload = { model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 500 };
+      if (provider === 'anthropic') {
+        const model = 'claude-sonnet-4-20250514';
+        payload = { model, system, max_tokens: 500, messages: [{ role: 'user', content: user }] };
       } else {
-        payload = { model: 'claude-sonnet-4-20250514', max_tokens: 500, messages: [{ role: 'user', content: prompt }] };
+        const messages = [
+          { role: 'system', content: system },
+          { role: 'user', content: user }
+        ];
+        if (provider === 'copilot') {
+          payload = { model: 'gpt-4.1', messages, temperature: 0.3, max_tokens: 500 };
+        } else if (provider === 'github') {
+          const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
+          payload = { model, messages, temperature: 0.3, max_tokens: 500 };
+        } else {
+          payload = { model: 'gpt-4o-mini', messages, temperature: 0.3, max_tokens: 500 };
+        }
       }
 
       // For copilot, use the auto endpoint (server uses gh CLI token)
@@ -1225,7 +1347,7 @@ Respond with ONLY:
           throw new Error(msg);
         }
         const data = await resp.json();
-        return data.choices[0].message.content.trim();
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords };
       }
 
       // Try local proxy first (avoids CORS), fallback to direct API
@@ -1265,24 +1387,56 @@ Respond with ONLY:
       }
 
       const data = await resp.json();
+      let text;
       if (provider === 'anthropic') {
-        return data.content[0].text.trim();
+        text = data.content[0].text.trim();
+      } else {
+        text = data.choices[0].message.content.trim();
       }
-      return data.choices[0].message.content.trim();
+      return { text, coverage, totalWords };
     }
 
-    function renderAIResult(text) {
+    function renderAIResult({ text, coverage, totalWords }) {
       const output = document.getElementById('output-area');
       const parts = text.split(/\n\n/);
       const translation = parts[0] || text;
       const explanation = parts.slice(1).join('\n\n');
 
-      let html = `<div class="ai-output">`;
-      html += `<div class="ai-translation">${translation}</div>`;
+      // Validate translation output
+      const suspicious = validateTranslation(translation);
+
+      // Highlight suspicious words in the translation
+      let highlightedTranslation = translation;
+      if (suspicious.length > 0) {
+        for (const word of suspicious) {
+          const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          highlightedTranslation = highlightedTranslation.replace(
+            new RegExp(`\\b${escaped}\\b`, 'g'),
+            `<span class="suspicious-word" title="This word may not be accurate">${word}</span>`
+          );
+        }
+      }
+
+      let html = '<div class="ai-output">';
+
+      // Coverage warning
+      if (coverage < 0.3 && totalWords > 2) {
+        html += '<div class="ai-warning ai-warning-red">⚠️ Most words in your text aren\'t in our dictionary. This translation may be unreliable.</div>';
+      } else if (coverage < 0.7 && totalWords > 2) {
+        html += `<div class="ai-warning ai-warning-yellow">⚠️ Some words aren't in our dictionary (${Math.round(coverage * 100)}% coverage). Translation may be less reliable.</div>`;
+      }
+
+      html += `<div class="ai-translation">${highlightedTranslation}</div>`;
+
+      // Suspicious words warning
+      if (suspicious.length > 0) {
+        html += `<div class="ai-warning ai-warning-yellow">⚠️ ${suspicious.length} word${suspicious.length > 1 ? 's' : ''} not found in dictionary (highlighted). These may be invented by the AI.</div>`;
+      }
+
       if (explanation) {
         html += `<div class="ai-explanation">${explanation.replace(/\n/g, '<br>')}</div>`;
       }
-      html += `</div>`;
+      html += '</div>';
       output.innerHTML = html;
     }
 
@@ -1393,6 +1547,7 @@ Respond with ONLY:
     // Init
     restoreAISettings();
     loadDictionary();
+    loadExamples();
   </script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+{
+  "name": "iu-mienh-translator",
+  "version": "1.0.0",
+  "description": "English → Iu Mienh translator and dictionary browser",
+  "main": "server.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

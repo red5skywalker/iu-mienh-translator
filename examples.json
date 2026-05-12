@@ -1,0 +1,352 @@
+[
+  {
+    "cat": "declarative",
+    "eng": "God wants people to enjoy life on earth.",
+    "imn": "Tin-Hungh oix mienh maanh duqv njien-yiouh kuv-yiem nyei maengc yiem baamh gen."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The true God is the Creator of all things.",
+    "imn": "Zien Tin-Hungh se dongh Zeix cuotv maanc muotc Wuov Dauh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "No human has ever seen God.",
+    "imn": "Maiv maaih haaix dauh baamh mienh duqv buatc jiex Tin-Hungh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God sent his Son to earth.",
+    "imn": "Tin-Hungh paaiv ninh nyei Dorn njiec baamh gen."
+  },
+  {
+    "cat": "declarative",
+    "eng": "When we die, our brain dies too.",
+    "imn": "Taux mbuo daic nyei ziangh hoc, mbuo nyei m'nzuih daic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "True religion is uniting people.",
+    "imn": "Zien buoqc zangc nyei jauv dorh mienh gapv zunv maaih dongh diuc hnyiouv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We should learn about God from his Word, the Bible.",
+    "imn": "Mbuo oix zuqc hoqc Ging-Sou, hoqc taux Tin-Hungh nyei jauv."
+  },
+  {
+    "cat": "command",
+    "eng": "Jesus said: Our Father in the heavens, let your name be sanctified.",
+    "imn": "Yesu gorngv: Yie mbuo nyei tin-dorngh Diex aah! Tov bun mienh taaih meih nyei cing-nzengc mbuox."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah wants you to be happy.",
+    "imn": "Yeˆhoˆwaa oix bun meih nyei hnyiouv njien-yiouh."
+  },
+  {
+    "cat": "question",
+    "eng": "How can your family be happy?",
+    "imn": "Meih nyei hmuangv-doic hnangv haaix nor haih duqv njien-yiouh?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "I love my family.",
+    "imn": "Yie hnamv yie nyei hmuangv-doic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He is a good person.",
+    "imn": "Ninh se dauh mienh longx."
+  },
+  {
+    "cat": "declarative",
+    "eng": "She does not know.",
+    "imn": "Ninh maiv hiuv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We have food.",
+    "imn": "Yie mbuo maaih nyanc hopv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "They went to the house.",
+    "imn": "Ninh mbuo mingh aqv taux biauv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "I want to go.",
+    "imn": "Yie oix mingh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He can read the book.",
+    "imn": "Ninh haih doqc sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We must pray.",
+    "imn": "Yie mbuo oix zuqc daux gaux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God gave us life.",
+    "imn": "Tin-Hungh bun yie mbuo maaih maengc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "My name is John.",
+    "imn": "Yie nyei mbuox heuc John."
+  },
+  {
+    "cat": "negation",
+    "eng": "I don't have money.",
+    "imn": "Yie maiv maaih nyaanh."
+  },
+  {
+    "cat": "negation",
+    "eng": "They don't understand.",
+    "imn": "Ninh mbuo maiv mengh baeqc."
+  },
+  {
+    "cat": "negation",
+    "eng": "She cannot come.",
+    "imn": "Ninh maiv haih daaih."
+  },
+  {
+    "cat": "past",
+    "eng": "He already went.",
+    "imn": "Ninh mingh aqv."
+  },
+  {
+    "cat": "past",
+    "eng": "We already ate.",
+    "imn": "Yie mbuo nyanc aqv."
+  },
+  {
+    "cat": "past",
+    "eng": "She finished the work.",
+    "imn": "Ninh zoux ziangx gong aqv."
+  },
+  {
+    "cat": "future",
+    "eng": "I will come tomorrow.",
+    "imn": "Njang hnoi yie oix daaih."
+  },
+  {
+    "cat": "future",
+    "eng": "They will learn the truth.",
+    "imn": "Ninh mbuo oix hoqc zien leiz."
+  },
+  {
+    "cat": "question",
+    "eng": "What is your name?",
+    "imn": "Meih nyei mbuox heuc haaix?"
+  },
+  {
+    "cat": "question",
+    "eng": "Who is that person?",
+    "imn": "Wuov dauh se haaix dauh?"
+  },
+  {
+    "cat": "question",
+    "eng": "Why are you crying?",
+    "imn": "Meih weic haaix diuc nyiemv?"
+  },
+  {
+    "cat": "question",
+    "eng": "Where does he live?",
+    "imn": "Ninh yiem haaix?"
+  },
+  {
+    "cat": "question",
+    "eng": "Do you have water?",
+    "imn": "Meih maaih wuom fai?"
+  },
+  {
+    "cat": "question",
+    "eng": "Can you help me?",
+    "imn": "Meih haih tengx yie fai?"
+  },
+  {
+    "cat": "command",
+    "eng": "Come here.",
+    "imn": "Daaih naaiv."
+  },
+  {
+    "cat": "command",
+    "eng": "Please sit down.",
+    "imn": "Tov zueiz落."
+  },
+  {
+    "cat": "command",
+    "eng": "Listen to God's word.",
+    "imn": "Muangx Tin-Hungh nyei waac."
+  },
+  {
+    "cat": "command",
+    "eng": "Do not be afraid.",
+    "imn": "Maiv dungx gamh nziex."
+  },
+  {
+    "cat": "compound",
+    "eng": "I went to look for him but he was not there.",
+    "imn": "Yie mingh lorz ninh mv baac ninh maiv yiem wuov."
+  },
+  {
+    "cat": "compound",
+    "eng": "He is happy because God loves him.",
+    "imn": "Ninh njien-yiouh weic zuqc Tin-Hungh hnamv ninh."
+  },
+  {
+    "cat": "compound",
+    "eng": "If you pray, God will hear you.",
+    "imn": "Se gorngv meih daux gaux, Tin-Hungh oix muangx meih."
+  },
+  {
+    "cat": "compound",
+    "eng": "When I was young, I did not understand.",
+    "imn": "Yie lunx nyei ziangh hoc, yie maiv mengh baeqc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "This is my father's house.",
+    "imn": "Naaiv se yie nyei die nyei biauv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "God's love is great.",
+    "imn": "Tin-Hungh nyei hnamv mienh nyei jauv hlo haic."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Their children are good.",
+    "imn": "Ninh mbuo nyei fu'jueiv longx."
+  },
+  {
+    "cat": "everyday",
+    "eng": "The water is cold.",
+    "imn": "Wuom nyienz."
+  },
+  {
+    "cat": "everyday",
+    "eng": "I am tired.",
+    "imn": "Yie kouv."
+  },
+  {
+    "cat": "everyday",
+    "eng": "The food is good.",
+    "imn": "Nyanc hopv longx."
+  },
+  {
+    "cat": "everyday",
+    "eng": "It is raining.",
+    "imn": "Duih mbiungc."
+  },
+  {
+    "cat": "everyday",
+    "eng": "I am going home.",
+    "imn": "Yie oix nzuonx biauv."
+  },
+  {
+    "cat": "continuous",
+    "eng": "He is still working.",
+    "imn": "Ninh corc zoux jienv gong."
+  },
+  {
+    "cat": "continuous",
+    "eng": "She is reading a book.",
+    "imn": "Ninh doqc jienv sou."
+  },
+  {
+    "cat": "causative",
+    "eng": "God lets us choose.",
+    "imn": "Tin-Hungh bun yie mbuo ginv."
+  },
+  {
+    "cat": "causative",
+    "eng": "He told me to come.",
+    "imn": "Ninh mbuox yie daaih."
+  },
+  {
+    "cat": "serial-verb",
+    "eng": "Come and eat.",
+    "imn": "Daaih nyanc."
+  },
+  {
+    "cat": "serial-verb",
+    "eng": "Go and look for work.",
+    "imn": "Mingh lorz gong zoux."
+  },
+  {
+    "cat": "comparative",
+    "eng": "This one is bigger than that one.",
+    "imn": "Naaiv norm gauh hlo wuov norm."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The Bible teaches us many things.",
+    "imn": "Ging-Sou njaaux yie mbuo camv nyungc sic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus died for our sins.",
+    "imn": "Yesu weic yie mbuo nyei zuiz daic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah is the almighty God.",
+    "imn": "Yeˆhoˆwaa se Nernh Jiex nyei Tin-Hungh."
+  },
+  {
+    "cat": "question",
+    "eng": "What does the Bible say?",
+    "imn": "Ging-Sou gorngv haaix nyungc?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "We should love one another.",
+    "imn": "Yie mbuo oix zuqc laanh hnamv laanh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He forgave their sins.",
+    "imn": "Ninh guangc ninh mbuo nyei zuiz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "There is hope for the dead.",
+    "imn": "Maaih lamh hnamv dorngx bun daic mingh nyei mienh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God promises a new world.",
+    "imn": "Tin-Hungh laengz bun yie mbuo duqv yiem siang-loz baamh gen."
+  },
+  {
+    "cat": "question",
+    "eng": "How do we know God cares about us?",
+    "imn": "Yie mbuo hnangv haaix nor hiuv duqv Tin-Hungh hnamv yie mbuo?"
+  },
+  {
+    "cat": "compound",
+    "eng": "Even though we suffer, God gives us comfort.",
+    "imn": "Maiv gunv yie mbuo siouc kouv, Tin-Hungh bun yie mbuo duqv orn-lorqc."
+  },
+  {
+    "cat": "everyday",
+    "eng": "Thank you very much.",
+    "imn": "Laengz zingh meih camv."
+  },
+  {
+    "cat": "everyday",
+    "eng": "I don't know how to say it.",
+    "imn": "Yie maiv hiuv hnangv haaix nor gorngv."
+  },
+  {
+    "cat": "command",
+    "eng": "Let us pray together.",
+    "imn": "Mbuo lomh nzoih daux gaux."
+  }
+]
