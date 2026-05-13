@@ -433,7 +433,6 @@
 
     .ai-settings {
       margin-bottom: 0.75rem;
-      padding: 0.75rem;
       background: #faf5ff;
       border: 1px solid #e9d5ff;
       border-radius: 8px;
@@ -441,6 +440,39 @@
     }
 
     .ai-settings.hidden { display: none; }
+
+    .ai-settings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.75rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ai-settings-header span {
+      font-size: 0.8rem;
+      color: #6b21a8;
+      font-weight: 500;
+    }
+
+    .ai-settings-header .collapse-arrow {
+      font-size: 0.75rem;
+      color: #6b21a8;
+      transition: transform 0.2s;
+    }
+
+    .ai-settings-header .collapse-arrow.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .ai-settings-body {
+      padding: 0 0.75rem 0.75rem;
+    }
+
+    .ai-settings-body.collapsed {
+      display: none;
+    }
 
     .ai-settings label {
       display: block;
@@ -576,6 +608,11 @@
           </label>
         </div>
         <div class="ai-settings hidden" id="ai-settings">
+          <div class="ai-settings-header" id="ai-settings-toggle">
+            <span>⚙️ AI Provider Settings</span>
+            <span class="collapse-arrow" id="ai-collapse-arrow">▼</span>
+          </div>
+          <div class="ai-settings-body collapsed" id="ai-settings-body">
           <label>AI Provider</label>
           <select id="ai-provider">
             <option value="copilot">GitHub Copilot (your subscription) — No key needed</option>
@@ -610,6 +647,7 @@
           </div>
           <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
           <strong>GitHub Models:</strong> Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#6b21a8">Fine-grained PAT</a> → Account permissions → Models: Read.</p>
+          </div>
         </div>
         <div class="input-area">
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
@@ -1632,6 +1670,14 @@ Respond with ONLY:
       localStorage.setItem('iu-mienh-ai-enabled', e.target.checked ? '1' : '0');
     });
 
+    document.getElementById('ai-settings-toggle').addEventListener('click', () => {
+      const body = document.getElementById('ai-settings-body');
+      const arrow = document.getElementById('ai-collapse-arrow');
+      body.classList.toggle('collapsed');
+      arrow.classList.toggle('collapsed');
+      localStorage.setItem('iu-mienh-ai-settings-collapsed', body.classList.contains('collapsed') ? '1' : '0');
+    });
+
     document.getElementById('ai-key').addEventListener('change', (e) => {
       localStorage.setItem(AI_KEY_STORAGE, e.target.value.trim());
     });
@@ -1717,6 +1763,11 @@ Respond with ONLY:
       document.getElementById('custom-url').value = customUrl;
       document.getElementById('custom-model').value = customModel;
       document.getElementById('ai-settings').classList.toggle('hidden', !enabled);
+
+      // Restore collapse state (default to collapsed)
+      const settingsCollapsed = localStorage.getItem('iu-mienh-ai-settings-collapsed') !== '0';
+      document.getElementById('ai-settings-body').classList.toggle('collapsed', settingsCollapsed);
+      document.getElementById('ai-collapse-arrow').classList.toggle('collapsed', settingsCollapsed);
 
       const isAuto = provider === 'copilot';
       const isGithub = provider === 'github';
