@@ -256,17 +256,19 @@
       color: var(--text-light);
     }
 
-    .edit-form input {
+    .edit-form input, .edit-form textarea {
       width: 100%;
       padding: 0.6rem 0.75rem;
       border: 2px solid var(--border);
       border-radius: 8px;
       font-size: 0.95rem;
+      font-family: inherit;
       outline: none;
       transition: border-color 0.2s;
+      resize: vertical;
     }
 
-    .edit-form input:focus {
+    .edit-form input:focus, .edit-form textarea:focus {
       border-color: var(--primary);
     }
 
@@ -634,12 +636,12 @@
           <h3>✏️ Correct or Add Translations</h3>
           <div class="edit-form">
             <label>English word or phrase</label>
-            <input type="text" id="edit-english" placeholder="e.g. my name is">
+            <textarea id="edit-english" placeholder="e.g. my name is" rows="2"></textarea>
             <div class="edit-search-results" id="edit-search-results"></div>
             <label>Iu Mienh translation</label>
-            <input type="text" id="edit-mienh" placeholder="e.g. yie nyei mbuox heuc">
+            <textarea id="edit-mienh" placeholder="e.g. yie nyei mbuox heuc" rows="2"></textarea>
             <label>Notes (optional)</label>
-            <input type="text" id="edit-notes" placeholder="e.g. used when introducing yourself">
+            <textarea id="edit-notes" placeholder="e.g. used when introducing yourself" rows="2"></textarea>
             <div class="btn-row">
               <button class="btn-small btn-save" id="edit-save-btn">Save</button>
               <button class="btn-small btn-delete" id="edit-delete-btn">Delete Entry</button>
