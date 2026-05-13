@@ -348,5 +348,2530 @@
     "cat": "command",
     "eng": "Let us pray together.",
     "imn": "Mbuo lomh nzoih daux gaux."
+  },
+  {
+    "cat": "possessive",
+    "eng": "The true God directed men to write down his thoughts in one sacred book.",
+    "imn": "Tin-Hungh dorh mienh fiev njiec ninh hnamv nyei jauv yiem buonv jienv haic nyei sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "That book is the Bible.",
+    "imn": "Naaic buonv sou se dongh Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "It contains important information that God wants you to know.",
+    "imn": "Ging-Sou se maaih jienv nyei fienx Tin-Hungh oix bun meih hiuv."
+  },
+  {
+    "cat": "future",
+    "eng": "God knows what is best for us, and he is the Source of all wisdom. By listening to him, you will become truly wise.—Proverbs 1:5.",
+    "imn": "Tin-Hungh hiuv duqv haaix nyungc longx jiex bun mbuo. Ninh se zoux yietc zungv cong-mengh nyei gorn. Muangx ninh nor, meih ziouc gengh benx dauh mienh guai mienh.—Cong-Mengh Waac 1:5."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God wants everyone on earth to read the Bible.",
+    "imn": "Tin-Hungh oix da’dauh yiem baamh gen doqc Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "It is now available in many languages.",
+    "imn": "Ih zanc se maaih Ging-Sou faan cuotv daaih benx camv-nyungc waac nyei."
+  },
+  {
+    "cat": "declarative",
+    "eng": "If you want to listen to God, you must read and understand the Bible.",
+    "imn": "Se gorngv meih oix muangx Tin-Hungh nor, meih oix zuqc doqc caux bieqc hnyouv Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah’s Witnesses can help you understand the Bible.",
+    "imn": "Yeˆhoˆwaa nyei Zorng-Zengx haih tengx meih bieqc hnyouv Ging-Sou nyei."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In all the earth, they teach the truth about God.",
+    "imn": "Gormx baamh gen, Yeˆhoˆwaa nyei Zorng-Zengx njaaux zien waac gorngv taux Tin-Hungh."
+  },
+  {
+    "cat": "negation",
+    "eng": "You do not have to pay anything for this instruction.",
+    "imn": "Meih maiv zuqc cuotv nyaanh bun ninh mbuo njaaux meih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "You can also learn about God at the local Kingdom Hall of Jehovah’s Witnesses.",
+    "imn": "Meih mv baac aengx haih mingh hoqc hiuv duqv Tin-Hungh nyei jauv yiem Yeˆhoˆwaa nyei Zorng-Zengx nyei wuic dorngh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God’s word is truth.—John 17:17.",
+    "imn": "Tin-Hungh nyei waac se zien leiz.—Yoˆhan 17:17."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Why can we trust in God?—Numbers 23:19.",
+    "imn": "Weic haaix diuc mbuo kaux duqv Tin-Hungh nyei?—Saauv Mienh 23:19."
+  },
+  {
+    "cat": "past",
+    "eng": "The first of God’s creations was a mighty spirit person who later came to be known as Jesus Christ. Jehovah also created the angels.",
+    "imn": "Tin-Hungh zeix daaih nyei daauh nyungc ga’naaiv se yietc dauh maaih qaqv haic nyei fin-mienh. Naaic dauh fin-mienh se dongh nqa’haav jiex daaih maaih mbuox heuc Yesu Giduc. Yeˆhoˆwaa mv baac aengx zeix yietc zungv fin-mienh daaih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah God created the stars as well as the earth and all that is on it.—Genesis 1:1.",
+    "imn": "Yeˆhoˆwaa Tin-Hungh zeix hleix, zeix baamh gen, caux zeix yiem baamh gen nyei nyungc-nyungc ga’naaiv.—Tin Deic Douh 1:1."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He formed Adam, the first man, from the dust of the ground.—Genesis 2:7.",
+    "imn": "Ninh longc nie-mbung nanv cuotv benx Aaˆndam. Aaˆndam se daauh dauh m’jangc dorn.—Tin Deic Douh 2:7."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Why should we honor Jehovah?—Isaiah 42:5.",
+    "imn": "Weic haaix diuc mbuo horpc zuqc taaih Yeˆhoˆwaa?—Iˆsaaˆyaa 42:5."
+  },
+  {
+    "cat": "declarative",
+    "eng": "What are some of God’s qualities?—Exodus 34:6.",
+    "imn": "Maaih deix Tin-Hungh nyei fiem-fingx se hnangv haaix?—Cuotv Iˆyipv 34:6."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jehovah made the first woman, Eve, and gave her to Adam to be his wife.—Genesis 2:21, 22.",
+    "imn": "Yeˆhoˆwaa zeix daauh dauh m’sieqv dorn heuc Haawaa, liuz dorh mingh bun Aaˆndam zoux auv.—Tin Deic Douh 2:21, 22."
+  },
+  {
+    "cat": "past",
+    "eng": "Jehovah created them with minds and bodies that were perfect, without any flaw.",
+    "imn": "Yeˆhoˆwaa zeix Aaˆndam caux Haawaa daaih bun ninh mbuo nyei hnyouv caux ninh mbuo nyei sin zaangc dunh yunh nyei. Naaiv se gorngv ninh mbuo nyei hnyouv cing nyei, ninh mbuo nyei sin zaangc maiv maaih yietc norm dorngx waaic yaac maiv haih butv baengc."
+  },
+  {
+    "cat": "past",
+    "eng": "Their Paradise home was the garden of Eden—a place of great beauty with a river and fruit trees and animals.",
+    "imn": "Aaˆndam caux Haawaa yiem nyei orn-lorqc dorngx se heuc Eˆnden Huingx. Naaic norm huingx se gengh nzueic haic nyei, se maaih diuh ndaaih, maaih nyungc-nyungc biouv-ndiangx, caux maaih nyungc-nyungc saeng-kuv hieh zoih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah spoke to them; he taught them.",
+    "imn": "Yeˆhoˆwaa gorngv waac njaaux Aaˆndam caux Haawaa."
+  },
+  {
+    "cat": "declarative",
+    "eng": "If they listened to him, they would live forever in Paradise on earth.",
+    "imn": "Da’faanh ninh mbuo muangx ninh nor, ninh mbuo duqv ziangh yietc liuz yiem orn-lorqc dorngx yiem naaiv baamh gen."
+  },
+  {
+    "cat": "compound",
+    "eng": "Jehovah showed Adam and Eve one fruit tree in the garden and told them that if they ate from it, they would die.",
+    "imn": "Yeˆhoˆwaa bun Aaˆndam caux Haawaa hiuv duqv maaih zungh biouv-ndiangx yiem wuov huingx gu’nyuoz, liuz mbuox ninh mbuo se gorngv ninh mbuo nyanc naaic zungh ndiangx nyei biouv nor, ninh mbuo zuqc daic aqv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "One of the angels rebelled against God.",
+    "imn": "Maaih dauh fin-mienh caux Tin-Hungh doix-dekc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "That wicked angel is Satan the Devil.",
+    "imn": "Naaic dauh orqv fin-mienh se heuc Saadaan."
+  },
+  {
+    "cat": "past",
+    "eng": "Satan did not want Adam and Eve to obey Jehovah.",
+    "imn": "Saadaan maiv oix Aaˆndam caux Haawaa ei Yeˆhoˆwaa."
+  },
+  {
+    "cat": "negation",
+    "eng": "So he used a serpent to tell Eve that if she ate the fruit from that tree, she would not die, but she would be like God.",
+    "imn": "Saadaan longc diuh naang mbuox Haawaa se gorngv ninh nyanc naaic zungh ndiangx nyei biouv nor, ninh maiv daic, zungv corc duqv benx hnangv Tin-Hungh."
+  },
+  {
+    "cat": "past",
+    "eng": "Of course, that was a lie.—Genesis 3:1-5.",
+    "imn": "Naaic deix waac se gorngv-baeqc nyei waac hnangv.—Tin Deic Douh 3:1-5."
+  },
+  {
+    "cat": "compound",
+    "eng": "Eve listened to the serpent and ate of the fruit. Afterward, she gave some to Adam, and he ate it.",
+    "imn": "Haawaa muangx wuov diuh naang nyei waac ziouc nyanc wuov zungh ndiangx nyei biouv. Nyanc liuz aeqv, ninh bun deix Aaˆndam nyanc. Aaˆndam ziouc zorqv daaih nyanc."
+  },
+  {
+    "cat": "past",
+    "eng": "What they did was wrong—it was a sin.",
+    "imn": "Ninh mbuo hnangv naaic zoux se baamz zuiz mi’aqc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "God made them leave their Paradise home.",
+    "imn": "Tin-Hungh ziouc zunc ninh mbuo cuotv wuov orn-lorqc dorngx."
+  },
+  {
+    "cat": "past",
+    "eng": "Life was hard for them and their children. They grew old and died. They did not go to the spirit world; they ceased to exist.",
+    "imn": "Ninh mbuo caux ninh mbuo nyei fu’jueiv zuqc kouv. Ninh mbuo zuqc gox yaac zuqc daic. Daic mingh, ninh mbuo maiv zeiz mingh yiem-gen. Ninh mbuo ziang naaic maiv duqv maengc ziangh hnangv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We die because we all come from Adam and Eve.",
+    "imn": "Mbuo zuqc daic weic zuqc mbuo yietc zungv se yiem Aaˆndam caux Haawaa cuotv daaih."
+  },
+  {
+    "cat": "negation",
+    "eng": "The dead are not able to see or hear or do anything.—Ecclesiastes 9:5, 10.",
+    "imn": "Daic mingh nyei mienh maiv haih aengx mangc duqv buatc, fai muangx duqv haiz, fai haih zoux haaix nyungc aqv.—Gorngv Seix Zaangc 9:5, 6."
+  },
+  {
+    "cat": "past",
+    "eng": "Jehovah did not mean for people to die.",
+    "imn": "Yeˆhoˆwaa maiv zeiz oix bun mienh zuqc daic."
+  },
+  {
+    "cat": "future",
+    "eng": "Soon he will bring back to life those asleep in death.",
+    "imn": "Maiv lauh ninh oix dorh daic mingh wuov deix nangh daaih."
+  },
+  {
+    "cat": "future",
+    "eng": "If they listen to him, they will live forever.",
+    "imn": "Naaiv deix mienh nangh daaih ziouc muangx Yeˆhoˆwaa nor, ninh mbuo duqv ziangh yietc liuz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Why do we die?—Romans 5:12.",
+    "imn": "Weic haaix diuc mbuo zuqc daic?—Lomaa 5:12."
+  },
+  {
+    "cat": "future",
+    "eng": "Death will be no more.—1 Corinthians 15:26.",
+    "imn": "Daic nyei jauv yaac maiv maaih aqv.—1 Koˆlinˆto 15:26."
+  },
+  {
+    "cat": "compound",
+    "eng": "Adam and Eve had children, and people became many on the earth.",
+    "imn": "Aaˆndam caux Haawaa maaih fu’jueiv, liuz mienh maanh yiem baamh gen hiaangx jienv faaux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In time, some angels joined Satan’s rebellion.",
+    "imn": "Jiex daaih, maaih deix fin-mienh gan jienv Saadaan caux Tin-Hungh doix-dekc."
+  },
+  {
+    "cat": "past",
+    "eng": "They came to earth and took on the bodies of men so that they could marry women. The women gave birth to superhuman sons, who were fierce and strong.",
+    "imn": "Ninh mbuo njiec baamh gen daaih yienc ninh mbuo nyei sin benx baamh mienh m’jangc dorn weic zuqc ninh mbuo oix longc baamh mienh m’sieqv dorn zoux auv. Naaic deix m’sieqv dorn yungz duqv dorn daaih gengh! hlo hlang gau yaac ciouv yaac henv."
+  },
+  {
+    "cat": "past",
+    "eng": "The world became filled with people who did bad things. The Bible says that “man’s wickedness was great on the earth and that every inclination of the thoughts of his heart was only bad all the time.”",
+    "imn": "Lungh ndiev ziouc maaih mienh zoux waaic camv. Ging-Sou gorngv: “Lungh ndiev mienh zoux waaic sic camv. Hnyouv haaix zanc kungx hnamv cuotv waaic nyei jauv hnangv.”"
+  },
+  {
+    "cat": "past",
+    "eng": "Noah was a good man.",
+    "imn": "Noyaa se zoux dauh kuv mienh."
+  },
+  {
+    "cat": "future",
+    "eng": "Jehovah told Noah that He was going to destroy the wicked people with a great flood.",
+    "imn": "Yeˆhoˆwaa mbuox Noyaa ninh oix yiemx lungh ndiev mietc nzengc orqv mienh."
+  },
+  {
+    "cat": "compound",
+    "eng": "God also told Noah to build a huge boat, called an ark, and to take into it his family and every sort of animal.",
+    "imn": "Tin-Hungh yaac mbuox Noyaa gapv poux domh nzangv daaih dorh ninh nyei hmuangv-doic caux nyungc-nyungc saeng-kuv hieh zoih bieqc gu’nyuoz."
+  },
+  {
+    "cat": "past",
+    "eng": "Noah warned people about the coming Flood, but they did not listen. Some laughed at Noah; others hated him.",
+    "imn": "Noyaa zunh mbuox mienh camv mbiungc-suiv-imx oix yiemx lungh ndiev aqv, mv baac ninh mbuo maiv muangx. Maaih deix jatv Noyaa. Maaih deix nzorng ninh."
+  },
+  {
+    "cat": "past",
+    "eng": "When the ark was finished, Noah brought the animals inside.",
+    "imn": "Gapv ziangx nzangv liuz, Noyaa dorh saeng-kuv hieh zoih bieqc nzangv gu’nyuoz."
+  },
+  {
+    "cat": "compound",
+    "eng": "It rained for 40 days and 40 nights, and the water covered all the earth.",
+    "imn": "Lungh duih mbiungc 40 hnoi 40 muonz, wuom yiemx gormx lungh ndiev."
+  },
+  {
+    "cat": "declarative",
+    "eng": "All the wicked people died.",
+    "imn": "Yietc zungv orqv mienh daic nzengc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "The rebellious angels left their bodies of flesh and became demons.",
+    "imn": "Caux Tin-Hungh doix-dekc wuov deix fin-mienh aengx yienc ninh mbuo nyei sin nzuonx benx fin-mienh ziouc benx orqv haic nyei mienv."
+  },
+  {
+    "cat": "past",
+    "eng": "Those who were in the ark survived.",
+    "imn": "Dongh yiem gu’nyuoz nzangv wuov deix duqv njioux."
+  },
+  {
+    "cat": "future",
+    "eng": "Though Noah and his family eventually died, God will bring them to life again with the prospect of living forever.",
+    "imn": "Noyaa caux ninh nyei hmuangv-doic nqa’haav jiex daaih zuqc gox daic mi’aqc, mv baac Tin-Hungh aengx oix bun ninh mbuo nangh daaih, bun ninh mbuo haih ziangh yietc liuz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Satan and the demons continue to mislead people.",
+    "imn": "Saadaan caux wuov deix orqv haic nyei mienv zanc-zanc zoux nduov jienv baamh mienh yiem."
+  },
+  {
+    "cat": "future",
+    "eng": "Today, as in Noah’s time, many reject Jehovah’s loving direction. Soon Jehovah will destroy all who are wicked.—2 Peter 2:5, 6.",
+    "imn": "Ih jaax hnoi yaac hnangv yiem Noyaa nyei ziangh hoc wuov nor. Yeˆhoˆwaa njaaux baamh mienh longx jiex nyei jauv weic ninh hnamv mbuo, mv baac mienh camv maiv oix gan Yeˆhoˆwaa njaaux nyei jauv. Maiv lauh Yeˆhoˆwaa aengx mietc nzengc yietc zungv orqv mienh aqv.—2 Bide 2:5, 6."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Some people are like Noah.",
+    "imn": "Maaih deix mienh se hnangv Noyaa nor muangx Tin-Hungh yaac ei jienv ninh nyei waac zoux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "They listen to God and do what he says; they are Jehovah’s Witnesses.",
+    "imn": "Naaic deix mienh se dongh Yeˆhoˆwaa nyei Zorng-Zengx."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Choose the road that leads to life.—Matthew 7:13, 14.",
+    "imn": "Ginv dongh dorh meih duqv maengc wuov diuh jauv.—Matvˆtaai 7:13, 14."
+  },
+  {
+    "cat": "future",
+    "eng": "The wicked will be destroyed; the meek will enjoy peace.—Psalm 37:10, 11.",
+    "imn": "Orqv mienh oix zuqc mietc, nyiemc ganh zoux faix wuov deix oix duqv baengh orn nyei yiem.—Singx Nzung 37:10, 11."
+  },
+  {
+    "cat": "declarative",
+    "eng": "If we want to please Jehovah, we must listen to another important person.",
+    "imn": "Se gorngv mbuo oix zoux horpc Yeˆhoˆwaa, mbuo aengx oix zuqc muangx dauh jaaix nyei mienh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Long before creating Adam, Jehovah created a mighty spirit person in the heavens.",
+    "imn": "Loz-hnoi dongh Yeˆhoˆwaa maiv gaengh zeix Aaˆndam wuov, Yeˆhoˆwaa zeix dauh maaih qaqv haic nyei fin-mienh yiem tin-dorngh."
+  },
+  {
+    "cat": "past",
+    "eng": "In time, Jehovah sent this one to be born in Bethlehem to a virgin named Mary. The child was given the name Jesus.—John 6:38.",
+    "imn": "Jiex daaih, Yeˆhoˆwaa paaiv naaic dauh fin-mienh njiec daaih cuotv seix yiem Mbetcˆleˆhem Mungv. Maaih naaic norm sin wuov dauh m’sieqv dorn se heuc Maaˆliˆyaa. Maaˆliˆyaa se maiv gaengh bueix jiex dorn nyei mienh. Ninh yungz duqv naaic dauh gu’nguaaz daaih cuotv mbuox heuc Yesu.—Yoˆhan 6:38."
+  },
+  {
+    "cat": "declarative",
+    "eng": "As a man on earth, Jesus perfectly reflected God’s qualities.",
+    "imn": "Dongh benx baamh mienh yiem baamh gen wuov zanc, Yesu zoux nyei nyungc-nyungc se zuangv duqv Tin-Hungh nyei fiem-fingx longx dingc aqv."
+  },
+  {
+    "cat": "past",
+    "eng": "He was kind, loving, and approachable.",
+    "imn": "Ninh hnyouv longx, hnamv mienh yaac zuoqc mienh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Fearlessly, he taught others the truth about Jehovah.",
+    "imn": "Ninh maiv gamh nziex nyei njaaux mienh zien waac gorngv taux Yeˆhoˆwaa."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus also healed the sick and raised to life some who had died.",
+    "imn": "Yesu yaac zorc longx butv-baengc mienh caux bun maaih deix daic mingh nyei mienh nangh daaih."
+  },
+  {
+    "cat": "possessive",
+    "eng": "The religious leaders hated Jesus because he exposed their false teachings and their evil ways.",
+    "imn": "Buoqc zaangc nyei bieiv zeiv wuov deix nzorng Yesu weic zuqc Yesu wetv cuotv ninh mbuo njaaux nyei jaav leiz caux ninh mbuo zoux orqv nyei jauv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The religious leaders persuaded the Romans to beat Jesus and to kill him.",
+    "imn": "Buoqc zaangc nyei bieiv zeiv wuov deix nduov Janx-Lomaa mborqv Yesu caux daix ninh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Why is it important to know about Jesus?—John 17:3.",
+    "imn": "Weic haaix diuc jienv nyei oix zuqc hiuv Yesu?—Yoˆhan 17:3."
+  },
+  {
+    "cat": "past",
+    "eng": "What did Jesus do in heaven before he came to earth?—Colossians 1:15-17.",
+    "imn": "Dongh Yesu maiv gaengh daaih baamh gen wuov zanc, ninh zoux haaix nyungc yiem tin-dorngh?—Koˆloˆsi 1:15-17."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Three days after Jesus died, some women visited his tomb and found it empty.",
+    "imn": "Yesu daic liuz buo hnoi jiex mingh, maaih deix m’sieqv dorn mingh mangc ninh nyei zouv buatc zouv hliouv njang nyei."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah had raised Jesus from the dead.",
+    "imn": "Yeˆhoˆwaa bun Yesu aengx nangh daaih mi’aqc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jesus later appeared to his apostles.",
+    "imn": "Nqa’haav Yesu mbiangx daaih buangh ninh nyei gong-zoh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Yes, Jehovah had resurrected Jesus to life as a powerful, immortal spirit creature.",
+    "imn": "Zeiz nyei, Yeˆhoˆwaa duqv bun Yesu aengx nangh daaih benx dauh henv haic nyei fin-mienh yaac bun ninh maiv haih daic yiem naaic mingh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus’ disciples saw him go up to heaven.",
+    "imn": "Yesu nyei sai-gorx mbuo mangc jienv ninh faaux tin-dorngh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jesus gave up his life to pay a ransom for mankind.",
+    "imn": "Yesu siev ninh ganh nyei maengc weic zuoqc maanc mienh nzuonx."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Matthew 20:28) By means of that ransom, God makes it possible for us to live forever.",
+    "imn": "(Matvˆtaai 20:28) Hnangv naaic, Tin-Hungh cingx bun mbuo haih duqv ziangh yietc liuz."
+  },
+  {
+    "cat": "future",
+    "eng": "God’s Kingdom will make the earth a paradise.",
+    "imn": "Tin-Hungh nyei Guoqv oix zorc naaiv baamh gen benx norm nzueic haic nyei orn-lorqc dorngx."
+  },
+  {
+    "cat": "future",
+    "eng": "War, crime, poverty, and hunger will be no more.",
+    "imn": "Deic-bung caux deic-bung mborqv jaax, mienh zoux haengh orqv sic, jomc kouv, caux ngorc hnaangx, yietc zungv maiv maaih aqv."
+  },
+  {
+    "cat": "future",
+    "eng": "People will be truly happy.—Psalm 145:16.",
+    "imn": "Mienh maanh ziouc gengh zien duqv njien-youh orn-lorqc nyei yiem.—Singx Nzung 145:16."
+  },
+  {
+    "cat": "declarative",
+    "eng": "What are “the wages” of sin?—Romans 6:23.",
+    "imn": "“Zuiz nyei gong-zinh” se haaix nyungc?—Lomaa 6:23."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus opened the way to everlasting life.—Romans 5:21.",
+    "imn": "Yesu koi jauv bun mbuo haih duqv yietc liuz nyei maengc.—Lomaa 5:21."
+  },
+  {
+    "cat": "future",
+    "eng": "What blessings will God’s Kingdom bring?—Psalm 72.",
+    "imn": "Tin-Hungh nyei Guoqv oix ceix haaix nyungc longx nyei bun mbuo?—Singx Nzung 72."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We should pray for God’s Kingdom to come.—Matthew 6:10.",
+    "imn": "Mbuo oix zuqc daux gaux tov Tin-Hungh nyei Guoqv daaih.—Matvˆtaai 6:10."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The Bible foretold many of the things that are happening today.",
+    "imn": "Ging-Sou jaa-ndaangc gorngv taux ih jaax hnoi cuotv daaih nyei camv-nyungc sic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "It said that people would be lovers of money, disobedient to parents, fierce, and lovers of pleasures.",
+    "imn": "Ging-Sou gorngv mienh camv kungx hnamv zinh nyaanh, maiv muangx diex maac, zoux ciouv, caux kungx hnamv nziaauc zoux njien-youh nyei jauv hnangv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "There would be great earthquakes, wars, food shortages, and widespread disease.",
+    "imn": "Maaih ndau dongz seix, deic-bung caux deic-bung mborqv jaax, maiv maaih gaux nyanc, domh wuon-baengc yaac cuotv camv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "These things are happening now.",
+    "imn": "Naaiv deix sic ih zanc gengh cuotv daaih benx jienv yiem."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Also, Jesus said that the good news about the Kingdom would be preached in all the earth.—Matthew 24:14.",
+    "imn": "Yesu yaac gorngv kuv fienx gorngv taux Tin-Hungh nyei Guoqv oix zunh gormx naaiv lungh ndiev.—Matvˆtaai 24:14."
+  },
+  {
+    "cat": "future",
+    "eng": "Jehovah will soon destroy all the wicked.",
+    "imn": "Maiv lauh Yeˆhoˆwaa oix mietc nzengc yietc zungv orqv mienh."
+  },
+  {
+    "cat": "future",
+    "eng": "Satan and the demons will be punished.",
+    "imn": "Saadaan caux wuov deix orqv haic nyei mienv zuqc dingc zuiz."
+  },
+  {
+    "cat": "future",
+    "eng": "Those who listen to God will survive into a righteous new world, where there will be no more fear, a world where people trust and love one another.",
+    "imn": "Dongh muangx Tin-Hungh wuov deix duqv njioux cuotv daaih bun yiem baengh fim nyei siang-lungh ndiev. Yiem naaic maiv maaih haaix dauh zuqc gamh nziex haaix nyungc. Mienh maanh yaac sienx duqv da’dauh nyei hnyouv, laanh yaac hnamv laanh."
+  },
+  {
+    "cat": "past",
+    "eng": "What did Jesus say would occur in our time?—Matthew 24:3-14.",
+    "imn": "Yesu gorngv haaix nyungc oix benx cuotv daaih yiem mbuo nyei ziangh hoc?—Matvˆtaai 24:3-14."
+  },
+  {
+    "cat": "future",
+    "eng": "The wicked will be destroyed.—2 Peter 3:7.",
+    "imn": "Zoux orqv wuov deix oix zuqc mietc nzengc.—2 Bide 3:7."
+  },
+  {
+    "cat": "future",
+    "eng": "There will be no pain, sorrow, or tears.",
+    "imn": "Maiv maaih haaix dauh zuqc mun, zuqc nzauh, fai zuqc nyiemv."
+  },
+  {
+    "cat": "future",
+    "eng": "No one will grow old and die.",
+    "imn": "Maiv maaih haaix dauh zuqc gox zuqc daic."
+  },
+  {
+    "cat": "future",
+    "eng": "You will be surrounded by friends and family.",
+    "imn": "Meih youc maaih a’nziaauc doic caux hmuangv-doic buangv nzengc."
+  },
+  {
+    "cat": "future",
+    "eng": "Life in Paradise will be a delight.",
+    "imn": "Yiem wuov nzueic haic nyei orn-lorqc dorngx se za’gengh njien-youh."
+  },
+  {
+    "cat": "future",
+    "eng": "There will be no fear.",
+    "imn": "Maiv maaih haaix nyungc bun mbuo zuqc gamh nziex."
+  },
+  {
+    "cat": "future",
+    "eng": "People will be truly happy.",
+    "imn": "Mienh maanh ziouc gengh zien a’hneiv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jehovah is the “Hearer of prayer.” (Psalm 65:2) He wants us to speak to him from our hearts.",
+    "imn": "Yeˆhoˆwaa se dongh “muangx baamh mienh daux gaux nyei waac” wuov dauh. (Singx Nzung 65:2) Haaix zanc mbuo daux gaux bun ninh, ninh oix mbuo yiem mbuo nyei hnyouv gorngv cuotv."
+  },
+  {
+    "cat": "command",
+    "eng": "Pray to Jehovah and not to anyone else.",
+    "imn": "Daux gaux bun Yeˆhoˆwaa, maiv zeiz bun ganh dauh."
+  },
+  {
+    "cat": "command",
+    "eng": "Pray that God’s will be done in heaven and on earth.",
+    "imn": "Daux gaux bun Tin-Hungh nyei eix duqv zoux ziangx yiem tin-dorngh caux yiem baamh gen."
+  },
+  {
+    "cat": "command",
+    "eng": "Pray in the name of Jesus to show that you value what he did for you.",
+    "imn": "Longc jienv Yesu nyei mbuox daux gaux. Hnangv naaiv zoux se weic Yesu zoux nyei kuv sic maaih jaax-zinh bun meih."
+  },
+  {
+    "cat": "command",
+    "eng": "Ask Jehovah to help you do what is good.",
+    "imn": "Tov Yeˆhoˆwaa tengx meih zoux longx nyei jauv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "You can also pray about food, employment, shelter, clothing, and health.",
+    "imn": "Meih mv baac aengx haih daux gaux gorngv taux nyanc hopv nyei jauv, zoux gong nyei jauv, baengc nyei jauv, maaih dorngx yiem, maaih lui houx zuqv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus taught us how to pray.—Matthew 6:9-15.",
+    "imn": "Yesu njaaux mbuo daux gaux.—Matvˆtaai 6:9-15."
+  },
+  {
+    "cat": "declarative",
+    "eng": "To whom does God listen?—Psalm 145:18, 19.",
+    "imn": "Tin-Hungh muangx haaix dauh daux gaux nyei waac?—Singx Nzung 145:18, 19."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah listens to people who do what is right.—Proverbs 15:29.",
+    "imn": "Yeˆhoˆwaa muangx dongh zoux zuqc jauv wuov deix mienh nyei waac.—Cong-Mengh Waac 15:29."
+  },
+  {
+    "cat": "command",
+    "eng": "Do not be anxious.—Philippians 4:6, 7.",
+    "imn": "Maiv dungx weic haaix nyungc guaax hnyouv.—Fiˆlipvˆpoi 4:6, 7."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God’s standard is that marriage should be between one man and one woman.",
+    "imn": "Tin-Hungh nyei leiz bun mienh zoux cai-doix se kungx yietc dauh m’jangc caux yietc dauh m’sieqv hnangv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "A loving husband treats his wife with tenderness and understanding.",
+    "imn": "Hnamv auv nyei nqox se oix zuqc haih korv-lienh goux longx ninh nyei auv yaac zoux hnyouv suonc hnyouv ndaauv bun auv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "A wife should cooperate with her husband.",
+    "imn": "Auv oix zuqc caux nqox dongh hnyouv nyei."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Children should obey their parents.",
+    "imn": "Fu’jueiv oix zuqc muangx ninh mbuo nyei diex maac."
+  },
+  {
+    "cat": "possessive",
+    "eng": "God’s Word says that a husband should love his wife as his own body and that a wife should have deep respect for her husband.",
+    "imn": "Tin-Hungh nyei Waac gorngv nqox oix zuqc hnamv ninh nyei auv ndongc hnamv ninh ganh nyei sin. Auv oix zuqc maaih hnyouv taaih ninh nyei nqox."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Sex outside the marriage arrangement is wrong.",
+    "imn": "Maiv zeiz caux ganh nyei auv fai nqox juangc bueix se zoux dorngc cai-doix nyei leiz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Polygamy is also wrong.",
+    "imn": "Longc gauh camv yietc dauh auv fai nqox ziouc fi’hnangv dorngc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah’s Word teaches families how to be happy.",
+    "imn": "Yeˆhoˆwaa nyei Waac njaaux hmuangv-doic hnangv haaix nor haih duqv njien-youh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Keep morally clean.—1 Corinthians 6:18.",
+    "imn": "Goux longx buonv-sin simv nqoi hienx nyei jauv.—1 Koˆlinˆto 6:18."
+  },
+  {
+    "cat": "command",
+    "eng": "Love, teach, and protect your children.—Deuteronomy 6:4-9.",
+    "imn": "Oix zuqc hnamv, njaaux, caux goux jienv beu jienv meih nyei fu’jueiv.—Nzamc Leiz-Latc 6:4-9."
+  },
+  {
+    "cat": "future",
+    "eng": "If we love Jehovah, we will not do things that he hates.",
+    "imn": "Se gorngv mbuo hnamv Yeˆhoˆwaa, mbuo maiv zoux dongh ninh nzorng nyei jauv."
+  },
+  {
+    "cat": "negation",
+    "eng": "Jehovah does not want us to steal, to get drunk, or to abuse drugs.",
+    "imn": "Yeˆhoˆwaa maiv oix mbuo zoux zaqc, hopv diuv nquin, fai longc haaix nyungc ndie zoux waaic mbuo nyei sin, hnangv buov in fai buov ndie-biouv lo haaix wuov."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God hates murder, abortion, and homosexuality.",
+    "imn": "Tin-Hungh nzorng daix mienh nyei jauv, zorqv gu’nguaaz guangc nyei jauv, caux m’jangc bueix m’jangc m’sieqv bueix m’sieqv nyei jauv."
+  },
+  {
+    "cat": "negation",
+    "eng": "He does not want us to be greedy or to fight with others.",
+    "imn": "Ninh mv baac maiv oix mbuo mauv ga’naaiv fai caux mienh mborqv jaax."
+  },
+  {
+    "cat": "negation",
+    "eng": "We must not worship idols or practice spiritism.",
+    "imn": "Mbuo aʼzuqc maiv dungx baaix miuc-fangx fai sipv mienv."
+  },
+  {
+    "cat": "future",
+    "eng": "In the earthly Paradise to come, there will be no place for people who do bad things.",
+    "imn": "Zuov baamh gen benx orn-lorqc dorngx daaih, maiv maaih mienh waaic mienh nyei buonc yiem naaic aqv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "To be pleasing to God, we must try to be like him.",
+    "imn": "Se gorngv mbuo oix zoux horpc Tin-Hungh nor, mbuo aʼzuqc longc hnyouv zoux hnangv ninh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Show love to others by being kind and generous.",
+    "imn": "Zoux hnyouv longx hnyouv jangv nzie mienh, bun mienh hiuv duqv mbuo hnamv ninh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Be merciful and forgiving.",
+    "imn": "Korv-lienh mienh yaac maiv nipc win."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Tell others about Jehovah and his ways.—Isaiah 43:10.",
+    "imn": "Gorngv taux Yeˆhoˆwaa caux ninh nyei jauv bun mienh camv muangx.—Iˆsaaˆyaa 43:10."
+  },
+  {
+    "cat": "declarative",
+    "eng": "What is God’s view of magic?—Deuteronomy 18:10-12.",
+    "imn": "Tin-Hungh oix mienh zoux faatv nyei fai?—Nzamc Leiz-Latc 18:10-12."
+  },
+  {
+    "cat": "negation",
+    "eng": "Why should we not worship idols?—Isaiah 44:15-20.",
+    "imn": "Weic haaix diuc mbuo maiv dungx baaix miuc-fangx?—Iˆsaaˆyaa 44:15-20."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Imitate Jehovah.—1 Peter 1:14-16.",
+    "imn": "Zuotc Yeˆhoˆwaa nyei nyungc.—1 Bide 1:14-16."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Show love.—1 John 4:7, 8, 11.",
+    "imn": "Hnamv mienh.—1 Yoˆhan 4:7, 8, 11."
+  },
+  {
+    "cat": "negation",
+    "eng": "Avoid taking part in any customs that are not in agreement with the Bible.",
+    "imn": "Haaix nyungc leiz-fingx zoux daaih maiv horpc Ging-Sou njaaux nyei jauv, oix zuqc simv nqoi maiv dungx gan jienv zoux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "It takes courage to do this.",
+    "imn": "Za’gengh zuqc liepc hnyouv nyei cingx daaih haih simv duqv."
+  },
+  {
+    "cat": "command",
+    "eng": "Do not get involved in the political affairs of the nations; they do not support Jehovah and his Kingdom.",
+    "imn": "Maiv dungx caux baamh gen nyei hungh jaa doix-dekc fai maaih buonc zoux, weic zuqc baamh gen nyei hungh jaa zoux nyei sic maiv taaih Yeˆhoˆwaa yaac maiv bouc ninh nyei Guoqv."
+  },
+  {
+    "cat": "future",
+    "eng": "Associate with Jehovah’s Witnesses; they will help you draw close to God.",
+    "imn": "Caux Yeˆhoˆwaa nyei Zorng-Zengx mbuo maaih buonc zoux. Ninh mbuo haih tengx meih daaih nitv fatv Tin-Hungh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Continue to learn about God and try to obey his commandments.",
+    "imn": "Hoqc jienv Tin-Hungh nyei jauv mingh liuz longc hnyouv goiv nyungc-nyungc puix ninh nyei leiz."
+  },
+  {
+    "cat": "possessive",
+    "eng": "When your faith has become strong, you should dedicate your life to Jehovah and get baptized.—Matthew 28:19.",
+    "imn": "Zuov meih maaih sienx fim wuonv, meih horpc zuqc bun Yeˆhoˆwaa meih nyei maengc ziouc jiex wuom nyei leiz.—Matvˆtaai 28:19."
+  },
+  {
+    "cat": "command",
+    "eng": "Read the Bible, and ask Jehovah’s Witnesses to help you understand it.",
+    "imn": "Doqc Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Then, apply what you learn.",
+    "imn": "Heuc Yeˆhoˆwaa nyei Zorng-Zengx tengx meih bieqc hnyouv Ging-Sou, liuz gan jienv zoux dongh meih hoqc bieqc hnyouv daaih nyei jauv."
+  },
+  {
+    "cat": "future",
+    "eng": "If you do, you will live forever.—Psalm 37:29.",
+    "imn": "Se gorngv meih ei jienv naaic deix jauv zoux nor, meih ziouc duqv ziangh yietc liuz.—Singx Nzung 37:29."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah guards those loyal to him.—Psalm 97:10.",
+    "imn": "Yeˆhoˆwaa beu jienv ninh nyei cing-nzengc mienh.—Singx Nzung 97:10."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Repent and be forgiven.—Acts 3:19.",
+    "imn": "Oix zuqc goiv hnyouv bun Tin-Hungh guangc meih nyei zuiz.—Gong-Zoh 3:19."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Walk on the road to life.—Matthew 7:13, 14.",
+    "imn": "Yangh dongh duqv maengc wuov diuh jauv.—Matvˆtaai 7:13, 14."
+  },
+  {
+    "cat": "declarative",
+    "eng": "To make a donation, please visit www.jw.org.",
+    "imn": "Oix cuotv hnyouv bun nyaanh nor, tov mingh www.jw.org/ium wuov."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Unless otherwise indicated, Scripture quotations are from the modern-language New World Translation of the Holy Scriptures.",
+    "imn": "Da’faanh maiv gorngv jienv yiem haaix buonv sou nor, Ging-Sou nyei waac zorqv daaih longc se yiem mbuo Iu-Mienh nyei Ging-Sou ceu cuotv daaih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "January 2016 Printing",
+    "imn": "Faah Hlaax 2016 Yienx Cuotv Daaih"
+  },
+  {
+    "cat": "declarative",
+    "eng": "© 2011 WATCH TOWER BIBLE AND TRACT SOCIETY OF PENNSYLVANIA",
+    "imn": "© 2013 WATCH TOWER BIBLE AND TRACT SOCIETY OF PENNSYLVANIA"
+  },
+  {
+    "cat": "question",
+    "eng": "4 How Do We Listen to God?",
+    "imn": "4 Mbuo Hnangv Haaix Nor Muangx Tin-Hungh?"
+  },
+  {
+    "cat": "question",
+    "eng": "6 Who Is the True God?",
+    "imn": "6 Zien Tin-Hungh Se Haaix Dauh?"
+  },
+  {
+    "cat": "question",
+    "eng": "8 What Was Life Like in Paradise?",
+    "imn": "8 Zinh Ndaangc Yiem Orn-Lorqc Dorngx Se Hnangv Haaix?"
+  },
+  {
+    "cat": "question",
+    "eng": "10 They Listened to Satan—With What Results?",
+    "imn": "10 Ninh Mbuo Muangx Saadaan—Ziouc Benx Hnangv Haaix?"
+  },
+  {
+    "cat": "question",
+    "eng": "12 The Great Flood—Who Listened?",
+    "imn": "12 Mbiungc-Suiv-Imx—Haaix Dauh Muangx?"
+  },
+  {
+    "cat": "question",
+    "eng": "14 What Do We Learn From the Great Flood?",
+    "imn": "14 Jiex Mbiungc-Suiv-Imx Wuov Nzunc Njaaux Duqv Mbuo Haaix Nyungc?"
+  },
+  {
+    "cat": "question",
+    "eng": "16 Who Was Jesus?",
+    "imn": "16 Yesu Se Haaix Dauh?"
+  },
+  {
+    "cat": "question",
+    "eng": "18 What Does the Death of Jesus Mean for You?",
+    "imn": "18 Yesu Daic Se Weic Bun Meih Haih Duqv Haaix Nyungc?"
+  },
+  {
+    "cat": "question",
+    "eng": "20 When Will Paradise Come?",
+    "imn": "20 Haaix Zanc Cingx Daaih Maaih Orn-Lorqc Dorngx?"
+  },
+  {
+    "cat": "question",
+    "eng": "22 What Blessings Await Those Who Listen to God?",
+    "imn": "22 Tin-Hungh Oix Ceix Haaix Nyungc Longx Nyei Bun Dongh Muangx Ninh Wuov Deix?"
+  },
+  {
+    "cat": "question",
+    "eng": "24 Does Jehovah Listen to Us?",
+    "imn": "24 Yeˆhoˆwaa Muangx Mbuo Daux Gaux Nyei Waac Nyei Fai?"
+  },
+  {
+    "cat": "question",
+    "eng": "26 How Can You Have a Happy Family Life?",
+    "imn": "26 Meih Nyei Hmuangv-Doic Hnangv Haaix Nor Haih Duqv Njien-Youh?"
+  },
+  {
+    "cat": "question",
+    "eng": "28 What Must We Do to Please God?",
+    "imn": "28 Mbuo Aʼzuqc Hnangv Haaix Nor Zoux Cingx Horpc Tin-Hungh?"
+  },
+  {
+    "cat": "question",
+    "eng": "30 How Can You Show Loyalty to Jehovah?",
+    "imn": "30 Meih Hnangv Haaix Nor Haih Zoux Hnyouv Dingc Hnyouv Wuonv Nyei Bun Yeˆhoˆwaa?"
+  },
+  {
+    "cat": "compound",
+    "eng": "God is our Creator, and he cares for us. Just as a wise and loving father instructs his children, so God teaches people everywhere the best way to live.",
+    "imn": "Tin-Hungh se dongh Zeix mbuo daaih Wuov Dauh. Ninh goux jienv mbuo, oix mbuo duqv longx. Maaih cong-mengh caux hnamv dorn-jueiv nyei die maaih hnyouv njaaux ninh nyei dorn-jueiv, Tin-Hungh m’daaih hnangv naaic nor njaaux mienh maanh yiem norm-norm dorngx longx jiex nyei jauv hnangv haaix nor yiem."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God reveals precious truths that fill us with joy and hope.",
+    "imn": "Tin-Hungh bun mbuo hiuv jaaix haic nyei zien leiz ziouc bun mbuo njien-youh yaac maaih lamh kaux."
+  },
+  {
+    "cat": "future",
+    "eng": "If you listen to God, he will guide and protect you and help you deal with problems.",
+    "imn": "Se gorngv meih muangx Tin-Hungh nor, ninh za’gengh dorh meih caux beu jienv meih yaac tengx meih haih diev duqv jiex nyungc-nyungc sic."
+  },
+  {
+    "cat": "future",
+    "eng": "But there is more—you will live forever!",
+    "imn": "Mv baac aengx maaih gauh camv naaic. Meih haih duqv ziangh yietc liuz!"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Title Page/Publishers’ Page",
+    "imn": "Sou-Mbuox Wuov Minc/Yienx Sou Mienh Wuov Minc"
+  },
+  {
+    "cat": "declarative",
+    "eng": "January 2018 Printing",
+    "imn": "Hmz Hlaax 2019 Yienx Cuotv Daaih"
+  },
+  {
+    "cat": "question",
+    "eng": "1 What Is the Good News?",
+    "imn": "1 Kuv Fienx Se Gorngv Taux Haaix Nyungc?"
+  },
+  {
+    "cat": "question",
+    "eng": "3 Is the Good News Really From God?",
+    "imn": "3 Wuov Kuv Fienx Se Gengh Zien Yiem Tin-Hungh Daaih Fai?"
+  },
+  {
+    "cat": "question",
+    "eng": "4 Who Is Jesus Christ?",
+    "imn": "4 Yesu Giduc Se Haaix Dauh?"
+  },
+  {
+    "cat": "question",
+    "eng": "5 What Is God’s Purpose for the Earth?",
+    "imn": "5 Tin-Hungh Zeix Baamh Gen Daaih Zoux Haaix Nyungc?"
+  },
+  {
+    "cat": "question",
+    "eng": "6 What Hope Is There for the Dead?",
+    "imn": "6 Daic Mingh Nyei Mienh Aengx Haih Duqv Haaix Nyungc Longx Nyei Fai?"
+  },
+  {
+    "cat": "question",
+    "eng": "7 What Is God’s Kingdom?",
+    "imn": "7 Tin-Hungh Nyei Guoqv Se Haaix Nyungc?"
+  },
+  {
+    "cat": "question",
+    "eng": "8 Why Does God Allow Evil and Suffering?",
+    "imn": "8 Weic Haaix Diuc Tin-Hungh Bun Maaih Kouv Naanc Caux Orqv Nyei Jauv?"
+  },
+  {
+    "cat": "question",
+    "eng": "9 How Can Your Family Be Happy?",
+    "imn": "9 Meih Nyei Hmuangv-Doic Hnangv Haaix Nor Haih Duqv Njien-Yiouh?"
+  },
+  {
+    "cat": "question",
+    "eng": "10 How Can You Recognize True Worship?",
+    "imn": "10 Meih Hnangv Haaix Nor Haih Zieqv Duqv Zien Buoqc Zangc Nyei Jauv?"
+  },
+  {
+    "cat": "question",
+    "eng": "11 How Do Bible Principles Benefit Us?",
+    "imn": "11 Ging-Sou Nyei Leiz Hnangv Haaix Nor Tengx Mbuo Duqv Longx?"
+  },
+  {
+    "cat": "question",
+    "eng": "12 How Can You Draw Close to God?",
+    "imn": "12 Meih Hnangv Haaix Nor Haih Mingh Nitv Jienv Tin-Hungh?"
+  },
+  {
+    "cat": "question",
+    "eng": "13 What Is the Good News About Religion?",
+    "imn": "13 Kuv Fienx Hnangv Haaix Nor Gorngv Taux Buoqc Zangc Nyei Jauv?"
+  },
+  {
+    "cat": "question",
+    "eng": "14 Why Does God Have an Organization?",
+    "imn": "14 Weic Haaix Diuc Tin-Hungh Maaih Norm Gorn Zangc?"
+  },
+  {
+    "cat": "question",
+    "eng": "15 Why Should You Continue?",
+    "imn": "15 Weic Haaix Diuc Meih Horpc Zuqc Hoqc Jienv Mingh?"
+  },
+  {
+    "cat": "future",
+    "eng": "This brochure will help you to enjoy learning directly from God’s Word, the Bible. The references at the end of each paragraph show where in your Bible you can read answers to the numbered questions.",
+    "imn": "Naaiv buonv sou se dorh meih hoqc Tin-Hungh nyei waac yiem Ging-Sou. Yiem yietc kang yietc kang nzaangc jomc wuov, maaih nzaangc mbuox jienv mingh doqc haaix norm dorngx yiem meih nyei Ging-Sou. Naaic deix Ging-Sou waac se dau wuov waac-naaic yiem nzaangc-jieqv nqaengc nyei wuov."
+  },
+  {
+    "cat": "declarative",
+    "eng": "As you review the Bible texts, consider how they answer these questions.",
+    "imn": "Doqc jienv naaic deix Ging-Sou waac wuov zanc, hnamv mangc gaax naaic deix waac se hnangv haaix nor dau wuov waac-naaic."
+  },
+  {
+    "cat": "future",
+    "eng": "Any one of Jehovah’s Witnesses will be pleased to help you to reason on the meaning of the Scriptures.—Read Luke 24:32, 45.",
+    "imn": "Dauh dauh Yeˆhoˆwaa nyei Zorng-Zengx yaac a’hneiv nyei oix tengx meih bieqc hnyiouv naaic deix Ging-Sou waac.—Doqc Lugaa 24:32, 45."
+  },
+  {
+    "cat": "declarative",
+    "eng": "No government has ever succeeded in eliminating violence, disease, or death.",
+    "imn": "Maiv maaih jiex haaix norm hungh jaa haih zorqv guangc nzengc mienh zoux ciouv zoux waaic nyei jauv, baengc nyei jauv, fai daic nyei jauv."
+  },
+  {
+    "cat": "compound",
+    "eng": "But there is good news.",
+    "imn": "Mv baac se maaih kuv fienx bun mbuo nyei."
+  },
+  {
+    "cat": "future",
+    "eng": "Shortly, God will replace all human governments with his own government.",
+    "imn": "Maiv lauh Tin-Hungh maiv bun maaih baamh mienh nyei hungh jaa aqv, liuz bun maaih ninh ganh nyei hungh jaa hnangv."
+  },
+  {
+    "cat": "future",
+    "eng": "Its subjects will enjoy peace and good health.—Read Isaiah 25:8; 33:24; Daniel 2:44.",
+    "imn": "Ninh nyei baeqc fingx ziouc njien-yiouh baengh orn, wangc siangx nyei yiem.—Doqc Iˆsaaˆyaa 25:8; 33:24; Ndaaˆniˆen 2:44."
+  },
+  {
+    "cat": "future",
+    "eng": "Suffering will end only when God clears the earth of bad people.",
+    "imn": "Zuov taux Tin-Hungh fioux liuz baamh gen, zorqv guangc zoux waaic sic nyei mienh mingh, baamh gen cingx daaih maiv maaih kouv naanc nyei jauv."
+  },
+  {
+    "cat": "question",
+    "eng": "(Zephaniah 2:3) When will that happen?",
+    "imn": "(Seˆfanˆyaa 2:3) Haaix zanc cingx daaih benx hnangv naaic?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "God’s Word foretold the conditions that now threaten mankind.",
+    "imn": "Tin-Hungh nyei Waac jaa-ndaangc gorngv ziangx maaih sic hnangv ih zanc mbuo buatc nor, cuotv daaih hoic mienh maanh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Current events indicate that God’s time to act is close.—Read 2 Timothy 3:1-5.",
+    "imn": "Ih zanc cuotv daaih nyei camv-nyungc waaic sic se bun cing Tin-Hungh nyei ziangh hoc dongh ninh oix fioux baamh gen wuov se taux fatv aqv.—Doqc 2 Tiˆmoˆtai 3:1-5."
+  },
+  {
+    "cat": "future",
+    "eng": "He had no beginning and will never have an end.",
+    "imn": "Yiem loz-hnoi taux nqa’haav hingv ninh m’daaih yietc liuz yiem."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Psalm 90:2) He is the Source of the good news found in the Bible.",
+    "imn": "(Singx Nzung 90:2) Kuv fienx yiem Ging-Sou se Tin-Hungh bun daaih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(1 Timothy 1:11) Since God gave us life, we should worship only him.—Read Revelation 4:11.",
+    "imn": "(1 Tiˆmoˆtai 1:11) Weic Tin-Hungh bun maengc mbuo, mbuo horpc zuqc kungx zangc ninh ganh nduqc dauh hnangv.—Doqc Laauc Yaangh 4:11."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We can learn even more about God’s personality by reading the Bible.",
+    "imn": "Mbuo doqc Ging-Sou nor, mbuo haih hiuv duqv Tin-Hungh nyei fiem-fingx gauh camv deix."
+  },
+  {
+    "cat": "negation",
+    "eng": "For example, it tells us what God likes and what he does not like, how he treats people, and how he reacts in different situations.—Read Psalm 103:7-10.",
+    "imn": "Ging-Sou bun mbuo hiuv duqv Tin-Hungh oix caux maiv oix nyei jauv, ninh hnangv haaix nor goux mienh, caux hnangv haaix nor mangc taux nyungc-nyungc sic.—Doqc Singx Nzung 103:7-10."
+  },
+  {
+    "cat": "past",
+    "eng": "God’s name has been taken out of many Bibles and replaced with the titles Lord or God.",
+    "imn": "Maaih camv-buonv Ging-Sou se maiv maaih Tin-Hungh nyei mbuox weic zuqc mienh zorqv cuotv mingh, liuz tiuv an Ziouv fai Tin-Hungh."
+  },
+  {
+    "cat": "past",
+    "eng": "But when the Bible was written, it contained God’s name some 7,000 times.",
+    "imn": "Zinh ndaangc fiev daaih nyei Ging-Sou se maaih Tin-Hungh nyei mbuox fiev jienv camv zoqc se leih maiv go 7,000 nzunc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus made God’s name known when he taught people about God.—Read John 17:26.",
+    "imn": "Dongh wuov zanc Yesu njaaux mienh Tin-Hungh nyei jauv wuov, ninh bun mienh hiuv duqv Tin-Hungh nyei mbuox nyei.—Doqc Yoˆhan 17:6, mangc sou-juoqv nzaangc; 17:26."
+  },
+  {
+    "cat": "question",
+    "eng": "Watch the video Does God Have a Name?",
+    "imn": "Mangc fangx-nangh Tin-Hungh Maaih Mbuox Nyei Fai?"
+  },
+  {
+    "cat": "command",
+    "eng": "Does widespread suffering mean that Jehovah is a God who does not care about us? Some people claim that he makes us suffer to test us, but this is not true.—Read James 1:13.",
+    "imn": "Lungh ndiev maaih kouv naanc buangv nzengc, hoic jienv mienh maanh. Naaic se weic Yeˆhoˆwaa Tin-Hungh maiv nzauh heix taux mbuo fai? Maaih deix mienh gorngv ninh zoux bun mbuo diev kouv weic seix mbuo, mv baac se maiv zeiz hnangv naaic.—Doqc Yaagorpc 1:13."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Since Jehovah has given us life, we should love him more than we love anyone else.",
+    "imn": "Weic zuqc Yeˆhoˆwaa bun maengc mbuo, mbuo zuqc hnamv ninh gauh camv mbuo hnamv nyei mienh."
+  },
+  {
+    "cat": "future",
+    "eng": "(Mark 12:30) As you express your love for God by learning more about him and doing as he asks, you will draw ever closer to him.—Read 1 Timothy 2:4; 1 John 5:3.",
+    "imn": "(Maako 12:30) Se gorngv meih hoqc hiuv duqv Tin-Hungh camv jienv faaux yaac ei jienv ninh nyei waac zoux, bun ninh hiuv duqv meih hnamv ninh, meih ziouc haih nitv ninh gauh fatv.—Doqc 1 Tiˆmoˆtai 2:4; 1 Yoˆhan 5:3."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Like this loving father, God is acting for our long-term good",
+    "imn": "a Singx Nzung 83:18, NWT: “Bun mienh hiuv duqv meih, dongh maaih mbuox heuc Yeˆhoˆwaa, kungx meih ganh hnangv se Yiem Hlang Jiex gunv lungh ndiev Wuov Dauh.”"
+  },
+  {
+    "cat": "future",
+    "eng": "This brochure will help you to understand the Bible by using the same method that Jesus used.",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc da’nyeic wuov zaang yiem What Can the Bible Teach Us?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "He referred to one Bible text after another and explained “the meaning of the Scriptures.”—Read Luke 24:27, 45.",
+    "imn": "wuov buonv sou, se Yeˆhoˆwaa nyei Zorng-Zengx zoux cuotv daaih nyei sou."
+  },
+  {
+    "cat": "question",
+    "eng": "Who could pay the ransom to free us from death?",
+    "imn": "Haaix dauh haih jaauv naaic norm jaax-zinh zuoqc mbuo nzuonx bun mbuo leih ndutv zuqc daic nyei jauv?"
+  },
+  {
+    "cat": "possessive",
+    "eng": "When we die, we pay the penalty only for our own sins.",
+    "imn": "Taux mbuo daic nyei ziangh hoc, mbuo jaauv duqv mbuo ganh nyei zuiz hnangv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "No imperfect man can pay for the sins of others.—Read Psalm 49:7-9.",
+    "imn": "Maiv dunh yunh nyei mienh maiv haih jaauv duqv dieh dauh mienh nyei zuiz.—Doqc Singx Nzung 49:7."
+  },
+  {
+    "cat": "question",
+    "eng": "Watch the video Why Did Jesus Die?",
+    "imn": "Mangc fangx-nangh Weic Haaix Diuc Yesu Zuqc Daic?"
+  },
+  {
+    "cat": "future",
+    "eng": "Soon, Jesus will use his power as King to bring an end to all suffering and to those who cause it.",
+    "imn": "Maiv lauh, Yesu longc ninh zoux Hungh nyei qaqv zorqv guangc nzengc yietc zungv kouv naanc caux zoux orqv zoux waaic nyei mienh."
+  },
+  {
+    "cat": "future",
+    "eng": "All who exercise faith in Jesus by obeying him will enjoy life in a paradise on earth.—Read Psalm 37:9-11.",
+    "imn": "Haaix dauh sienx kaux Yesu yaac ei jienv ninh nyei waac zoux ziouc duqv njien-yiouh nyei maengc yiem orn-lorqc dorngx yiem naaiv baamh gen.—Doqc Singx Nzung 37:9-11."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapters 4 and 5 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc da’feix caux da’hmz wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "What qualities made Jesus approachable?—MATTHEW 11:29; MARK 10:13-16.",
+    "imn": "Yesu maaih haaix nyungc fiem-fingx zoux bun mienh zuoqc ninh?—MATVˆTAAI 11:29; MAAKO 10:13-16."
+  },
+  {
+    "cat": "question",
+    "eng": "When will God bring an end to evil on earth?",
+    "imn": "Taux dongh Yesu yiem tin-dorngh gunv njiec baamh gen 1,000 hnyangx wuov, ninh oix zorqv guangc nzengc yietc zungv kouv naanc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jesus gave a “sign” to indicate when the end would be near.",
+    "imn": "(Iˆsaaˆyaa 9:6, 7; 11:9) Yesu maiv daan benx Hungh, ninh yaac benx Domh Sai Mienh tengx zorqv guangc dongh hnamv Tin-Hungh wuov deix mienh nyei zuiz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Present world conditions threaten man’s survival and show that we now live in “the conclusion of the system of things.”—Read Matthew 24:3, 7-14, 21, 22.",
+    "imn": "Hnangv naaic, Tin-Hungh ziouc longc Yesu zorqv guangc nzengc baengc caux zuqc gox zuqc daic nyei jauv.—Doqc Iˆsaaˆyaa 25:8; 33:24."
+  },
+  {
+    "cat": "past",
+    "eng": "Martha was already aware of the good news about the dead.",
+    "imn": "Maataa hiuv duqv wuov kuv fienx nyei, dongh gorngv taux daic mingh nyei mienh aengx haih nangh daaih wuov."
+  },
+  {
+    "cat": "future",
+    "eng": "She knew that Jehovah will resurrect the dead to live on earth again.—Read Job 14:14, 15.",
+    "imn": "Ninh hiuv duqv Yeˆhoˆwaa haih bun daic mingh nyei mienh aengx nangh daaih yiem naaiv baamh gen.—Doqc Iˆsaaˆyaa 26:19."
+  },
+  {
+    "cat": "question",
+    "eng": "Watch the video What Is the Condition of the Dead?",
+    "imn": "Mangc fangx-nangh Mienh Daic Mingh Se Benx Hnangv Haaix?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "The dead can neither speak nor hear.",
+    "imn": "Daic mingh nyei mienh maiv haih gorngv waac yaac maiv haih muangx haiz haaix nyungc."
+  },
+  {
+    "cat": "compound",
+    "eng": "(Psalm 115:17) But some angels are wicked, and they may speak to people and pretend to be dead humans.",
+    "imn": "(Singx Nzung 115:17) Mv baac maaih deix fin-mienh se orqv haic, ninh mbuo duqv-eix zoux benx daic mingh nyei mienh daaih caux mienh gorngv waac."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(2 Peter 2:4) Jehovah forbids trying to inquire of the dead.—Read Deuteronomy 18:10, 11.",
+    "imn": "(Yiuˆndaa 6) Yeˆhoˆwaa hatc mbuo, heuc mbuo maiv dungx lorz taux daic mingh nyei mienh.—Doqc Nzamc Leiz-Latc 18:10, 11."
+  },
+  {
+    "cat": "future",
+    "eng": "Many millions of people who are dead in the grave will return to life on earth.",
+    "imn": "Dongh daic mingh wuov deix ziex baeqv waanc dauh mienh aengx haih duqv maengc nangh daaih yiem naaiv baamh gen."
+  },
+  {
+    "cat": "future",
+    "eng": "Even some who did not know God and who practiced bad things will be resurrected.—Read Luke 23:43; Acts 24:15.",
+    "imn": "Maaih deix se maiv hiuv Tin-Hungh yaac benx zoux waaic sic nyei mienh.—Doqc Gong-Zoh 24:15."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapters 6, 7, and 10 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc da’luoqc, da’cietv, caux da’ziepc wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "future",
+    "eng": "God told Adam: “Dust you are and to dust you will return.”—GENESIS 3:19.",
+    "imn": "Tin-Hungh mbuox Aaˆndam: “Meih se nie, meih oix zuqc aengx benx nzunc nie aqv.”—TIN DEIC DOUH 3:19."
+  },
+  {
+    "cat": "declarative",
+    "eng": "A kingdom must have a king.",
+    "imn": "Yietc norm guoqv m’daaih a’zuqc maaih dauh hungh gunv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jehovah appointed his Son, Jesus Christ, to be King of His Kingdom.—Read Revelation 11:15.",
+    "imn": "Yeˆhoˆwaa orn ninh nyei Dorn, Yesu Giduc, zoux Hungh yiem Ninh nyei Guoqv.—Doqc Laauc Yaangh 11:15."
+  },
+  {
+    "cat": "question",
+    "eng": "Watch the video What Is Godʼs Kingdom?",
+    "imn": "Mangc fangx-nangh Tin-Hungh Nyei Guoqv Se Haaix Nyungc?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "God’s Son is the ideal King because he is kind and he is firm for what is right.",
+    "imn": "Tin-Hungh nyei Dorn zoux Hungh se horpc jiex weic zuqc ninh se hnyiouv longx, ninh yaac dingc hnyiouv zoux baengh fim nyei jauv."
+  },
+  {
+    "cat": "future",
+    "eng": "(Matthew 11:28-30) Also, he is powerful enough to help people because he will rule over the earth from heaven.",
+    "imn": "(Matvˆtaai 11:28-30) Ninh maaih qaqv henv haih tengx duqv mienh weic zuqc taux ninh gunv nyei ziangh hoc, ninh ziouc yiem tin-dorngh gunv njiec baamh gen."
+  },
+  {
+    "cat": "past",
+    "eng": "After he was resurrected, he ascended to heaven and sat down to wait at Jehovah’s right hand.",
+    "imn": "Dongh ninh daic mingh aengx nangh daaih wuov, ninh faaux tin-dorngh mingh ziouc zueiz jienv Yeˆhoˆwaa nyei mbiaauc maengx bung zuov taux ninh duqv gunv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Hebrews 10:12, 13) Finally, God gave him power to begin ruling.—Read Daniel 7:13, 14.",
+    "imn": "(Hipvˆlu 10:12, 13) Nqa’haav, Tin-Hungh ziouc bun ninh maaih lingc maaih hatc maaz jiez gorn gunv aqv.—Doqc Ndaaˆniˆen 7:13, 14."
+  },
+  {
+    "cat": "future",
+    "eng": "A group called “the holy ones” will rule with Jesus in heaven.",
+    "imn": "Maaih guanh heuc “cing-nzengc baeqc fingx [“cing-nzengc mienh wuov deix,” NWT ]” duqv caux Yesu yiem tin-dorngh gunv."
+  },
+  {
+    "cat": "past",
+    "eng": "(Daniel 7:27) The first holy ones chosen were Jesus’ faithful apostles.",
+    "imn": "(Ndaaˆniˆen 7:27) Ginv ndaangc benx cing-nzengc mienh wuov deix se Yesu nyei hnyiouv zingx nyei gong-zoh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah has continued to select faithful men and women as holy ones until now.",
+    "imn": "Yiem naaic daaih, taux ih zanc, Yeˆhoˆwaa ginv hnyiouv zingx nyei m’jangc dorn caux m’sieqv dorn benx cing-nzengc mienh wuov deix."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Like Jesus, they are resurrected with a spiritual body.—Read John 14:1-3; 1 Corinthians 15:42-44.",
+    "imn": "Naaiv deix mienh daic mingh, ninh mbuo hnangv Yesu nor aengx duqv nangh daaih, sin maiv maaih orv maiv maaih nziaamv.—Doqc Yoˆhan 14:1-3; 1 Koˆlinˆto 15:42-44, 50."
+  },
+  {
+    "cat": "question",
+    "eng": "How many people go to heaven?",
+    "imn": "Maaih mbuoqc ziex dauh mienh duqv faaux tin-dorngh?"
+  },
+  {
+    "cat": "future",
+    "eng": "Jesus called them a “little flock.” (Luke 12:32) They will finally number 144,000.",
+    "imn": "Maaih 144,000 dauh duqv faaux."
+  },
+  {
+    "cat": "future",
+    "eng": "They will rule over the earth with Jesus.—Read Revelation 14:1.",
+    "imn": "Yesu heuc ninh mbuo zoux yietc “guanh zoqc nyei mienh.” (Lugaa 12:32) Ninh mbuo duqv caux Yesu gunv njiec baamh gen.—Doqc Laauc Yaangh 14:1."
+  },
+  {
+    "cat": "past",
+    "eng": "God’s Kingdom began ruling in 1914.a Jesus’ first action as King was to throw Satan and his demons down to the earth.",
+    "imn": "Yiem 1914 wuov norm hnyangx, Tin-Hungh nyei Guoqv ziouc jiez gorn gunv aqv.a Yietv benx Hungh daaih, Yesu zoux nyei daauh nyungc gong se zorqv Saadaan caux Saadaan nyei fin-mienh waaic zoi njiec baamh gen."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Satan became furious and began causing trouble throughout the earth.",
+    "imn": "Saadaan ziouc qiex jiez haic, ziouc zoux cuotv ziex nyungc ciouv nyei sic gormx naaiv baamh gen."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Revelation 12:7-10, 12) Since then, mankind’s woes have severely increased.",
+    "imn": "(Laauc Yaangh 12:7-10, 12) Yiem naaic daaih, ziex nyungc sic hoic mienh zuqc kouv se jaa camv jienv faaux."
+  },
+  {
+    "cat": "future",
+    "eng": "Wars, famines, epidemics, and earthquakes are all part of a “sign” that the Kingdom will soon take full charge of earth’s affairs.—Read Luke 21:7, 10, 11, 31.",
+    "imn": "Deic-bung mborqv jaax nyei jauv, mienh ngorc hnaangx nyei jauv, butv domh wuon-baengc nyei jauv, caux ndau dongz nyei jauv yietc zungv se benx “jangx-hoc” bun cing maiv lauh Tin-Hungh nyei Guoqv oix gunv nzengc baamh gen nyei sic aqv.—Doqc Lugaa 21:7, 10, 11, 31."
+  },
+  {
+    "cat": "declarative",
+    "eng": "By means of a global preaching work, God’s Kingdom is already uniting a great crowd of people from all nations.",
+    "imn": "Weic mienh ei Tin-Hungh nyei eix zunh jienv Tin-Hungh nyei doz gormx naaiv lungh ndiev, Tin-Hungh nyei Guoqv bun mienh camv yiem norm-norm deic-bung maaih horpc fim dongh eix nyei jauv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Millions of meek people are becoming subjects of Jesus.",
+    "imn": "Maaih ziex baeqv waanc dauh mienh nyiemc ganh zoux faix daaih benx Tin-Hungh nyei Guoqv nyei baeqc fingx, bun Yesu gunv ninh mbuo."
+  },
+  {
+    "cat": "future",
+    "eng": "God’s Kingdom will protect them when it destroys the present wicked system of things on earth.",
+    "imn": "Taux Tin-Hungh nyei Guoqv oix mietc nzengc naaiv norm baamh gen nyei orqv sic wuov zanc, Tin-Hungh nyei Guoqv oix beu jienv ninh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "So all who want to benefit from God’s Kingdom should learn to be obedient subjects of Jesus.—Read Revelation 7:9, 14, 16, 17.",
+    "imn": "Hnangv naaic, haaix dauh oix benx Tin-Hungh nyei Guoqv nyei baeqc fingx nor, oix zuqc ei jienv Yesu nyei waac zoux.—Doqc Laauc Yaangh 7:9, 14, 16, 17."
+  },
+  {
+    "cat": "future",
+    "eng": "During a period of 1,000 years, the Kingdom will accomplish God’s original purpose for mankind.",
+    "imn": "Yiem 1,000 hnyangx gu’nyuoz, Tin-Hungh nyei Guoqv oix zoux ziangx zinh ndaangc Tin-Hungh jiez gorn wuov norm za’eix dongh ninh oix bun baamh mienh wuov."
+  },
+  {
+    "cat": "future",
+    "eng": "The earth will become a global paradise.",
+    "imn": "Naaiv norm baamh gen oix benx yietc norm nzueic haic, kuv-yiem haic nyei domh orn-lorqc huingx."
+  },
+  {
+    "cat": "future",
+    "eng": "Finally, Jesus will hand the Kingdom back to his Father.",
+    "imn": "Nqa’haav, Yesu ziouc jiu naaic norm Guoqv daaux nqaang bun ninh nyei Die."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(1 Corinthians 15:24-26) Do you know someone whom you would like to tell about God’s Kingdom?—Read Psalm 37:10, 11, 29.",
+    "imn": "(1 Koˆlinˆto 15:24-26) Meih maaih haaix dauh meih oix gorngv taux Tin-Hungh nyei Guoqv bun muangx nyei fai?—Doqc Singx Nzung 37:10, 11, 29."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapters 8 and 9 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc da’betv caux da’juov wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "question",
+    "eng": "a For details of how Bible prophecy foretold the year 1914, see pages 215-218 of the book What Does the Bible Really Teach?",
+    "imn": "a Oix hiuv muonc Ging-Sou nyei zinh hoz waac hnangv haaix nor gorngv taux 1914 wuov norm hnyangx nor, mingh mangc 217-220 wuov yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "What makes Jesus an ideal King?—MARK 1:40-42.",
+    "imn": "Weic haaix diuc Yesu puix duqv benx Hungh?—MAAKO 1:40-42."
+  },
+  {
+    "cat": "declarative",
+    "eng": "All of God’s works are perfect.",
+    "imn": "Yietc zungv Tin-Hungh zeix cuotv nyei ga’naaiv se dunh yunh nyei."
+  },
+  {
+    "cat": "past",
+    "eng": "The humans and angels whom God created were capable of obeying God perfectly.",
+    "imn": "Ninh zeix baamh mienh caux fin-mienh daaih haih dunh yunh nyei ei ninh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Deuteronomy 32:4, 5) God created us with the freedom to choose between doing good and doing evil.",
+    "imn": "(Nzamc Leiz-Latc 32:4, 5) Ninh zeix mbuo daaih bun mbuo haih ginv oix zoux longx fai oix zoux orqv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "That freedom gives us a way to express love for God.—Read James 1:13-15; 1 John 5:3.",
+    "imn": "Wuov nyungc, mbuo haih ginv oix zoux daaih gorngv mbuo hnamv Tin-Hungh.—Doqc Yaagorpc 1:13-15; 1 Yoˆhan 5:3."
+  },
+  {
+    "cat": "future",
+    "eng": "God’s love for mankind guarantees that evil and suffering will end.",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc yietv wuov zaang yiem What Can the Bible Teach Us?"
+  },
+  {
+    "cat": "future",
+    "eng": "Those who demonstrate that they believe this will enjoy life on earth forever.—Read John 3:16.",
+    "imn": "wuov buonv sou."
+  },
+  {
+    "cat": "possessive",
+    "eng": "If you experience difficulties in your marriage, both of you should work at treating each other with love.",
+    "imn": "Se gorngv meih mbuo nqox caux auv ganh maaih dorngx maiv horpc doic nor, meih mbuo ganh i hmuangv oix zuqc zoux laanh hnamv laanh nyei eix-leiz."
+  },
+  {
+    "cat": "negation",
+    "eng": "(1 Corinthians 13:4, 5) God’s Word does not recommend separation as a way to resolve problems that are common in marriage.—Read 1 Corinthians 7:10-13.",
+    "imn": "(1 Koˆlinˆto 13:4, 5) Tin-Hungh nyei Waac maiv zeiz njaaux cai-doix bun nqoi yiem daaih zorc ninh mbuo nyei pou-tong sic.—Doqc 1 Koˆlinˆto 7:10-13."
+  },
+  {
+    "cat": "possessive",
+    "eng": "He gives you the best advice on how to enjoy your youth.",
+    "imn": "Ninh bun meih longx jiex nyei waac-njaaux tengx meih lunx nyei ziangh hoc duqv kuv-yiem."
+  },
+  {
+    "cat": "possessive",
+    "eng": "He wants you to benefit from the wisdom and experience of your parents.",
+    "imn": "Ninh oix meih nyei diex maac zoux jiex daaih nyei kuv nyungc zeiv caux maaih nyei cong-mengh njaaux meih duqv longx."
+  },
+  {
+    "cat": "possessive",
+    "eng": "(Colossians 3:20) Jehovah also wants you to experience the joy of doing things for your Creator and his Son.—Read Ecclesiastes 11:9–12:1; Matthew 19:13-15; 21:15, 16.",
+    "imn": "(Koˆloˆsi 3:20) Yeˆhoˆwaa yaac oix meih duqv njien-yiouh weic zoux nyungc-nyungc bun Zeix meih daaih Wuov Dauh caux ninh nyei Dorn.—Doqc Gorngv Seix Zaangc 11:9–12:1; Matvˆtaai 19:13-15; 21:15, 16."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You should work hard to provide food, housing, and clothing for your children.",
+    "imn": "Meih oix zuqc longc hnyiouv zoux gong daaih maaih lai hnaangx bun meih nyei fu’jueiv nyanc, maaih biauv bun ninh mbuo yiem, caux maaih lui houx bun ninh mbuo zuqv."
+  },
+  {
+    "cat": "compound",
+    "eng": "(1 Timothy 5:8) But for your children to find happiness, you also need to teach them to love God and to learn from him.",
+    "imn": "(1 Tiˆmoˆtai 5:8) Mv baac oix bun meih nyei fu’jueiv haih lorz duqv buatc njien-yiouh nyei jauv nor, meih yaac a’zuqc njaaux ninh mbuo hnamv Tin-Hungh caux muangx ninh nyei waac."
+  },
+  {
+    "cat": "possessive",
+    "eng": "(Ephesians 6:4) Your example in showing love for God can deeply influence your child’s heart.",
+    "imn": "(Eˆfeˆso 6:4) Meih zoux nyei nyungc zeiv hnamv Tin-Hungh se gengh haih tengx meih nyei fu’jueiv aengx haih hnamv Tin-Hungh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "When based on God’s Word, your instruction can mold your child’s thinking in a positive way.—Read Deuteronomy 6:4-7; Proverbs 22:6.",
+    "imn": "Haaix zanc meih ziux Tin-Hungh nyei Waac njaaux, meih nyei waac haih tengx meih nyei fu’jueiv hnamv longx nyei jauv.—Doqc Nzamc Leiz-Latc 6:4-7; Cong-Mengh Waac 22:6."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Children benefit when you encourage and commend them.",
+    "imn": "Haaix zanc meih ceng yaac kuinx meih nyei fu’jueiv nor se tengx duqv ninh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "They also need correction and discipline.",
+    "imn": "Ninh mbuo mv baac a’zuqc longc mienh gorngv-njaaux caux mborqv njaaux ninh mbuo nyei."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Such training protects them from conduct that could rob them of happiness.",
+    "imn": "Hnangv naaic njaaux ninh mbuo se beu jienv ninh mbuo, maiv bun ninh mbuo sueih ganh nyei hnyiouv zoux ziouc maiv haih duqv njien-yiouh orn-lorqc."
+  },
+  {
+    "cat": "negation",
+    "eng": "(Proverbs 22:15) Yet, discipline should never be harsh or cruel.—Read Colossians 3:21.",
+    "imn": "(Cong-Mengh Waac 22:15) Mv baac, gorngv-njaaux fai mborqv njaaux nyei ziangh hoc, maiv dungx zoux ba’laqc ciouv jiex ndaangc fai zoux doqc bun.—Doqc Koˆloˆsi 3:21."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah’s Witnesses publish several books that are especially written to help parents and children.",
+    "imn": "Yeˆhoˆwaa nyei Zorng-Zengx yienx duqv maaih camv-buonv sou lengc jeiv nyei fiev daaih njaaux diex maac caux fu’jueiv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "These books are based on the Bible.—Read Psalm 19:7, 11.",
+    "imn": "Naaiv deix sou se ziux Ging-Sou nyei jauv fiev daaih.—Doqc Singx Nzung 19:7, 11."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapter 14 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc feix wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "True worshippers respect the Bible as God’s Word.",
+    "imn": "Ninh mbuo taaih Tin-Hungh nyei mbuox, Yeˆhoˆwaa."
+  },
+  {
+    "cat": "possessive",
+    "eng": "They strive to live by its principles.",
+    "imn": "Yesu taaih Tin-Hungh nyei mbuox dongh ninh gorngv cuotv bun mienh hiuv duqv wuov."
+  },
+  {
+    "cat": "declarative",
+    "eng": "So true religion differs from religion that is based on men’s ideas.",
+    "imn": "Ninh tengx mienh daaih hiuv duqv Tin-Hungh yaac njaaux ninh mbuo daux gaux bun mienh taaih Tin-Hungh nyei cing-nzengc mbuox."
+  },
+  {
+    "cat": "negation",
+    "eng": "(Matthew 15:7-9) True worshippers do not preach one thing and practice another.—Read John 17:17; 2 Timothy 3:16, 17.",
+    "imn": "(Matvˆtaai 6:9) Dongh meih yiem nyei dorngx wuov, meih buatc haaix nyungc buoqc zangc nyei jauv zunh Tin-Hungh nyei mbuox bun mienh hiuv?—Doqc Yoˆen 2:32; Cuotv Iˆyipv 17:15, mangc sou-juoqv nzaangc."
+  },
+  {
+    "cat": "future",
+    "eng": "Jehovah’s laws and principles teach us the best way of life now and show us how we can gain everlasting rewards in the future.",
+    "imn": "Yeˆhoˆwaa nyei leiz njaaux mbuo ih zanc hnangv haaix nor yiem se gauh longx jiex caux bun mbuo hiuv duqv hnangv haaix nor haih duqv yietc liuz nyei zingh nyeic yiem nqa’haav hingv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Since God created us, it is only right that we respond appreciatively to his guidance.—Read Psalm 19:7, 11; Revelation 4:11.",
+    "imn": "Weic Tin-Hungh zeix mbuo daaih, mbuo horpc zuqc a’hneiv nyei zipv ninh bun daaih nyei waac njaaux mbuo, dorh jauv mbuo.—Doqc Singx Nzung 19:7, 11; Laauc Yaangh 4:11."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The second principle can guide us into peaceful relationships with others.",
+    "imn": "Da’nyeic diuh leiz se bun mbuo haih baengh orn horh norh nyei caux duqv njiec mienh camv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(1 Corinthians 13:4-7) Applying this second principle involves imitating God’s way of treating people.—Read Matthew 7:12; 22:39, 40.",
+    "imn": "(1 Koˆlinˆto 13:4-7) Dorh da’nyeic naaiv diuh leiz daaih longc se oix zuqc zuotc Tin-Hungh hnangv haaix nor hnamv mienh.—Doqc Matvˆtaai 7:12; 22:39, 40."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapters 12 and 13 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc nyeic caux ziepc faam wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "How could Bible principles move us to take safety precautions?—PSALM 36:9.",
+    "imn": "Ging-Sou njaaux maengc se zingh nyeic Tin-Hungh bun daaih. Naaiv kuinx mbuo oix zoux haaix nyungc?—SINGX NZUNG 36:9."
+  },
+  {
+    "cat": "negation",
+    "eng": "Drawing close to God is not easy because we live among people who lack faith in God and ridicule his promise of peace on earth.",
+    "imn": "Caux hnamv Tin-Hungh nyei mienh nziaauc se tengx mbuo haih mingh nitv Tin-Hungh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(2 Timothy 3:1, 4; 2 Peter 3:3, 13) So we need the encouraging association of fellow believers, and they need us.—Read Hebrews 10:24, 25.",
+    "imn": "Yeˆhoˆwaa nyei Zorng-Zengx mbuo nyei wuic se zoux daaih bun mienh maaih kuv ziangh hoc duqv buatc dieh deix nyei sienx fim ziouc haih tengx ninh mbuo ganh sienx aengx gauh henv.—Doqc Lomaa 1:11, 12."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You can draw close to Jehovah by meditating on what you have learned from his Word.",
+    "imn": "Meih haih mingh nitv jienv Tin-Hungh se gorngv meih kaux ninh, se gorngv meih maaih sienx fim."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Contemplate his activities, his advice, and his promises.",
+    "imn": "Mv baac sienx fim nyei jauv se beiv hnangv taux ga’naaiv-zuangx nor zanc-zanc a’zuqc fuqv wuom goux jienv yiem cingx daaih haih hlo."
+  },
+  {
+    "cat": "command",
+    "eng": "Prayerful meditation builds appreciation in our heart for God’s love and wisdom.—Read Joshua 1:8; Psalm 1:1-3.",
+    "imn": "Meih a’zuqc zanc-zanc zaah mangc meih sienx nyei jauv weic tengx meih goux jienv meih nyei sienx fim bun meih haih sienx wuonv.—Doqc Matvˆtaai 4:4; Hipvˆlu 11:1, 6."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Whereas true religion glorifies God, false religion displeases him.",
+    "imn": "Zien buoqc zangc nyei jauv zoux daaih se ceng Tin-Hungh, mv baac jaav buoqc zangc nyei jauv zoux daaih ninh maiv a’hneiv."
+  },
+  {
+    "cat": "negation",
+    "eng": "It teaches ideas that are not in the Bible, including false teachings about God and about the dead.",
+    "imn": "Jaav buoqc zangc nyei jauv njaaux nyei jauv-louc se maiv yiem Ging-Sou, liemh jienv dongh ninh mbuo njaaux jaav leiz gorngv taux Tin-Hungh caux daic nyei jauv."
+  },
+  {
+    "cat": "compound",
+    "eng": "But Jehovah wants people to know the truth about him.—Read Ezekiel 18:4; 1 Timothy 2:3-5.",
+    "imn": "Mv baac Yeˆhoˆwaa oix mienh hiuv duqv zien ninh se hnangv haaix.—Doqc Eˆseˆken 18:4; 1 Tiˆmoˆtai 2:3-5."
+  },
+  {
+    "cat": "declarative",
+    "eng": "There is more good news.",
+    "imn": "Kuv fienx nyei waac se aengx maaih gauh camv naaiv."
+  },
+  {
+    "cat": "negation",
+    "eng": "Jehovah has not forgotten the sincere people who are scattered among false religions worldwide.",
+    "imn": "Yeˆhoˆwaa maiv la’kuqv hnyiouv longx nyei mienh gormx naaiv lungh ndiev dongh faatv nzaanx mingh yiem zuqc jaav buoqc zangc nyei jauv wuov."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He is uniting such people by teaching them the truth.—Read Micah 4:2, 5.",
+    "imn": "Ninh njaaux naaic nyungc mienh zien leiz, bun ninh mbuo daaih gapv zunv gan ninh nyei jauv yangh.—Doqc Mikaa 4:2, 5."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah cares about people who love what is true and good.",
+    "imn": "Dongh hnamv zien leiz yaac oix zoux longx nyei mienh, Yeˆhoˆwaa oix hnamv ninh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He urges them to leave false religion behind.",
+    "imn": "Ninh heuc ninh mbuo oix zuqc gaanv deix yiem jaav buoqc zangc nyei jauv cuotv daaih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "People who love God are willing to make changes to please him.—Read Revelation 18:4.",
+    "imn": "Dongh maaih hnyiouv hnamv Tin-Hungh wuov deix oix a’hneiv nyei goiv daaih zoux horpc ninh.—Doqc Laauc Yaangh 18:4."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In the first century, when sincere people heard the good news from the apostles, they responded with joy.",
+    "imn": "Yiem gu’nyuoz daauh baeqv hnyangx nyei ziangh hoc wuov, hnyiouv longx nyei mienh duqv haiz liuz gong-zoh mbuo zunh nyei kuv fienx, ninh mbuo ziouc a’hneiv nyei zipv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "They learned a new way of life from Jehovah, a happier way of life with a purpose and a hope.",
+    "imn": "Ninh mbuo duqv Yeˆhoˆwaa njaaux ninh mbuo siang-jauv hnangv haaix nor yiem, se gauh longx nyei jauv weic bun ninh mbuo maaih nyungc zoux caux maaih lamh hnamv dorngx."
+  },
+  {
+    "cat": "possessive",
+    "eng": "They are a good example for us today because they responded to the good news by putting Jehovah first in their lives.—Read 1 Thessalonians 1:8, 9; 2:13.",
+    "imn": "Ninh mbuo se zoux kuv nyungc zeiv bun mbuo ih jaax hnoi nyei mienh weic zuqc ninh mbuo zipv wuov kuv fienx dorh Yeˆhoˆwaa daaih ndaangc nyungc-nyungc.—Doqc 1 Teˆsaaˆloˆniˆgaa 1:8, 9; 2:13."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The coming judgment of false religion is good news.",
+    "imn": "Taux ziangh hoc siemv jaav buoqc zangc nyei jauv se benx kuv fienx."
+  },
+  {
+    "cat": "future",
+    "eng": "It will bring worldwide relief from oppression.",
+    "imn": "Naaic se bungx nqoi mienh maanh gormx naaiv baamh gen, bun ninh mbuo duqv kuv-yiem, maiv zuqc maaih haaix nyungc daaih zoux doqc zoux hoic ninh mbuo."
+  },
+  {
+    "cat": "future",
+    "eng": "Never again will false religion mislead and divide mankind.",
+    "imn": "Yiem naaic mingh maiv aengx maaih jaav buoqc zangc nyei jauv daaih nduov mienh maanh bun nqoi benx ziex guanh aqv."
+  },
+  {
+    "cat": "future",
+    "eng": "Everyone living will be united in the worship of the only true God.—Read Revelation 18:20, 21; 21:3, 4.",
+    "imn": "Dauh dauh yiem njiec se dongh diuc hnyiouv kungx zangc nduqc dauh zien Tin-Hungh hnangv.—Doqc Laauc Yaangh 18:20, 21; 21:3, 4."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapters 15 and 16 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc hmz caux ziepc luoqc wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "True religion is uniting people",
+    "imn": "Zien buoqc zangc nyei jauv dorh mienh gapv zunv maaih dongh diuc hnyiouv"
+  },
+  {
+    "cat": "possessive",
+    "eng": "God chose the Israelites to be his witnesses.",
+    "imn": "Tin-Hungh ginv Iˆsaaˆlaaˆen Mienh benx ninh nyei zorng-zengx mienh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Their ancient history provides a demonstration of how people benefit by obeying God’s laws.",
+    "imn": "Ninh mbuo zinh ndaangc zoux jiex nyei jauv-louc bun hiuv mienh hnangv haaix nor duqv longx se gorngv ei Tin-Hungh nyei leiz nor."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Deuteronomy 4:6) Thus, through the Israelites, others could get to know the true God.—Read Isaiah 43:10, 12.",
+    "imn": "(Nzamc Leiz-Latc 4:6) Hnangv naaic, weic Iˆsaaˆlaaˆen Mienh, dieh deix cingx daaih haih hiuv duqv zien wuov dauh Tin-Hungh.—Doqc Iˆsaaˆyaa 43:10, 12."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In time, Israel lost God’s favor, and Jehovah replaced that nation with the Christian congregation.",
+    "imn": "Zoux gau, Iˆsaaˆlaaˆen Mienh maiv kangv zoux horpc Tin-Hungh, liuz Yeˆhoˆwaa guangc naaic guoqv mienh ziouc dorh Giduc Mienh daaih div ninh mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Matthew 21:43; 23:37, 38) Now, in place of the Israelites, true Christians serve as Jehovah’s witnesses.—Read Acts 15:14, 17.",
+    "imn": "(Matvˆtaai 21:43; 23:37, 38) Guangc liuz Iˆsaaˆlaaˆen Mienh, Yeˆhoˆwaa dorh zien Giduc Mienh daaih benx ninh nyei zorng-zengx mienh.—Doqc Gong-Zoh 15:14, 17."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In the 1870’s a small group of Bible students began rediscovering long-lost Bible truths.",
+    "imn": "Yiem gu’nyuoz 1870 mingh taux 1879 wuov deix hnyangx, maaih guanh zoqc nyei horqc saeng hoqc taux Ging-Sou ziouc jiez gorn lorz buatc Ging-Sou nyei zien leiz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "They knew that Jesus had organized the Christian congregation to preach, so they began an international Kingdom-preaching campaign.",
+    "imn": "Ninh mbuo hiuv duqv wuov zanc Yesu njaaux Giduc Mienh mingh zunh doz, liuz ninh mbuo ziouc jiez gorn mingh ziex norm deic-bung zunh doz gorngv taux Tin-Hungh nyei Guoqv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In 1931 they adopted the name Jehovah’s Witnesses.—Read Acts 1:8; 2:1, 4; 5:42.",
+    "imn": "Taux 1931 wuov hnyangx, ninh mbuo duqv Yeˆhoˆwaa nyei Zorng-Zengx naaiv norm mbuox daaih longc.—Doqc Gong-Zoh 1:8; 2:1, 4; 5:42."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapter 19 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc juov wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "possessive",
+    "eng": "No doubt, this overview of basic Bible teachings has strengthened your love for Jehovah.",
+    "imn": "Hnamv daaih naaiv deix Ging-Sou nyei jauv-louc se tengx meih aengx gauh haih hnamv Yeˆhoˆwaa."
+  },
+  {
+    "cat": "declarative",
+    "eng": "This love needs constant cultivation.",
+    "imn": "Hnamv Tin-Hungh se a’zuqc zanc-zanc longc hnyiouv zoux nyungc-nyungc daaih bun meih hnamv ninh aengx gauh wuonv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "(1 Peter 2:2) Your hope of everlasting life depends on whether you continue to draw close to God by studying his Word.—Read John 17:3; Jude 21.",
+    "imn": "(1 Bide 2:2) Meih hnamv jienv oix duqv yietc liuz nyei maengc wuov, naaic se m’daaih yiem meih ganh aengx hoqc jienv Ging-Sou mingh, tengx meih mingh nitv jienv Tin-Hungh.—Doqc Yoˆhan 17:3; Yiuˆndaa 21."
+  },
+  {
+    "cat": "future",
+    "eng": "As you grow in knowledge of God, your faith will become stronger.",
+    "imn": "Meih hoqc hiuv duqv Tin-Hungh camv jienv faaux nor, meih ziouc haih maaih sienx fim aengx gauh longx."
+  },
+  {
+    "cat": "future",
+    "eng": "Faith will help you to please God.",
+    "imn": "Maaih sienx fim se haih tengx meih zoux horpc Tin-Hungh, bun Tin-Hungh a’hneiv."
+  },
+  {
+    "cat": "future",
+    "eng": "(Hebrews 11:1, 6) It will move you to repent and to make beneficial changes in your way of life.—Read Acts 3:19.",
+    "imn": "(Hipvˆlu 11:1, 6) Meih ziouc oix goiv hnyiouv guangc zuiz yaac oix yienc daaih zoux longx nyei jauv.—Doqc Gong-Zoh 3:19."
+  },
+  {
+    "cat": "future",
+    "eng": "Naturally, you will want to share with others what you have learned—we all enjoy telling good news.",
+    "imn": "Hnamv daaih meih hoqc hiuv duqv haaix nyungc liuz, meih ziouc oix bun dieh deix caux jienv hiuv weic zuqc mbuo yietc zungv m’daaih oix mbuox mienh kuv fienx nyei."
+  },
+  {
+    "cat": "future",
+    "eng": "As you continue studying the Bible, you will learn how to use the Bible to explain your faith in Jehovah and the good news.—Read Romans 10:13-15.",
+    "imn": "Hoqc jienv Ging-Sou mingh nor, meih haih hiuv duqv hnangv haaix nor longc Ging-Sou porv mengh Tin-Hungh nyei kuv fienx caux meih sienx Yeˆhoˆwaa nyei jauv.—Doqc Matvˆtaai 28:19, 20."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Most people start by sharing the good news with friends or relatives.",
+    "imn": "Jiez gorn nor, mienh nzengc-nzengc dorh Tin-Hungh nyei kuv fienx mbuox taux ninh mbuo nyei a’nziaauc doic caux mienh muoz cien-ceqv ndaangc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Rather than saying that their religion is mistaken, tell them about God’s promises.",
+    "imn": "Gorngv taux Tin-Hungh laengz jienv nyei jauv bun ninh mbuo muangx, maiv zeiz yietc zaqc ziang naaic gorngv ninh mbuo sienx nyei jauv se dorngc mi’aqc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Also, remember that people are often more impressed by your kind behavior than by what you say.—Read 2 Timothy 2:24, 25.",
+    "imn": "Jiangx jienv, mienh nzengc-nzengc gauh oix taaih meih weic meih zoux eix-leiz longx, maiv zeiz weic meih gorngv nyei waac.—Doqc 2 Tiˆmoˆtai 2:24, 25."
+  },
+  {
+    "cat": "command",
+    "eng": "Studying God’s Word will help you to grow spiritually.",
+    "imn": "Hoqc Ging-Sou se tengx meih haih hiuv duqv Tin-Hungh nyei jauv camv jienv faaux bun meih haih nitv ninh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Eventually, you may enter into a very special relationship with Jehovah.",
+    "imn": "Jiex mingh, meih yaac haih duqv lengc jeiv haic nyei buonc caux Yeˆhoˆwaa horpc hnyiouv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You can actually belong to him as a member of his family.—Read 2 Corinthians 6:18.",
+    "imn": "Meih zungv gengh haih benx dauh ninh nyei biauv zong mienh, benx ninh nyei buonc.—Doqc 2 Koˆlinˆto 6:18."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The good news comes from Jehovah, the happy God.",
+    "imn": "Wuov kuv fienx se yiem Yeˆhoˆwaa daaih, se njien-yiouh orn-lorqc nyei Tin-Hungh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You can draw closer to him by drawing closer to his people.",
+    "imn": "Oix nitv ninh aengx gauh fatv nor, oix zuqc mingh nitv ninh nyei mienh aengx gauh fatv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "(Hebrews 10:24, 25) By continuing your efforts to please Jehovah, you are reaching out for the real life—everlasting life.",
+    "imn": "(Hipvˆlu 10:24, 25) Zanc-zanc longc hnyiouv zoux horpc Yeˆhoˆwaa nor, meih haih duqv zien maengc, se yietc liuz nyei maengc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Drawing close to God is truly the best thing that you can do.—Read 1 Timothy 1:11; 6:19.",
+    "imn": "Mingh nitv jienv Tin-Hungh se gengh longx haic nyei jauv meih haih zoux.—Doqc 1 Tiˆmoˆtai 1:11; 6:19."
+  },
+  {
+    "cat": "question",
+    "eng": "For more information, see chapter 18 of the book What Does the Bible Really Teach?",
+    "imn": "Oix hiuv gauh camv deix nor, mingh mangc ziepc betv wuov zaang yiem What Can the Bible Teach Us? wuov buonv sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "You can enter into a special relationship with Jehovah",
+    "imn": "Meih haih duqv lengc jeiv nyei buonc caux Yeˆhoˆwaa horpc hnyiouv"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Would you say . . .",
+    "imn": "Meih gorngv . . ."
+  },
+  {
+    "cat": "future",
+    "eng": "“There is going to be a resurrection.”—Acts 24:15, New World Translation.",
+    "imn": "“Daic mingh mv baac aengx oix nangh daaih.”—Gong-Zoh 24:15, Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Comfort when loved ones die.—2 Corinthians 1:3, 4.",
+    "imn": "Meih hnamv nyei mienh ndortv nor, maaih dorngx orn meih nyei hnyiouv.—2 Koˆlinˆto 1:3, 4."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Freedom from a morbid fear of death.—Hebrews 2:15.",
+    "imn": "Maiv zuqc gamh nziex taux daic nyei jauv.—Hipvˆlu 2:15."
+  },
+  {
+    "cat": "possessive",
+    "eng": "A real hope of being reunited with your dead loved ones.—John 5:28, 29.",
+    "imn": "Meih hnamv nyei mienh ndortv liuz nor, maaih zien dorngx bun meih hnamv jienv aengx haih duqv buatc ninh mbuo.—Yoˆhan 5:28, 29."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Yes, for at least three reasons:",
+    "imn": "Haih sienx duqv nyei, weic maaih buo diuc jauv faaux maengx bun mbuo hiuv:"
+  },
+  {
+    "cat": "question",
+    "eng": "Why do we grow old and die?",
+    "imn": "Weic haaix diuc mbuo zuqc gox zuqc daic?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "The Bible answers that question at GENESIS 3:17-19 and ROMANS 5:12.",
+    "imn": "Ging-Sou dau naaic jioux waac yiem TIN DEIC DOUH 3:17-19 caux LOMAA 5:12."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Would you say it is . . .",
+    "imn": "Meih gorngv Ging-Sou se . . ."
+  },
+  {
+    "cat": "question",
+    "eng": "a book of human wisdom?",
+    "imn": "baamh mienh ei ganh nyei cong-mengh fiev daaih nyei sou?"
+  },
+  {
+    "cat": "question",
+    "eng": "a book of myths and legends?",
+    "imn": "mienh la’guaih gorngv daaih nyei gouv hnangv?"
+  },
+  {
+    "cat": "question",
+    "eng": "the Word of God?",
+    "imn": "Tin-Hungh nyei Waac?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "“All Scripture is inspired of God.”—2 Timothy 3:16, New World Translation.",
+    "imn": "“Douc-douc Ging-Sou Tin-Hungh dorh mienh fiev.”—2 Tiˆmoˆtai 3:16, Ging-Sou."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Satisfying answers to life’s big questions.—Proverbs 2:1-5.",
+    "imn": "Maaih waac-dau dau jienv nyei waac naaic taux seix zangc nyei jauv, bun mbuo buangv hnyiouv nyei.—Cong-Mengh Waac 2:1-5."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Reliable guidance for day-to-day living.—Psalm 119:105.",
+    "imn": "Maaih kaux duqv nyei waac dorh mbuo hnoi-hnoi zoux nyei nyungc-nyungc.—Singx Nzung 119:105."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Real hope for the future.—Romans 15:4.",
+    "imn": "Maaih zien lamh hnamv dorngx weic maaih hoz nqaang.—Lomaa 15:4."
+  },
+  {
+    "cat": "past",
+    "eng": "Amazing harmony. The Bible was written over a period of 1,600 years by some 40 different people. Most of them never met one another. Yet, the entire book is harmonious, with one central theme!",
+    "imn": "Waac doix-diuc nzengc. Ging-Sou se 40 laanh mienh fiev daaih, longc 1,600 hnyangx lungh ndiev gu’nyuoz fiev cingx daaih ziangx. Naaic deix mienh, camv-dauh nyei zungv maiv buangh jiex doic. Mv baac, ziangh buonv sou nyei waac doix-diuc nzengc yaac gorngv daaih bieqc nduqc nyungc domh hoc-dauh hnangv!"
+  },
+  {
+    "cat": "past",
+    "eng": "Numerous other Bible prophecies were also fulfilled down to the smallest detail. But is that not what we would expect of the Word of God?—2 Peter 1:21.",
+    "imn": "Aengx maaih camv-kang zinh hoz waac gorngv duqv muonc nyei, mv baac jioux-jioux benx zien daaih doix nzengc mi’aqc. Ndongc naaic doix aeqv, maiv zeiz bun mbuo hnamv daaih naaic se Tin-Hungh nyei Waac?—2 Bide 1:21."
+  },
+  {
+    "cat": "question",
+    "eng": "How can God’s Word improve your life?",
+    "imn": "Tin-Hungh nyei Waac hnangv haaix nor haih tengx meih duqv gauh kuv-yiem?"
+  },
+  {
+    "cat": "declarative",
+    "eng": "The Bible answers that question at ISAIAH 48:17, 18 and 2 TIMOTHY 3:16, 17.",
+    "imn": "Ging-Sou dau naaic jioux waac yiem IˆSAAˆYAA 48:17, 18 caux 2 TIˆMOˆTAI 3:16, 17."
+  },
+  {
+    "cat": "declarative",
+    "eng": "“Cramped [is] the road leading off into life, and few are finding it.”—Matthew 7:14.",
+    "imn": "“Bieqc mingh duqv yietc liuz nyei maengc wuov dauh gaengh se hepc nyei. Jauv yaac aqc duqv yangh. Lorz buatc wuov diuh jauv nyei mienh zoqc.”—Matvˆtaai 7:14."
+  },
+  {
+    "cat": "negation",
+    "eng": "Not all religions please God.—Matthew 7:21-23; Mark 7:6-8.",
+    "imn": "Tin-Hungh maiv a’hneiv nyungc-nyungc buoqc zangc nyei jauv.—Matvˆtaai 7:21-23; Maako 7:6-8."
+  },
+  {
+    "cat": "declarative",
+    "eng": "True Christians promote peace and love.—Micah 4:3; John 13:35.",
+    "imn": "Zien Giduc Mienh maaih hnyiouv laanh hnamv laanh yaac haih baengh orn nyei caux duqv njiec mienh camv.—Mikaa 4:3; Yoˆhan 13:35."
+  },
+  {
+    "cat": "declarative",
+    "eng": "To learn more, go to jw.org.",
+    "imn": "Oix hiuv gauh camv deix nor, mingh jw.org."
+  },
+  {
+    "cat": "future",
+    "eng": "“The hour is coming in which all those in the memorial tombs will hear his voice and come out.”—John 5:28, 29.",
+    "imn": "“Ziangh hoc oix taux, yiem zouv nyei yietc zungv duqv haiz ninh nyei qiex ziouc yiem zouv cuotv daaih.”—Yoˆhan 5:28, 29."
+  },
+  {
+    "cat": "future",
+    "eng": "God will resurrect our dead loved ones.—Acts 24:15.",
+    "imn": "Mbuo hnamv nyei mienh ndortv liuz nor, Tin-Hungh oix bun ninh mbuo aengx duqv nangh daaih.—Gong-Zoh 24:15."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He longs to bring them back to life.—Job 14:13-15.",
+    "imn": "Ninh gengh a’hneiv nyei oix dorh daic mingh wuov deix nangh daaih.—Yopv 14:13-15."
+  },
+  {
+    "cat": "future",
+    "eng": "“O Hearer of prayer, to you people of all sorts will come.”—Psalm 65:2.",
+    "imn": "“Meih muangx baamh mienh daux gaux nyei waac. Baamh mienh yietc zungv oix daaih lorz meih.”—Singx Nzung 65:2."
+  },
+  {
+    "cat": "declarative",
+    "eng": "How to pray.—Matthew 6:7-13.",
+    "imn": "Hnangv haaix nor daux gaux.—Matvˆtaai 6:7-13."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God answers sincere prayers.—Matthew 7:7, 8.",
+    "imn": "Tin-Hungh dau gengh maaih hnyiouv lorz taux ninh wuov deix mienh nyei daux gaux waac.—Matvˆtaai 7:7, 8."
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. The living and true God—",
+    "imn": "1. Ziangh jienv nyei zien Tin-Hungh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "The God of all creation",
+    "imn": "Maanc muotc nyei wuov dauh Tin-Hungh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "In ev’ry generation—",
+    "imn": "Yeˆhoˆwaa se meih nyei mbuox,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Jehovah is your name.",
+    "imn": "Yietc doic jiex mingh yietc doic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We’re honored and we’re proud",
+    "imn": "Yie mbuo njien-yiouh jorm hnyiouv"
+  },
+  {
+    "cat": "possessive",
+    "eng": "To be your congregation.",
+    "imn": "Duqv benx meih nyei jiu-bang mienh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "In ev’ry tribe and nation,",
+    "imn": "Yiem maanc guoqv yiem maanc nyungc waac,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Your glory we proclaim.",
+    "imn": "Oix zunh meih nyei njiang-laangc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah, Jehovah,",
+    "imn": "Yeˆhoˆwaa, Yeˆhoˆwaa,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "There is no God like you.",
+    "imn": "Maiv maaih haaix dauh hnangv meih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "There’s no other in the heavens",
+    "imn": "Yiem gu’nguaaic lungh fai ga’ndiev ndau,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Or on the earth below.",
+    "imn": "Yietc liuz maiv maaih ganh dauh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "You alone are God Almighty,",
+    "imn": "Meih ganh se Nernh Jiex nyei Tin-Hungh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "And this all men must know.",
+    "imn": "Yietc zungv baamh mienh zuqc hiuv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We have no other God but you.",
+    "imn": "Yie mbuo maaih meih nduqc dauh Tin-Hungh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "2. You cause us to become",
+    "imn": "2. Meih haih zoux bun yie mbuo"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Whatever you desire,",
+    "imn": "Benx hnangv dongh meih oix nyei wuov,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "To do as you require—",
+    "imn": "Bun yie mbuo zoux meih nyei eix."
+  },
+  {
+    "cat": "declarative",
+    "eng": "And Witnesses for you",
+    "imn": "Yie mbuo meih nyei Zorng–Zengx,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Is what you’ve kindly named us.",
+    "imn": "Se meih ganh bun daaih nyei mbuox."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We’re honored you have claimed us—",
+    "imn": "Yie mbuo gengh haiz a’hneiv haic,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "A people for your name.",
+    "imn": "Weic duqv benx meih nyei mienh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also 2 Chron. 6:14; Ps. 72:19; Isa. 42:8.)",
+    "imn": "(Yaac mangc 2 Zunh Doic Douh 6:14; Singx Nzung 72:19; Iˆsaaˆyaa 42:8.)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. Today, Jehovah God,",
+    "imn": "1. Zangc Diex, ih hnoi yie mbuo"
+  },
+  {
+    "cat": "possessive",
+    "eng": "we stand before your throne,",
+    "imn": "souv jienv meih nyei wuov ndaangc,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "For you showed the greatest love",
+    "imn": "Weic zuqc meih bun yie mbuo hiuv"
+  },
+  {
+    "cat": "declarative",
+    "eng": "that could ever be shown.",
+    "imn": "meih gengh hnamv haic yie mbuo."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You gave the gift of your dear Son,",
+    "imn": "Meih bun yie mbuo meih nyei Dorn-hnamv"
+  },
+  {
+    "cat": "declarative",
+    "eng": "that we might live.",
+    "imn": "tengx yie mbuo camv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "No greater sacrifice than this",
+    "imn": "Maiv maaih zingh nyeic gauh jaaix jiex ndongc"
+  },
+  {
+    "cat": "declarative",
+    "eng": "could you ever give.",
+    "imn": "ninh siev ninh nyei maengc."
+  },
+  {
+    "cat": "possessive",
+    "eng": "He gave his life to set us free.",
+    "imn": "Ninh siev ninh maengc bungx nqoi yie mbuo."
+  },
+  {
+    "cat": "possessive",
+    "eng": "His precious blood provides the key.",
+    "imn": "Ninh nyei nziaamv teix maanc mienh nyei zuiz."
+  },
+  {
+    "cat": "possessive",
+    "eng": "With all our hearts,",
+    "imn": "Gengh zongc zingh haic,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "we’ll go on thanking you eternally.",
+    "imn": "yietc liuz laengz zingh haic meih, taux dauh taux mueiz."
+  },
+  {
+    "cat": "past",
+    "eng": "2. It was a willing sacrifice",
+    "imn": "2. Yesu cuotv hnyiouv longc ninh nyei maengc"
+  },
+  {
+    "cat": "declarative",
+    "eng": "that Jesus made.",
+    "imn": "zuoqc yie mbuo nzuonx."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Out of love, his perfect life",
+    "imn": "Weic ninh hnamv yietc zungv mienh camv,"
+  },
+  {
+    "cat": "past",
+    "eng": "was the price that he paid.",
+    "imn": "ninh laengz daic njioux yie mbuo."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We had no hope until he came",
+    "imn": "Yie mbuo gengh zungv maiv lamh hnamv haaix,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "to save mankind.",
+    "imn": "taux ninh njiec daaih."
+  },
+  {
+    "cat": "possessive",
+    "eng": "But now our hope is finding life,",
+    "imn": "Ih zanc yie mbuo hnamv jienv lorz maengc,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "leaving death behind.",
+    "imn": "maiv hnamv taux zuqc daic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also Heb. 9:13, 14; 1 Pet. 1:18, 19.)",
+    "imn": "(Yaac mangc Hipvˆlu 9:13, 14; 1 Bide 1:18, 19.)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. Jehovah, dear Father,",
+    "imn": "1. Yeˆhoˆwaa, hnamv nyei Die,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "There seemed no hope for us.",
+    "imn": "Yie mbuo maiv lamh hnamv haaix."
+  },
+  {
+    "cat": "declarative",
+    "eng": "The ransom has given",
+    "imn": "Yesu daic zuoqc mienh se"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Hope to ev’ryone!",
+    "imn": "Bun mienh maaih lamh hnamv!"
+  },
+  {
+    "cat": "possessive",
+    "eng": "We give our lives to you,",
+    "imn": "Yie mbuo dingc hnyiouv gan meih,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Our best in all we do.",
+    "imn": "Laengz longc hnyiouv zoux nyungc-nyungc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "And we’ll tell others too,",
+    "imn": "Yie mbuo yaac mbuox dieh deix,"
+  },
+  {
+    "cat": "future",
+    "eng": "That your will might be done.",
+    "imn": "Weic zoux ziangx meih nyei eix."
+  },
+  {
+    "cat": "possessive",
+    "eng": "You gave your precious Son,",
+    "imn": "Meih bun meih nyei Dorn-hnamv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "And now we sing as one,",
+    "imn": "Yie mbuo cingx duqv lomh nzoih"
+  },
+  {
+    "cat": "declarative",
+    "eng": "A song we’ll sing forever,",
+    "imn": "Baaux naaiv diuh nzung, yietc liuz baaux,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "for giving us your precious Son.",
+    "imn": "weic zuqc meih bun meih nyei Dorn-hnamv."
+  },
+  {
+    "cat": "possessive",
+    "eng": "2. Your kindness, your mercy,",
+    "imn": "2. Meih hnyiouv longx, korv-lienh mienh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "They draw us close to you.",
+    "imn": "Naaic zoux yie mbuo nitv meih."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Your great name, your friendship,",
+    "imn": "Meih maaih mengh, meih hnamv mienh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "These we’ve come to love.",
+    "imn": "Yie mbuo gengh a’hneiv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "But something more than this",
+    "imn": "Mv baac aengx maaih gauh camv,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Is your most precious gift.",
+    "imn": "Meih zungv bun domh zingh nyeic."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He died that we might live.",
+    "imn": "Ninh daic bun yie mbuo ziangh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "You sent him from above.",
+    "imn": "Meih paaiv ninh njiec baamh gen."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah, dear Father, we pray in gratitude.",
+    "imn": "Yeˆhoˆwaa, hnamv nyei Die, yie mbuo gengh zongc zingh haic,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "We offer our thanks for giving us your precious Son.",
+    "imn": "Se daux gaux laengz zingh meih bun yie mbuo meih nyei Dorn-hnamv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also John 3:16; 15:13.)",
+    "imn": "(Yaac mangc Yoˆhan 3:16; 15:13.)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. God has a new creation,",
+    "imn": "1. Tin-Hungh ganh aengx maaih nyungc siang,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "His spirit-anointed sons.",
+    "imn": "Se dongh ninh orn daaih nyei dorn."
+  },
+  {
+    "cat": "declarative",
+    "eng": "He has bought them from mankind;",
+    "imn": "Ninh maaiz ninh mbuo cuotv baamh gen,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "His approval they’ve won.",
+    "imn": "Bun ninh mbuo duqv benx hungh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "A special possession,",
+    "imn": "Ninh mbuo benx lengc jeiv mienh,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "They’re a people for your name.",
+    "imn": "Benx guanh mienh taaih meih nyei mbuox,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "They love you. They praise you.",
+    "imn": "Dongh hnamv meih, yaac ceng meih."
+  },
+  {
+    "cat": "possessive",
+    "eng": "As one they declare abroad your fame.",
+    "imn": "Ninh mbuo dongh hnyiouv nyei zunh meih nyei mengh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "2. They are a holy nation,",
+    "imn": "2. Ninh mbuo benx cing-nzengc baeqc fingx,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Who handle the truth aright.",
+    "imn": "Haaix zanc yaac zoux horpc zien leiz."
+  },
+  {
+    "cat": "declarative",
+    "eng": "God has called them from darkness",
+    "imn": "Ninh mbuo Tin-Hungh heuc cuotv hmuangx,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "To his wonderful light.",
+    "imn": "Daaih mbuoqc horngh haic nyei njiang."
+  },
+  {
+    "cat": "possessive",
+    "eng": "3. Faithful to their commission,",
+    "imn": "3. Ninh mbuo ziepc zuoqv nyei zunh doz,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "They gather the other sheep.",
+    "imn": "Dorh ganh guanh ba’gi yungh daaih."
+  },
+  {
+    "cat": "declarative",
+    "eng": "To the Lamb they are loyal.",
+    "imn": "Ninh mbuo dingc hnyiouv gan Yesu,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "His commandments they keep.",
+    "imn": "Ei jienv ninh nyei lingc zoux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also Isa. 43:20b, 21; Mal. 3:17; Col. 1:13.)",
+    "imn": "(Yaac mangc Iˆsaaˆyaa 43:20b, 21; Maaˆlaaˆki 3:17; Koˆloˆsi 1:13.)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "(1 Thessalonians 5:18)",
+    "imn": "(1 Teˆsaaˆloˆniˆgaa 5:18)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. We thank you, Jehovah, each day and each night,",
+    "imn": "1. Yie mbuo hnoi-hnoi laengz zingh meih, Yeˆhoˆwaa aah,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "That you shed upon us your precious light.",
+    "imn": "Dongh meih bun meih nyei jaaix haic nyei dang ziux."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We thank you that we have the priv’lege of prayer,",
+    "imn": "Yie mbuo laengz zingh meih muangx yie mbuo daux gaux waac,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "That we can approach you with ev’ry care.",
+    "imn": "Dongh meih hnamv bun yie mbuo haih mingh lorz meih."
+  },
+  {
+    "cat": "possessive",
+    "eng": "2. We thank you, Jehovah, for your loving Son,",
+    "imn": "2. Laengz zingh, Yeˆhoˆwaa, meih paaiv meih nyei Dorn daaih;"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Who conquered the world; by his faith he won.",
+    "imn": "Ninh duqv hingh lungh ndiev weic maaih sienx fim longx."
+  },
+  {
+    "cat": "future",
+    "eng": "We thank you for guidance in doing your will.",
+    "imn": "Laengz zingh meih dorh yie mbuo haih zoux meih nyei eix"
+  },
+  {
+    "cat": "possessive",
+    "eng": "You lovingly help us our vows fulfill.",
+    "imn": "Yaac tengx yie mbuo zoux horpc laengz daaih nyei waac."
+  },
+  {
+    "cat": "possessive",
+    "eng": "3. We thank you, our God, for the honor to preach",
+    "imn": "3. Laengz zingh Tin-Hungh meih, bun yie mbuo duqv zunh doz"
+  },
+  {
+    "cat": "possessive",
+    "eng": "About your great name and the truth to teach.",
+    "imn": "Gorngv taux meih nyei mengh hoc yaac njaaux zien leiz."
+  },
+  {
+    "cat": "future",
+    "eng": "We thank you that soon all earth’s woes will be past,",
+    "imn": "Laengz zingh meih, maiv lauh yietc zungv kouv naanc jiex nzengc,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "While your Kingdom blessings forever last.",
+    "imn": "Meih nyei Guoqv ceix daaih nyei ziouc yietc liuz yiem."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also Ps. 50:14; 95:2; 147:7; Col. 3:15.)",
+    "imn": "(Yaac mangc Singx Nzung 50:14; 95:2; 147:7; Koˆloˆsi 3:15.)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Acts 20:20, 21)",
+    "imn": "(Gong-Zoh 20:20, 21)"
+  },
+  {
+    "cat": "past",
+    "eng": "1. There was a time we did not know",
+    "imn": "1. Wuov zanc ziangh hoc mbuo maiv hiuv duqv"
+  },
+  {
+    "cat": "declarative",
+    "eng": "The way a Christian ought to go.",
+    "imn": "Zien jauv Giduc Mienh horpc zuqc yangh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Then Jehovah sent the light,",
+    "imn": "Liuz Yeˆhoˆwaa fungx dang daaih,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "His Kingdom truth so clear and bright.",
+    "imn": "Ziux jienv ninh nyei zien leiz njiang gau."
+  },
+  {
+    "cat": "future",
+    "eng": "Our Father’s will we then could see",
+    "imn": "Zangc Diex nyei eix mbuo cingx mangc buatc"
+  },
+  {
+    "cat": "declarative",
+    "eng": "To serve the grand Theocracy,",
+    "imn": "Aa zuqc fu-sux Tin-Hungh nyei Guoqv,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "To declare Jehovah’s fame,",
+    "imn": "Zuqc zunh Yeˆhoˆwaa nyei mengh,"
+  },
+  {
+    "cat": "possessive",
+    "eng": "And help to glorify his holy name.",
+    "imn": "Yaac zuqc longc hnyiouv ceng ninh nyei"
+  },
+  {
+    "cat": "declarative",
+    "eng": "We witness now to all we meet,",
+    "imn": "cing-nzengc mbuox."
+  },
+  {
+    "cat": "declarative",
+    "eng": "From door to door and on the street.",
+    "imn": "Mbuo ziouc mbuox taux dauh dauh mbuo buangh,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "We take the time to help them see;",
+    "imn": "Yiem biauv jiex biauv yaac yiem wuov jauv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "We teach the truth that sets us free.",
+    "imn": "Mbuo zorqv ziangh hoc tengx mienh bieqc hnyiouv;"
+  },
+  {
+    "cat": "declarative",
+    "eng": "And as we strive in ev’ry land",
+    "imn": "Mbuo njaaux zien leiz bungx nqoi mienh camv."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Jehovah’s worship to expand,",
+    "imn": "Dongh mbuo longc hnyiouv yiem norm-norm deic"
+  },
+  {
+    "cat": "possessive",
+    "eng": "May we serve our God as one",
+    "imn": "Tengx mienh camv daaih zangc Yeˆhoˆwaa,"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Until Jehovah says the work is done.",
+    "imn": "Tov bun mbuo yietc zungv dongh hnyiouv"
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also Josh. 9:9; Isa. 24:15; John 8:12, 32.)",
+    "imn": "Zuov taux Yeˆhoˆwaa gorngv naaiv gong"
+  },
+  {
+    "cat": "declarative",
+    "eng": "(Romans 7:14-25)",
+    "imn": "(Lomaa 7:14-25)"
+  },
+  {
+    "cat": "declarative",
+    "eng": "1. We love Jehovah with heart, mind, and soul;",
+    "imn": "1. Mbuo longc nzengc mbuo nyei hnyiouv hnamv Yeˆhoˆwaa;"
+  },
+  {
+    "cat": "declarative",
+    "eng": "But since we are sinful, we need self-control.",
+    "imn": "Mv baac mbuo haih baamz zuiz, mbuo zuqc haih zanv ganh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Fleshly desires bring trouble and strife;",
+    "imn": "Sin zaangc hanc nyei dorh mbuo buangh kouv naanc;"
+  },
+  {
+    "cat": "declarative",
+    "eng": "Living by spirit brings peace and life.",
+    "imn": "Gan longx Tin-Hungh nor, mbuo duqv baengh orn."
+  },
+  {
+    "cat": "declarative",
+    "eng": "2. Satan’s temptations confront us each day,",
+    "imn": "2. Saadaan zoux nyei sic hnoi-hnoi nduov jienv mbuo;"
+  },
+  {
+    "cat": "declarative",
+    "eng": "And sin’s law within us can lead us astray.",
+    "imn": "Zuiz nyei leiz yiem jienv mbuo haih nduov mbuo zoux dorngc."
+  },
+  {
+    "cat": "declarative",
+    "eng": "Power of truth is greater than sin.",
+    "imn": "Zien leiz nyei qaqv se gauh henv zuiz nyei."
+  },
+  {
+    "cat": "possessive",
+    "eng": "Thanks to Jehovah, our minds can win.",
+    "imn": "Laengz zingh Yeˆhoˆwaa, mbuo haih duqv hingh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "3. Each word and action reflects on God’s name,",
+    "imn": "3. Haaix nyungc mbuo zoux se ceng fai daanh Tin-Hungh;"
+  },
+  {
+    "cat": "declarative",
+    "eng": "So we must endeavor to keep free from blame.",
+    "imn": "Mbuo aa zuqc longc hnyiouv zoux benx maiv maaih dorngx nqemh."
+  },
+  {
+    "cat": "possessive",
+    "eng": "In all we do, we make this our goal:",
+    "imn": "Nyungc-nyungc mbuo zoux, oix zoux daaih hnangv naaiv:"
+  },
+  {
+    "cat": "possessive",
+    "eng": "Always maintaining our self-control.",
+    "imn": "Zanc-zanc zoux kuv sic haih zanv duqv ganh."
+  },
+  {
+    "cat": "declarative",
+    "eng": "(See also 1 Cor. 9:25; Gal. 5:23; 2 Pet. 1:6.)",
+    "imn": "(Yaac mangc 1 Koˆlinˆto 9:25; Gaaˆlaaˆtie 5:23; 2 Bide 1:6.)"
   }
 ]
