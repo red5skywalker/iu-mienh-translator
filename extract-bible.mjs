@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-const DELAY_MS = 1500; // Be polite to Bible.com
+const DELAY_MS = 1500;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function fetchChapter(version, book, chapter) {
@@ -49,7 +49,6 @@ async function extractBook(book, chapters, label) {
       continue;
     }
 
-    // Align verses present in both
     let count = 0;
     for (const vNum of Object.keys(mienh)) {
       if (eng[vNum] && mienh[vNum].length > 5 && eng[vNum].length > 5) {
@@ -71,42 +70,17 @@ async function extractBook(book, chapters, label) {
 async function main() {
   const allPairs = [];
 
-  // Psalms: 150 chapters - let's do a sample (1-30) to start
-  const psalmPairs = await extractBook('PSA', 30, 'Psalms 1-30');
-  allPairs.push(...psalmPairs);
+  // Genesis: 50 chapters
+  const genPairs = await extractBook('GEN', 50, 'Genesis');
+  allPairs.push(...genPairs);
 
-  // Proverbs: 31 chapters
-  const provPairs = await extractBook('PRO', 31, 'Proverbs');
-  allPairs.push(...provPairs);
+  // Matthew: 28 chapters
+  const matPairs = await extractBook('MAT', 28, 'Matthew');
+  allPairs.push(...matPairs);
 
   console.log(`\n📊 Total parallel verses: ${allPairs.length}`);
-  
-  // Save raw pairs
-  writeFileSync('bible-pairs.json', JSON.stringify(allPairs, null, 2));
-  console.log('Saved to bible-pairs.json');
-
-  // Now extract vocabulary: find Mienh words not in current dictionary
-  const dict = JSON.parse(readFileSync('dict-slim.json', 'utf8'));
-  const existingMienh = new Set();
-  for (const defs of Object.values(dict)) {
-    for (const d of defs) {
-      if (d.m) d.m.split(/[\s,;]+/).forEach(w => existingMienh.add(w.toLowerCase()));
-    }
-  }
-
-  // Collect all Mienh words from Bible text
-  const bibleMienh = new Set();
-  for (const pair of allPairs) {
-    pair.imn.split(/[\s,;.!?"'()\-]+/).forEach(w => {
-      w = w.toLowerCase().replace(/[^a-z']/g, '');
-      if (w.length > 1) bibleMienh.add(w);
-    });
-  }
-
-  const newWords = [...bibleMienh].filter(w => !existingMienh.has(w)).sort();
-  console.log(`\nMienh vocabulary: ${bibleMienh.size} unique words`);
-  console.log(`New words (not in dict): ${newWords.length}`);
-  console.log('Sample new words:', newWords.slice(0, 30).join(', '));
+  writeFileSync('bible-pairs-2.json', JSON.stringify(allPairs, null, 2));
+  console.log('Saved to bible-pairs-2.json');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });
