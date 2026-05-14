@@ -31,16 +31,17 @@ async function fetchChapter(version, book, chapter) {
   return Object.keys(verses).length > 0 ? verses : null;
 }
 
-async function extractBook(book, chapters, label) {
+async function main() {
   const pairs = [];
-  console.log(`\n📖 ${label} (${chapters} chapters)...`);
+  const total = 120; // chapters 31-150
+  console.log(`📖 Psalms 31-150 (${total} chapters)...`);
   
-  for (let ch = 1; ch <= chapters; ch++) {
-    process.stdout.write(`  Ch ${ch}/${chapters}...`);
+  for (let ch = 31; ch <= 150; ch++) {
+    process.stdout.write(`  Ch ${ch}/150...`);
     
     const [mienh, eng] = await Promise.all([
-      fetchChapter(233, book, ch),
-      fetchChapter(111, book, ch)
+      fetchChapter(233, 'PSA', ch),
+      fetchChapter(111, 'PSA', ch)
     ]);
     
     if (!mienh || !eng) {
@@ -55,7 +56,7 @@ async function extractBook(book, chapters, label) {
         pairs.push({
           eng: eng[vNum],
           imn: mienh[vNum],
-          ref: `${book}.${ch}:${vNum}`
+          ref: `PSA.${ch}:${vNum}`
         });
         count++;
       }
@@ -63,24 +64,21 @@ async function extractBook(book, chapters, label) {
     console.log(` ✓ ${count} verses`);
     await sleep(DELAY_MS);
   }
-  
-  return pairs;
-}
 
-async function main() {
-  const allPairs = [];
+  console.log(`\n📊 Total: ${pairs.length} verse pairs`);
 
-  // Genesis: 50 chapters
-  const genPairs = await extractBook('GEN', 50, 'Genesis');
-  allPairs.push(...genPairs);
-
-  // Matthew: 28 chapters
-  const matPairs = await extractBook('MAT', 28, 'Matthew');
-  allPairs.push(...matPairs);
-
-  console.log(`\n📊 Total parallel verses: ${allPairs.length}`);
-  writeFileSync('bible-pairs-2.json', JSON.stringify(allPairs, null, 2));
-  console.log('Saved to bible-pairs-2.json');
+  // Add to examples.json
+  const examples = JSON.parse(readFileSync('examples.json', 'utf8'));
+  let added = 0;
+  for (const p of pairs) {
+    if (p.eng.length >= 15 && p.eng.length <= 200 && p.imn.length >= 10) {
+      examples.push({ eng: p.eng, imn: p.imn, cat: 'bible-psalms' });
+      added++;
+    }
+  }
+  writeFileSync('examples.json', JSON.stringify(examples, null, 2));
+  console.log(`Added ${added} pairs to examples.json`);
+  console.log(`Total examples: ${examples.length}`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });
