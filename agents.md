@@ -1,5 +1,13 @@
 # Iu Mienh Translator — AI Agent Instructions
 
+<skills>
+<skill>
+<name>developing-iu-mienh-translator</name>
+<description>Develop and improve the Iu Mienh translator app including dictionary entries, parallel examples, grammar rules, and Bible text extraction. Use for adding vocabulary, refining translations, merging corrections, and extending language coverage. Triggers when working in the iu-mienh-translator repository or discussing Iu Mien language tasks.</description>
+<file>~/.agents/skills/developing-iu-mienh-translator/SKILL.md</file>
+</skill>
+</skills>
+
 ## Project Overview
 
 This is an English → Iu Mienh (Iu Mien / Yao) translator web application. It uses a hybrid approach: dictionary lookup + parallel example retrieval + LLM generation with grammar rules to produce translations for a low-resource language with no existing machine translation support.
