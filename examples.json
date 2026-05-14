@@ -11,7 +11,7 @@
   },
   {
     "eng": "What is your name?",
-    "imn": "Meih nyei mbuox heuc haaix?",
+    "imn": "Meih nyei mbuox heuc haaix nyungc?",
     "cat": "conversation"
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "eng": "Come here",
-    "imn": "Daaih naaiv",
+    "imn": "Tov meih daaih naaiv",
     "cat": "conversation"
   },
   {
@@ -46,12 +46,12 @@
   },
   {
     "eng": "I don't understand",
-    "imn": "Yie maiv mengh baeqc",
+    "imn": "Yie maiv bieqc hnyouv",
     "cat": "conversation"
   },
   {
     "eng": "Please say it again",
-    "imn": "Tov gorngv aengx nzunc",
+    "imn": "Tov meih aengx gorngv",
     "cat": "conversation"
   },
   {
@@ -61,17 +61,17 @@
   },
   {
     "eng": "Good morning",
-    "imn": "Ndorm longx",
+    "imn": "Kuv Ndorm oc",
     "cat": "conversation"
   },
   {
     "eng": "Goodbye",
-    "imn": "Mingh longx nyei",
+    "imn": "Baengh orn oc",
     "cat": "conversation"
   },
   {
     "eng": "See you later",
-    "imn": "Nqa'haav buatc",
+    "imn": "A'hitv deix aengx ganh buangh jiex oc",
     "cat": "conversation"
   },
   {
