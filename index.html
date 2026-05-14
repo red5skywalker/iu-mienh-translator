@@ -294,6 +294,51 @@
       box-shadow: 0 4px 20px rgba(30, 58, 110, 0.4);
     }
 
+    /* Direction toggle */
+    .direction-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .dir-btn {
+      flex: 1;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: all 0.3s;
+    }
+
+    .dir-btn.active {
+      border-color: var(--embroidery-gold);
+      background: rgba(232, 168, 56, 0.1);
+      color: var(--embroidery-gold);
+    }
+
+    .dir-btn:hover:not(.active) {
+      border-color: rgba(232, 168, 56, 0.3);
+      color: var(--text);
+    }
+
+    .beta-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(42, 181, 160, 0.2);
+      color: var(--accent-teal);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
     .output-area {
       min-height: 80px;
       padding: 1rem;
@@ -869,6 +914,10 @@
           </div>
         </div>
         <div class="input-area">
+          <div class="direction-toggle">
+            <button class="dir-btn active" id="dir-eng-imn" data-dir="eng-imn">English → Iu Mienh</button>
+            <button class="dir-btn" id="dir-imn-eng" data-dir="imn-eng">Iu Mienh → English <span class="beta-badge">Beta</span></button>
+          </div>
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
           <button class="translate-btn" id="translate-btn">Translate</button>
         </div>
@@ -1250,22 +1299,58 @@
     }
 
     // Event handlers
+    // === DIRECTION TOGGLE ===
+    let translateDirection = 'eng-imn'; // 'eng-imn' or 'imn-eng'
+
+    document.querySelectorAll('.dir-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        translateDirection = btn.dataset.dir;
+        const input = document.getElementById('input-text');
+        if (translateDirection === 'imn-eng') {
+          input.placeholder = 'Mienh waac fiev naaiv...  (Type Iu Mienh text here)';
+        } else {
+          input.placeholder = 'Type English text here...';
+        }
+      });
+    });
+
     document.getElementById('translate-btn').addEventListener('click', async () => {
       const text = document.getElementById('input-text').value.trim();
       if (!text) return;
 
-      if (getAIEnabled()) {
+      if (translateDirection === 'imn-eng') {
+        // Reverse translation (Mienh → English)
         const output = document.getElementById('output-area');
-        output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating with AI...</div>';
-        try {
-          const result = await translateWithAI(text);
-          renderAIResult(result);
-        } catch (err) {
-          output.innerHTML = `<span style="color:#dc2626">⚠️ ${err.message}</span>`;
+        if (getAIEnabled()) {
+          output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating Mienh → English with AI...</div>';
+          try {
+            const result = await translateMienhToEnglish(text);
+            renderReverseResult(result);
+          } catch (err) {
+            output.innerHTML = `<span style="color:#f87171">⚠️ ${err.message}</span>`;
+          }
+        } else {
+          // Basic reverse lookup without AI
+          const result = reverseTranslate(text);
+          renderReverseResult({ text: result, coverage: 0, totalWords: 0 });
         }
       } else {
-        const tokens = translate(text);
-        renderTranslation(tokens);
+        // Forward translation (English → Mienh)
+        if (getAIEnabled()) {
+          const output = document.getElementById('output-area');
+          output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating with AI...</div>';
+          try {
+            const result = await translateWithAI(text);
+            renderAIResult(result);
+          } catch (err) {
+            output.innerHTML = `<span style="color:#f87171">⚠️ ${err.message}</span>`;
+          }
+        } else {
+          const tokens = translate(text);
+          renderTranslation(tokens);
+        }
       }
     });
 
@@ -1608,6 +1693,270 @@ SENTENCE PARTICLES:
       { eng: "How can your family be happy?", imn: "Meih nyei hmuangv-doic hnangv haaix nor haih duqv njien-yiouh?" },
       { eng: "True religion is uniting people.", imn: "Zien buoqc zangc nyei jauv dorh mienh gapv zunv maaih dongh diuc hnyiouv." },
     ];
+
+    // === REVERSE TRANSLATION (Mienh → English) ===
+
+    // Build reverse lookup index: mienh word → english meanings
+    let reverseLookup = null;
+    function getReverseLookup() {
+      if (reverseLookup) return reverseLookup;
+      reverseLookup = {};
+      for (const [eng, defs] of Object.entries(dictionary.lookup)) {
+        for (const d of defs) {
+          const mienhWord = (d.mienh || '').toLowerCase().trim();
+          if (!mienhWord) continue;
+          // Index each word and also the full phrase
+          if (!reverseLookup[mienhWord]) reverseLookup[mienhWord] = [];
+          reverseLookup[mienhWord].push(eng);
+          // Also index individual words from multi-word entries
+          const parts = mienhWord.split(/[\s\-]+/);
+          if (parts.length > 1) {
+            for (const p of parts) {
+              if (p.length >= 2) {
+                if (!reverseLookup[p]) reverseLookup[p] = [];
+                reverseLookup[p].push(eng);
+              }
+            }
+          }
+        }
+      }
+      return reverseLookup;
+    }
+
+    // Basic reverse translation without AI
+    function reverseTranslate(mienhText) {
+      const rev = getReverseLookup();
+      const words = mienhText.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+      const results = [];
+
+      for (let i = 0; i < words.length; i++) {
+        let found = false;
+        // Try multi-word phrases first (up to 4 words)
+        for (let len = Math.min(4, words.length - i); len >= 1; len--) {
+          const phrase = words.slice(i, i + len).join(' ');
+          if (rev[phrase]) {
+            const meanings = [...new Set(rev[phrase])].slice(0, 3);
+            results.push(`${phrase} → ${meanings.join(', ')}`);
+            i += len - 1;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          results.push(`${words[i]} → ?`);
+        }
+      }
+      return results.join('\n');
+    }
+
+    // Select relevant examples for reverse translation (match on Mienh side)
+    function selectReverseExamples(mienhText) {
+      const pairs = examplePairs || EXAMPLE_PAIRS;
+      const inputWords = new Set(mienhText.toLowerCase().split(/[\s,;!?.]+/).filter(w => w.length > 1));
+      if (inputWords.size === 0) return [];
+
+      const scored = pairs.map(ex => {
+        const exWords = (ex.imn || '').toLowerCase().split(/[\s,;!?.]+/);
+        let overlap = 0;
+        for (const w of exWords) {
+          if (inputWords.has(w)) overlap++;
+        }
+        const boost = (ex.cat && !ex.cat.startsWith('bible')) ? 2 : 1;
+        return { ...ex, score: overlap * boost };
+      });
+
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, 15).filter(s => s.score > 0);
+    }
+
+    // Find reverse vocab matches
+    function findReverseVocab(mienhText) {
+      const rev = getReverseLookup();
+      const words = mienhText.toLowerCase().split(/[\s,;!?.]+/).filter(w => w.length > 1);
+      const entries = [];
+      const seen = new Set();
+
+      for (let i = 0; i < words.length; i++) {
+        for (let len = Math.min(4, words.length - i); len >= 1; len--) {
+          const phrase = words.slice(i, i + len).join(' ');
+          if (rev[phrase] && !seen.has(phrase)) {
+            seen.add(phrase);
+            const meanings = [...new Set(rev[phrase])].slice(0, 4);
+            entries.push(`${phrase} = ${meanings.join('; ')}`);
+          }
+        }
+      }
+      return entries;
+    }
+
+    // Build AI prompt for Mienh → English
+    function buildReverseAIPrompt(mienhText) {
+      const vocabEntries = findReverseVocab(mienhText);
+      const vocabSection = vocabEntries.length > 0
+        ? `\n**DICTIONARY (known Mienh words and their English meanings):**\n${vocabEntries.join('\n')}\n`
+        : '';
+
+      const examples = selectReverseExamples(mienhText);
+      const examplesSection = examples.map(p =>
+        `Iu Mienh: ${p.imn}\nEnglish: ${p.eng}`
+      ).join('\n\n');
+
+      const system = `You are an expert translator for Iu Mienh (a Hmong-Mien language spoken by the Mien people).
+Your task is to translate FROM Iu Mienh INTO natural English.
+
+${GRAMMAR_RULES}
+${vocabSection}
+Here are example translations showing how Iu Mienh maps to English:
+
+${examplesSection}
+
+CRITICAL RULES:
+- Translate the Iu Mienh text into natural, fluent English.
+- Use the dictionary entries above to understand word meanings.
+- Use the grammar rules to understand sentence structure (e.g. Topic-Comment order, nyei as possessive/relative, aspect markers).
+- If you cannot determine a word's meaning, transliterate it and mark it with [?].
+- Produce natural English, not word-for-word gloss.`;
+
+      const user = `Translate this Iu Mienh text into natural English:
+
+Iu Mienh: ${mienhText}
+
+Respond with ONLY:
+1. First line: the English translation
+2. Then a blank line
+3. Then a brief explanation of the grammar/word choices (2-3 sentences max)`;
+
+      return { system, user };
+    }
+
+    // AI reverse translation
+    async function translateMienhToEnglish(mienhText) {
+      const key = getAIKey();
+      const provider = getAIProvider();
+
+      if (provider !== 'copilot' && provider !== 'custom' && !key) {
+        throw new Error('Please enter your API key in the settings above.');
+      }
+      if (provider === 'custom' && !document.getElementById('custom-url').value.trim()) {
+        throw new Error('Please enter your API base URL in the settings above.');
+      }
+
+      const { system, user } = buildReverseAIPrompt(mienhText);
+
+      let payload;
+      if (provider === 'anthropic') {
+        const model = 'claude-sonnet-4-20250514';
+        payload = { model, system, max_tokens: 500, messages: [{ role: 'user', content: user }] };
+      } else {
+        const messages = [
+          { role: 'system', content: system },
+          { role: 'user', content: user }
+        ];
+        if (provider === 'copilot') {
+          payload = { model: 'gpt-4.1', messages, temperature: 0.3, max_tokens: 500 };
+        } else if (provider === 'github') {
+          const model = document.getElementById('github-model').value || 'openai/gpt-4.1-mini';
+          payload = { model, messages, temperature: 0.3, max_tokens: 500 };
+        } else if (provider === 'custom') {
+          const model = document.getElementById('custom-model').value.trim() || 'gpt-4o-mini';
+          payload = { model, messages, temperature: 0.3, max_tokens: 500 };
+        } else {
+          payload = { model: 'gpt-4o-mini', messages, temperature: 0.3, max_tokens: 500 };
+        }
+      }
+
+      // Reuse existing API call infrastructure
+      if (provider === 'copilot') {
+        const resp = await fetch('/api/translate-copilot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payload })
+        });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          let msg;
+          try { const j = JSON.parse(errText); msg = j.error?.message || errText; } catch { msg = errText; }
+          throw new Error(msg);
+        }
+        const data = await resp.json();
+        return { text: data.choices[0].message.content.trim() };
+      }
+
+      if (provider === 'custom') {
+        const baseUrl = document.getElementById('custom-url').value.trim().replace(/\/+$/, '');
+        const url = baseUrl + '/chat/completions';
+        const headers = { 'Content-Type': 'application/json' };
+        if (key) headers['Authorization'] = `Bearer ${key}`;
+        const resp = await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          let msg;
+          try { const j = JSON.parse(errText); msg = j.error?.message || errText; } catch { msg = errText; }
+          throw new Error(msg);
+        }
+        const data = await resp.json();
+        return { text: data.choices[0].message.content.trim() };
+      }
+
+      let resp;
+      try {
+        resp = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ provider, key, payload })
+        });
+      } catch (e) {
+        const directUrls = {
+          github: 'https://models.github.ai/inference/v1/chat/completions',
+          openai: 'https://api.openai.com/v1/chat/completions',
+          anthropic: 'https://api.anthropic.com/v1/messages',
+        };
+        const headers = { 'Content-Type': 'application/json' };
+        if (provider === 'anthropic') {
+          headers['x-api-key'] = key;
+          headers['anthropic-version'] = '2023-06-01';
+          headers['anthropic-dangerous-direct-browser-access'] = 'true';
+        } else {
+          headers['Authorization'] = `Bearer ${key}`;
+        }
+        resp = await fetch(directUrls[provider], { method: 'POST', headers, body: JSON.stringify(payload) });
+      }
+
+      if (!resp.ok) {
+        const errText = await resp.text();
+        let msg;
+        try {
+          const errJson = JSON.parse(errText);
+          msg = errJson.error?.message || errJson.message || errText;
+        } catch { msg = errText || `API error: ${resp.status}`; }
+        throw new Error(msg);
+      }
+
+      const data = await resp.json();
+      let text;
+      if (provider === 'anthropic') {
+        text = data.content[0].text.trim();
+      } else {
+        text = data.choices[0].message.content.trim();
+      }
+      return { text };
+    }
+
+    // Render reverse translation result
+    function renderReverseResult({ text }) {
+      const output = document.getElementById('output-area');
+      const parts = text.split(/\n\n/);
+      const translation = parts[0] || text;
+      const explanation = parts.slice(1).join('\n\n');
+
+      let html = '<div class="ai-output">';
+      html += `<div class="ai-translation" style="color:var(--embroidery-gold)">${translation.replace(/\n/g, '<br>')}</div>`;
+      if (explanation) {
+        html += `<div class="ai-explanation">${explanation.replace(/\n/g, '<br>')}</div>`;
+      }
+      html += '</div>';
+      output.innerHTML = html;
+    }
 
     function getAIEnabled() {
       return document.getElementById('ai-toggle').checked;
