@@ -1,5 +1,80 @@
 [
   {
+    "eng": "How are you?",
+    "imn": "Meih yiem longx nyei fai?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "I am fine",
+    "imn": "Yie yiem longx nyei",
+    "cat": "conversation"
+  },
+  {
+    "eng": "What is your name?",
+    "imn": "Meih nyei mbuox heuc haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "My name is",
+    "imn": "Yie nyei mbuox heuc",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Thank you",
+    "imn": "Laengz zingh meih",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Where are you going?",
+    "imn": "Meih mingh haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "I am going home",
+    "imn": "Yie mingh biauv",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Come here",
+    "imn": "Daaih naaiv",
+    "cat": "conversation"
+  },
+  {
+    "eng": "What are you doing?",
+    "imn": "Meih zoux haaix nyungc?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "I don't understand",
+    "imn": "Yie maiv mengh baeqc",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Please say it again",
+    "imn": "Tov gorngv aengx nzunc",
+    "cat": "conversation"
+  },
+  {
+    "eng": "I love you",
+    "imn": "Yie hnamv meih",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Good morning",
+    "imn": "Ndorm longx",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Goodbye",
+    "imn": "Mingh longx nyei",
+    "cat": "conversation"
+  },
+  {
+    "eng": "See you later",
+    "imn": "Nqa'haav buatc",
+    "cat": "conversation"
+  },
+  {
     "cat": "declarative",
     "eng": "God wants people to enjoy life on earth.",
     "imn": "Tin-Hungh oix mienh maanh duqv njien-yiouh kuv-yiem nyei maengc yiem baamh gen."

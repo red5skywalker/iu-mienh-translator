@@ -844,7 +844,9 @@
       const scored = pairs.map(p => {
         const exWords = p.eng.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '').split(/\s+/);
         const overlap = exWords.filter(w => inputWords.has(w)).length;
-        return { pair: p, score: overlap };
+        // Boost conversational/non-bible examples so they aren't drowned out
+        const boost = (!p.cat || !p.cat.startsWith('bible')) ? 2 : 1;
+        return { pair: p, score: overlap * boost };
       });
       scored.sort((a, b) => b.score - a.score);
       return scored.slice(0, limit).map(s => s.pair);
