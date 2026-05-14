@@ -1702,10 +1702,12 @@ SENTENCE PARTICLES:
       if (reverseLookup) return reverseLookup;
       reverseLookup = {};
       for (const [eng, defs] of Object.entries(dictionary.lookup)) {
+        // Skip full-sentence entries — they pollute reverse lookup
+        if (eng.split(/\s+/).length > 8) continue;
         for (const d of defs) {
           const mienhWord = (d.mienh || '').toLowerCase().trim();
-          if (!mienhWord) continue;
-          // Index each word and also the full phrase
+          if (!mienhWord || mienhWord.split(/\s+/).length > 6) continue;
+          // Index the full phrase
           if (!reverseLookup[mienhWord]) reverseLookup[mienhWord] = [];
           reverseLookup[mienhWord].push(eng);
           // Also index individual words from multi-word entries
@@ -1781,7 +1783,10 @@ SENTENCE PARTICLES:
           const phrase = words.slice(i, i + len).join(' ');
           if (rev[phrase] && !seen.has(phrase)) {
             seen.add(phrase);
-            const meanings = [...new Set(rev[phrase])].slice(0, 4);
+            // Deduplicate and prefer shorter/simpler English meanings
+            const meanings = [...new Set(rev[phrase])]
+              .sort((a, b) => a.length - b.length)
+              .slice(0, 4);
             entries.push(`${phrase} = ${meanings.join('; ')}`);
           }
         }
