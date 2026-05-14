@@ -104,11 +104,25 @@
       "f": "1000000"
     }
   ],
+  "“let": [
+    {
+      "m": "“maiv",
+      "c": "from Bible text (5 uses, 40% confidence)",
+      "f": "“maiv (from Bible text)"
+    }
+  ],
   "\"the prophets\" referring to bible books": [
     {
       "m": "douc waac mienh nyei sou",
       "c": "\"The Prophets\" referring to Bible books",
       "f": "douc waac mienh nyei sou"
+    }
+  ],
+  "“you": [
+    {
+      "m": "“meih",
+      "c": "from Bible text (5 uses, 60% confidence)",
+      "f": "“meih (from Bible text)"
     }
   ],
   "144,000 = yietc sinx biei waanc biei cin": [
@@ -1849,6 +1863,11 @@
       "m": "caux",
       "c": "also: yiem 1Thes 2:7, mbu'ndongx ",
       "f": "caux (also: yiem 1Thes 2:7, mbu'ndongx )"
+    },
+    {
+      "m": "mbu",
+      "c": "from Bible text",
+      "f": "mbu (from Bible text)"
     }
   ],
   "amorites": [
@@ -4062,6 +4081,11 @@
       "m": "jiex",
       "c": "before (previously)",
       "f": "jiex (I have seen it before=yie buatc jiex nyei) before(hand) (prior, in advance, ahead of time)"
+    },
+    {
+      "m": "nza",
+      "c": "from Bible text",
+      "f": "nza (from Bible text)"
     }
   ],
   "beg": [
@@ -4232,6 +4256,11 @@
       "m": "wuotv",
       "c": "bend (to bend something)",
       "f": "wuotv (Jer 15:12); to bend or twist and break=wuotv nauv (Is 14:5) beneath"
+    },
+    {
+      "m": "juang",
+      "c": "from Bible text",
+      "f": "juang (from Bible text)"
     }
   ],
   "beneath": [
@@ -9328,6 +9357,18 @@
       "m": "m'nqorngv-baengh",
       "c": "of the head",
       "f": "m'nqorngv-baengh (of the head)"
+    },
+    {
+      "m": "ningv",
+      "c": "from Bible text",
+      "f": "ningv (from Bible text)"
+    }
+  ],
+  "crucible": [
+    {
+      "m": "louh",
+      "c": "from Bible text (5 uses, 60% confidence)",
+      "f": "louh (from Bible text)"
     }
   ],
   "cruel": [
@@ -13493,6 +13534,16 @@
       "m": "baac",
       "c": "end(ed)",
       "f": "baac (after WWII ended=yiem WWII baac mingh)WT (Ps 77:8) ending, passing away"
+    },
+    {
+      "m": "nqa",
+      "c": "from Bible text",
+      "f": "nqa (from Bible text)"
+    },
+    {
+      "m": "haav",
+      "c": "from Bible text",
+      "f": "haav (from Bible text)"
     }
   ],
   "end of the first century": [
@@ -13531,6 +13582,13 @@
     {
       "m": "diev",
       "f": "diev (duqv)(nyei) (Jer 15:15, Luke 21:36, Ps 55:12); unable to endure, can't endure=diev maiv duqv (Ps 101:5) enemy"
+    }
+  ],
+  "enemies": [
+    {
+      "m": "wangv",
+      "c": "from Bible text (41 uses, 49% confidence)",
+      "f": "wangv (from Bible text)"
     }
   ],
   "enemy": [
@@ -16392,6 +16450,13 @@
       "m": "gorn",
       "c": "foundation (literal or figurative)",
       "f": "gorn (Family Happiness tract title); gorn-ndoqv (Prov 8:29); liepc gorn-ndoqv wuonv=to establish a firm foundation frame"
+    }
+  ],
+  "fountain": [
+    {
+      "m": "zingv",
+      "c": "from Bible text (11 uses, 55% confidence)",
+      "f": "zingv (from Bible text)"
     }
   ],
   "four": [
@@ -28936,6 +29001,11 @@
       "m": "hnamv",
       "c": "jw.org parallel text",
       "f": "hnamv"
+    },
+    {
+      "m": "zuoqv",
+      "c": "from Bible text",
+      "f": "zuoqv (from Bible text)"
     }
   ],
   "love him": [
@@ -37334,6 +37404,11 @@
       "m": "Yietc",
       "c": "LearnMien.com",
       "f": "1; one"
+    },
+    {
+      "m": "beuv",
+      "c": "from Bible text",
+      "f": "beuv (from Bible text)"
     }
   ],
   "one after the other": [
@@ -40321,6 +40396,11 @@
       "m": "domh zuangx",
       "c": "public (place)",
       "f": "domh zuangx (dorngx); public talk=gorngv waac bun domh zuangx publicly (in public, in front of everyone, out in the open)"
+    },
+    {
+      "m": "jaai",
+      "c": "from Bible text",
+      "f": "jaai (from Bible text)"
     }
   ],
   "public speaker": [
@@ -42494,6 +42574,18 @@
       "f": "ziec sacrifice (something we give up)"
     }
   ],
+  "sacrifices": [
+    {
+      "m": "fongc",
+      "c": "from Bible text (7 uses, 43% confidence)",
+      "f": "fongc (from Bible text)"
+    },
+    {
+      "m": "horc",
+      "c": "from Bible text",
+      "f": "horc (from Bible text)"
+    }
+  ],
   "sad": [
     {
       "m": "you-nzauh",
@@ -42996,6 +43088,11 @@
       "m": "gorngv nyungc",
       "c": "something; gorngv nyungc baac bun yie muangx=say something a little and I'll listen or for me to hear",
       "f": "gorngv nyungc (something; gorngv nyungc baac bun yie muangx=say something a little and I'll listen or for me to hear)"
+    },
+    {
+      "m": "“yie",
+      "c": "from Bible text",
+      "f": "“yie (from Bible text)"
     }
   ],
   "scab": [
@@ -43963,6 +44060,11 @@
       "m": "goux yungh mienh",
       "c": "noun",
       "f": "goux yungh mienh (noun)"
+    },
+    {
+      "m": "gi",
+      "c": "from Bible text",
+      "f": "gi (from Bible text)"
     }
   ],
   "shield": [
@@ -46540,6 +46642,11 @@
       "m": "jauv  mbuo aa zuqc zoux)",
       "c": "figurative, as what steps to take, a procedure to follow; what steps do we need to take=maaih haaix nyungc (jauv",
       "f": "jauv  mbuo aa zuqc zoux) (figurative, as what steps to take, a procedure to follow; what steps do we need to take=maaih haaix nyungc (jauv)"
+    },
+    {
+      "m": "mbiec",
+      "c": "from Bible text",
+      "f": "mbiec (from Bible text)"
     }
   ],
   "stew": [
@@ -48318,6 +48425,11 @@
       "m": "Laengz zingh",
       "c": "LearnMien.com",
       "f": "Thank you, Thanks"
+    },
+    {
+      "m": "dor",
+      "c": "from Bible text",
+      "f": "dor (from Bible text)"
     }
   ],
   "that": [
@@ -49111,13 +49223,6 @@
       "m": "zuqc daic nyei jauv",
       "c": "jw.org parallel text",
       "f": "zuqc daic nyei jauv"
-    }
-  ],
-  "threat, threaten": [
-    {
-      "m": "\"gorngv cuotv nyei waac hoic yie kouv\"",
-      "c": "no direct translation; also: Ps 73:8 \"gorngv oix zeix mienh\"",
-      "f": "\"gorngv cuotv nyei waac hoic yie kouv\" (no direct translation; also: Ps 73:8 \"gorngv oix zeix mienh\")"
     }
   ],
   "three": [
@@ -53863,6 +53968,11 @@
       "m": "orqv",
       "c": "jw.org parallel text",
       "f": "orqv"
+    },
+    {
+      "m": "nziev",
+      "c": "from Bible text",
+      "f": "nziev (from Bible text)"
     }
   ],
   "wicked, evil": [
@@ -54111,6 +54221,11 @@
       "m": "cong-mengh",
       "c": "jw.org parallel text",
       "f": "cong-mengh"
+    },
+    {
+      "m": "nyieqc",
+      "c": "from Bible text",
+      "f": "nyieqc (from Bible text)"
     }
   ],
   "wise": [
@@ -56475,6 +56590,13 @@
     {
       "m": "to tremble or shiver with fear or happy excitement depending on context",
       "f": "to tremble or shiver with fear or happy excitement depending on context (see Phil 2:12)"
+    }
+  ],
+  "zion": [
+    {
+      "m": "si^on",
+      "c": "from Bible text (5 uses, 80% confidence)",
+      "f": "si^on (from Bible text)"
     }
   ],
   "ziou-dingh": [
