@@ -1327,28 +1327,54 @@
     const AI_PROVIDER_STORAGE = 'iu-mienh-ai-provider';
 
     const GRAMMAR_RULES = `
-Iu Mienh (also called Iu Mien or Yao) grammar rules:
-- Word order: Subject-Verb-Object (like English/Mandarin)
-- Possessive: X nyei Y = X's Y (e.g. "yie nyei mbuox" = "my name")
-- Personal pronouns: yie=I/me, meih=you, ninh=he/she, mbuo=plural marker (yie mbuo=we, meih mbuo=you all, ninh mbuo=they)
-- Past tense: add "aqv" or "jiex" after the verb (e.g. "mingh aqv" = went)
-- Future/want: "oix" before verb (e.g. "yie oix mingh" = I want to go / I will go)
-- Negation: "maiv" before verb (e.g. "maiv hiuv" = don't know, "maiv maaih" = don't have)
-- Questions: add "fai" at end (yes/no questions), or use "haaix" (what/which), "haaix dauh" (who), "weic haaix diuc" (why)
-- "nyei" is a linking/possessive particle (similar to Mandarin 的)
-- "se" = is/am/are (equative), "benx" = become/is (transforms into)
-- "maaih" = have/exist, "maiv maaih" = don't have/not exist
-- "haih" = can/able to
-- "oix zuqc" = must/should
-- "duqv" = get/obtain (result complement, like Mandarin 得)
-- Classifiers: "dauh" for people, "norm" for general items, "buonv" for books
-- "wuov" = that/those (demonstrative), "naaiv" = this/these
-- Adjectives can come after nouns: "mienh longx" = good person
-- Serial verb constructions are common: "mingh lorz" = go look for
-- "bun" = give/let/cause (causative, like Mandarin 给/让)
-- "daaih" = come (directional complement)
-- "jienv" = continuous aspect (like -ing)
-- Sentences often end with particles: "aqv" (completed), "nyei" (assertive), "lor" (suggestion), "maah" (tag question)
+Iu Mienh (also called Iu Mien or Yao) grammar rules (from academic research):
+
+WORD ORDER:
+1. Iu Mien is topic-prominent. Translate as Topic/Subject + Verb + Object/Complement, but think Topic → Focus (known info first, new info last).
+2. Time words, topic phrases, and coverb phrases come before the main verb. The strongest focus falls near the end of the clause.
+3. Time is expressed lexically, not by verb inflection. Use: ih zanc "now", zinh ndaangc "formerly", nqa'haav hingv "later/future".
+4. Dependent clauses usually come before the main clause. Exception: purpose, reason, and simile clauses may follow.
+
+NOUN PHRASES:
+5. Common NP patterns: N + stative verb, V/Adj + nyei + N, Possessor + nyei + N, DEM + CLF + N, NUM + CLF + N.
+6. Many English adjectives are stative VERBS in Mienh. Use N + V_ADJ ("mienh longx" = good person) or V_ADJ + nyei + N.
+7. Possession: Possessor + nyei + N ("yie nyei biauv" = my house).
+8. Relative clauses: Clause + nyei + N = "the N that …" (modifying clause before noun).
+9. Numerals require classifiers: NUM + CLF + N. Common: norm (general objects), dauh (people/animals), diuh (long narrow things), laanh (people general), buonv (books).
+10. Demonstratives: naaiv "this", wuov "that" in DEM + CLF + N. mbuo marks plural with pronouns.
+11. Personal pronouns: yie=I/me, meih=you, ninh=he/she/it; yie mbuo=we, meih mbuo=you all, ninh mbuo=they.
+
+VERBS AND ASPECT:
+12. Tense is lexical but aspect is grammaticalized as Verb + postverbal marker.
+13. jienv = continuous/ongoing; jiex = experiential "have ever done"; liuz = perfective/completed; baac = simple completion.
+14. ziangx = perfect (past with present relevance); nzengc = "all used up"; dorng = cessation.
+15. Sentence-final particles: nyei = assertive/stative, aqv = new situation/change of state, mi'aqv = completed occurrence.
+16. Preverbal auxiliaries: oix "want to/will", haih "be able to", gaamv "dare to", kangv "be willing to".
+17. duqv after a verb = attained result/possibility "can, manage to". oix zuqc = "must/should".
+18. maaih = "have/there is", yiem = "be at/stay/live in", se = equative "is", benx = "become/is".
+
+NEGATION:
+19. Main negator: maiv (colloquial: mv). Place immediately before verb, auxiliary, or coverb phrase.
+20. Pattern: Subject + maiv/mv + Verb. Negate auxiliaries same way: maiv haih, maiv oix.
+21. Negative imperative: maiv dungx + V / mv dungv + V = "Don't V."
+
+QUESTIONS:
+22. Yes/no: statement word order + sentence-final fai (rising intonation). Falling question: saah.
+23. Content questions use interrogative words in situ: haaix dauh "who?", haaix nyungc "what?", haaix zanc "when?", yiem haaix "where?", hnangv haaix nor "how?", weic haaix diuc "why?", mbuoqc ziex "how many?".
+
+MULTI-VERB CONSTRUCTIONS:
+24. Iu Mien freely strings verbs without conjunctions: auxiliary + V, V + aspect, V + directional, V + result, coverb phrase + main VP.
+25. Common coverbs: longc "use", yiem "from/at", gan "follow/along", bun "give/let/for/cause" (causative).
+26. Directional complements: daaih "come (toward)", mingh "go (away)", njiec "descend", faaux "ascend".
+
+CLAUSE LINKING:
+27. Coordination: yaac "and/also", mv.baac "but", fai "or". caux = NP-level "and/with".
+28. Conditional: se.gorngv ... nor = "if ...". weic.zuqc = "because", maiv.gunv = "although", weic = "in order that".
+29. Temporal: ... wuov.zanc "when", ... nyei ziangh.hoc "at the time when".
+30. Complement clauses need no "that" word — verbs like gorngv take content clauses directly.
+
+SENTENCE PARTICLES:
+31. aqv = completed/new state, nyei = assertive, lor = suggestion/urging, maah/laeh = tag question, oc = polite softener.
 `.trim();
 
     const EXAMPLE_PAIRS = [

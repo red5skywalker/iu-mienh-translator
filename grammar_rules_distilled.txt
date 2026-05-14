@@ -1,0 +1,51 @@
+## Iu Mienh Grammar Rules
+
+### Word Order
+1. Iu Mien is topic-prominent. Translate mainly as **Topic/Subject + Verb + Object/Complement**, but think in terms of **Topic → Focus**, not rigid English SVO.
+2. Put background or known information earlier and newer or more important information later. The strongest focus often falls near the end of the clause.
+3. Keep the main verb in the middle of the clause. Time words, topic phrases, and coverb phrases usually come before the main focused predicate.
+4. Time is expressed lexically, not by verb inflection. Use time words such as *ih zanc* “now”, *zinh ndaangc* “formerly”, and *nqa’haav hingv* “later/future”.
+5. Dependent clauses usually come before the main clause. A common exception is purpose, reason, and simile clauses, which may follow the main clause.
+
+### Noun Phrases
+6. The noun is usually the semantic head. Common NP patterns are **N + postnominal stative/action verb**, **V/Adj + nyei + N**, **Possessor + nyei + N**, **DEM + CLF + N**, and **NUM + CLF + N**.
+7. Many adjectival meanings are verbal in Iu Mien. Use **N + V_ADJ** or **V_ADJ + nyei + N** rather than forcing an English-style adjective before the noun.
+8. Use **nyei** for possession: **Possessor + nyei + N**. Example: *yie nyei biauv* “my house”.
+9. Use **nyei** for restrictive relative clauses: **Clause + nyei + N** = “the N that …”. Put the modifying clause before the noun.
+10. Use **dongh + clause** after a noun for a looser, non-restrictive/appositive relative meaning.
+11. **nyei** is multifunctional: it can mark possession, relative clauses, adverbial-like modification, or sentence-final assertive/stative meaning. Read it from position, not from one fixed gloss.
+12. Numerals normally require classifiers: **NUM + CLF + N**. Common classifiers are **norm** (general objects / many time-place units), **dauh** (people/animals), **diuh** (long narrow things), and **laanh** (people in general); demonstratives such as **naaiv** “this” and **wuov** “that” often appear in **DEM + CLF + N** phrases, and **mbuo** marks plural with pronouns and some human nouns.
+
+### Verbs and Predicate Types
+13. Many English adjectives should be translated as stative verbs. Treat adjectival verbs as normal predicates and modifiers when appropriate.
+14. One-argument clauses often use **NP + intransitive/stative verb**; two-argument clauses often use **NP + transitive verb + NP**. Example: *maa daic* “mother died”, *ninh nyanc hnaangx* “he eats rice”.
+15. **maaih** means “have; there is/are”, **maiv maaih** means “there is no / do not have”, and **yiem** means “be at / stay / live in”. For equative/copular meanings, **se** is common for plain identity, while **benx** and **zeiz** have more specific uses (“be/become”, “be correct”).
+
+### Aspect, Tense, and Modality
+16. Tense is lexical, but aspect is grammaticalized. A common pattern is **Verb + postverbal aspect marker**.
+17. **jienv** marks continuous/ongoing action; **jiex** marks experiential “have ever done”; **liuz** marks perfective/completed action, often with successful completion.
+18. **baac** marks simple completion; **ziangx** marks a perfect-like past event with present relevance; **nzengc** marks “all used up”; **dorng** marks cessation/conclusion.
+19. Sentence-final particles also mark aspect: **nyei** = assertive/stative, **aqv** = new situation / change of state, **mi’aqv** = telic/completed occurrence.
+20. Common preverbal auxiliaries are **oix** “want to”, **haih** “be able to”, **gaamv** “dare to”, **kangv/nyunc** “be willing to”. Negate them by putting **maiv/mv** before the auxiliary.
+21. **duqv** after a verb expresses attained possibility/result: “can, manage to, get to”. Use it for achieved ability rather than as a plain future marker.
+22. **oix NP V** can mean “want NP to V”, while **maiv oix V** means “do not want to V”.
+
+### Negation
+23. The main negator is **maiv**, with colloquial contracted **mv**. Place it immediately before the verb, stative verb, auxiliary, or coverb phrase being negated.
+24. Basic negation pattern: **Subject + maiv/mv + Verb**. Negate auxiliaries the same way: **maiv haih**, **maiv oix**, **maiv kangv**.
+25. In coverb constructions, negation goes before the whole coverb phrase, not between the coverb phrase and the main verb.
+26. Negative imperative uses **maiv dungx / maiv dungv / mv dungv + V**: “Don’t V.” A softer prohibition can add **tov** or polite **oc**.
+27. Double negation does not always cancel. Negating both an auxiliary and a result/main verb can still yield a stronger negative, while a fronted negative topic plus negative focus can yield a strong affirmative reading.
+
+### Questions
+28. Yes/no questions usually keep statement word order and add sentence-final **fai** with rising intonation. A falling question can use **saah/saaqh**.
+29. Content questions use interrogative words in normal clause positions. Important forms: **haaix dauh** “who?”, **haaix nyungc** “what/which kind?”, **haaix zanc** “when?”, **yiem haaix / haaix ndau** “where?”, **hnangv haaix nor** “how?”, **weic haaix diuc** or colloquial **zoux haiv nyungc** “why?”, **mbuoqc ziex** “how many?”.
+30. Sentence-final **mv bei** adds “I wonder …” or self-questioning uncertainty.
+
+### Multi-Verb Constructions
+31. Iu Mien freely uses multi-verb strings without conjunctions. Preserve the sequence when translating: common patterns are **auxiliary + V**, **V + aspect marker**, **V + directional verb**, **V + resultative complement**, and **coverb phrase + main VP**.
+32. Resultative serial verbs use **V1 + V2** where V2 gives the result of V1 (e.g. *mborqv daic* “beat to death” vs. *mborqv daix* “kill by beating”), and coverb constructions follow **Topic + Coverb Phrase + Main Verb Phrase** with common coverbs such as **longc** “use”, **yiem** “from/at”, **gan** “follow/along”, and **bun** “give; let/for”.
+
+### Clause Linking
+33. Juxtaposition is common: two clauses side by side may imply sequence, condition, cause, or background when context makes the relation clear. Clause-level coordination commonly uses **yaac** “and/also”, **mv.baac** “but”, and **fai** “or”, while **caux** is mainly NP-level “and/with”.
+34. A standard conditional is **se.gorngv ... nor** = “if ...”. Other useful linkers are **laaix + clause** “because of / due to”, **maiv.gunv / mv.gunv + clause** “although / even though”, **weic + clause** “in order that / so that”, **weic.zuqc + clause** “because”, **... wuov.zanc** “when”, **... nyei ziangh.hoc** “at the time when”, and **hnangv ... wuov.nor** “as if / just like”; complement clauses usually have no separate word for English “that”, and verbs such as **gorngv** can be followed directly by the content clause.
