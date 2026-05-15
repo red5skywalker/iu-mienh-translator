@@ -24437,6 +24437,13 @@
       "f": "Intentionally, on purpose"
     }
   ],
+  "intentions": [
+    {
+      "m": "hnamv nyei jauv",
+      "c": "inner intentions, schemes, ways of thinking",
+      "f": "Ninh mbuo hnamv nyei jauv yietc zungv kungx oix hoic yie. (All their intentions are to harm me.)"
+    }
+  ],
   "interest": [
     {
       "m": "leic",
@@ -29187,14 +29194,14 @@
   ],
   "love": [
     {
-      "m": "hnamv nyei jauv",
-      "c": "love (as a thing - a noun)",
-      "f": "hnamv nyei jauv love (to love - a verb)"
+      "m": "hnamv",
+      "c": "verb: to love someone/something. Use as transitive verb: X hnamv Y",
+      "f": "Yie hnamv meih. (I love you.) / Tin-Hungh hnamv mbuo. (God loves us.)"
     },
     {
-      "m": "hnamv",
-      "c": "jw.org parallel text",
-      "f": "hnamv"
+      "m": "hnamv nyei jauv",
+      "c": "noun: the way/attitude of love, being loving in general. NOT used when loving a specific person",
+      "f": "hnamv nyei jauv = the path/attitude of love (abstract concept)"
     }
   ],
   "love him": [
@@ -29208,6 +29215,13 @@
     {
       "m": "laanh hnamv laanh",
       "f": "laanh hnamv laanh"
+    }
+  ],
+  "loves": [
+    {
+      "m": "hnamv",
+      "c": "verb: X loves Y = X hnamv Y. No conjugation change from love",
+      "f": "Yesu hnamv mienh. (Jesus loves people.)"
     }
   ],
   "loves mankind": [
@@ -43454,6 +43468,13 @@
       "f": "ziangh hoc daan (a list of appointments; Smith Panh dictionary)"
     }
   ],
+  "schemes": [
+    {
+      "m": "hnamv nyei jauv",
+      "c": "schemes, plots, intentions (negative context)",
+      "f": "Ninh mbuo hnamv nyei jauv yietc zungv kungx oix hoic yie."
+    }
+  ],
   "school": [
     {
       "m": "Horqc dorngh",
@@ -49488,6 +49509,11 @@
       "m": "hnamv nyei jauv",
       "c": "also: hnamv nyei sic 1 Chron 28:9, ninh mbuo hnangv haaix nor hnamv Mt 9:4",
       "f": "hnamv nyei jauv (also: hnamv nyei sic 1 Chron 28:9, ninh mbuo hnangv haaix nor hnamv Mt 9:4)"
+    },
+    {
+      "m": "hnamv nyei jauv",
+      "c": "inner thoughts, intentions, ways of thinking. hnyouv hnamv nyei jauv = thoughts of the heart",
+      "f": "Meih hiuv duqv yie nyei hnyouv hnamv nyei jauv. (You know my thoughts.)"
     }
   ],
   "thoughts perish": [
