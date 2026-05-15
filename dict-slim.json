@@ -20271,19 +20271,19 @@
   ],
   "head": [
     {
-      "m": "hungx",
-      "c": "head (as to head in a direction)",
-      "f": "hungx (heading toward them=hungx jienv ninh mbuo mingh) see Phil 3:13) head (literal and figurative)"
-    },
-    {
-      "m": "M'nqorngv",
-      "c": "LearnMien.com",
-      "f": "Head"
+      "m": "m'nqorngv",
+      "c": "body part (physical head)",
+      "f": "m'nqorngv (physical head, body part)"
     },
     {
       "m": "Ziouv",
-      "c": "LearnMien.com",
-      "f": "Head, owner, master, host"
+      "c": "authority/leader only — NOT body part (means lord, master, owner, host)",
+      "f": "Ziouv (head of an organization, lord, master, owner — NOT the body part)"
+    },
+    {
+      "m": "hungx",
+      "c": "to head in a direction (directional use only)",
+      "f": "hungx (heading toward them = hungx jienv ninh mbuo mingh)"
     }
   ],
   "head of the house": [
