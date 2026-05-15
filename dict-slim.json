@@ -1658,6 +1658,10 @@
       "m": "nernh jiex",
       "c": "almighty (used only of God)",
       "f": "nernh jiex (Nernh jiex nyei Tin Hungh) almost (general term)"
+    },
+    {
+      "m": "Nernh Jiex Nyei",
+      "c": "Almighty, most powerful"
     }
   ],
   "almost": [
@@ -4273,6 +4277,10 @@
     {
       "m": "duqv haaix nyungc longx",
       "f": "duqv haaix nyungc longx; hnangv haaix nor duqv longx; such and such hnangv haaix nor tengx mbuo beside"
+    },
+    {
+      "m": "duqv longx",
+      "c": "benefit, gain good from"
     }
   ],
   "benjamin": [
@@ -4575,6 +4583,12 @@
       "m": "saaix liangx daaih nyei Ging-Sou gouv",
       "c": "Bible drama",
       "f": "saaix liangx daaih nyei Ging-Sou gouv"
+    }
+  ],
+  "bible principles": [
+    {
+      "m": "Ging-Sou nyei leiz",
+      "c": "Bible principles, scriptural laws"
     }
   ],
   "bible prophecy": [
@@ -8558,6 +8572,10 @@
     {
       "m": "Jiu-baang",
       "f": "Jiu-baang"
+    },
+    {
+      "m": "wuic",
+      "c": "congregation, assembly"
     }
   ],
   "congregation bible study": [
@@ -8664,6 +8682,10 @@
       "m": "linh",
       "c": "continue (in succession, one after another)",
       "f": "linh (jienv) (Acts 17:2, Rom 5:12) continue (not stopping)"
+    },
+    {
+      "m": "hoqc jienv mingh",
+      "c": "continue, keep going, persevere"
     }
   ],
   "contractions": [
@@ -9248,6 +9270,10 @@
       "m": "Zeix Wuov Dauh",
       "c": "jw.org parallel text",
       "f": "Zeix Wuov Dauh"
+    },
+    {
+      "m": "Zeix Daaih Nyei Ziouv",
+      "c": "Creator, the One who created"
     }
   ],
   "creator of all things": [
@@ -9617,6 +9643,10 @@
       "m": "ih zanc cuotv nyei sic",
       "c": "jw.org parallel text",
       "f": "ih zanc cuotv nyei sic"
+    },
+    {
+      "m": "ih zanc cuotv daaih nyei sic",
+      "c": "current events, things happening now"
     }
   ],
   "currently, right now": [
@@ -10621,6 +10651,12 @@
       "f": "orqv haic nyei mienv (very wicked spirit) word mienv=spirit, but to Christendom means demon den"
     }
   ],
+  "demons": [
+    {
+      "m": "mienv",
+      "c": "demons, evil spirits"
+    }
+  ],
   "den": [
     {
       "m": "kuotv",
@@ -10720,6 +10756,12 @@
       "m": "zic duqv",
       "c": "deserve (proper to receive (good or bad)",
       "f": "zic duqv (2 Cor 10:18, Acts 23:29) deserve (to be worthy of)"
+    }
+  ],
+  "designed to": [
+    {
+      "m": "zoux daaih longc",
+      "c": "designed to be used for, made for the purpose of"
     }
   ],
   "desire": [
@@ -12647,6 +12689,10 @@
       "m": "caux Tin-Hungh zoux nitv",
       "c": "jw.org parallel text",
       "f": "caux Tin-Hungh zoux nitv"
+    },
+    {
+      "m": "mingh nitv jienv Tin-Hungh",
+      "c": "draw close to God, approach God"
     }
   ],
   "draw close to him in prayer": [
@@ -13983,6 +14029,10 @@
     {
       "m": "yietc liuz nyei maengc",
       "f": "yietc liuz nyei maengc"
+    },
+    {
+      "m": "yietc liuz maengc",
+      "c": "everlasting life, eternal life"
     }
   ],
   "everlasting rewards": [
@@ -14682,6 +14732,10 @@
     {
       "m": "hnyouv zingx",
       "f": "hnyouv zingx (nyei mienh) (Listen Broch pg 19); ziepc zuoqc (1 Cor 4:2) (faithful men of old=loz-hnoi hnyouv zingx wuov deix m'jangc mienh) WT trans Faithful and Discreet Slave"
+    },
+    {
+      "m": "zuoqv",
+      "c": "faithful, loyal, trustworthy"
     }
   ],
   "faithful and discreet slave": [
@@ -18350,6 +18404,12 @@
       "f": "Good eyes"
     }
   ],
+  "good health": [
+    {
+      "m": "wangc siangx",
+      "c": "good health, healthy"
+    }
+  ],
   "good job": [
     {
       "m": "yaauc dingc aqv",
@@ -21903,6 +21963,10 @@
       "m": "maaih lamh hnamv dorng",
       "c": "jw.org parallel text",
       "f": "maaih lamh hnamv dorng"
+    },
+    {
+      "m": "maaih lamh hnamv",
+      "c": "hope, something to look forward to"
     }
   ],
   "hope of everlasting life": [
@@ -23519,6 +23583,12 @@
       "f": "zangc miuc-fangx worship idols"
     }
   ],
+  "idols": [
+    {
+      "m": "miuc-fangx",
+      "c": "idols, images for worship"
+    }
+  ],
   "if": [
     {
       "m": "da'faanh",
@@ -25090,6 +25160,10 @@
       "m": "Yeˆhoˆwaa",
       "c": "jw.org parallel text",
       "f": "Yeˆhoˆwaa"
+    },
+    {
+      "m": "Yehowaa",
+      "c": "Jehovah, God's personal name"
     }
   ],
   "jehovah loves you, that is why he wants you to be his friend. the bible can teach you how to be god's friend.": [
@@ -27241,6 +27315,10 @@
     {
       "m": "nqa'haav hnoi, nqa'haav nyei hnoi, nqa'haav nyei ziangh hoc",
       "f": "nqa'haav hnoi, nqa'haav nyei hnoi, nqa'haav nyei ziangh hoc"
+    },
+    {
+      "m": "setv mueic nyei hnoi-nyieqc",
+      "c": "last days, final period"
     }
   ],
   "last name": [
@@ -27557,6 +27635,10 @@
       "m": "hoqc taux Tin-Hungh nyei jauv",
       "c": "jw.org parallel text",
       "f": "hoqc taux Tin-Hungh nyei jauv"
+    },
+    {
+      "m": "hoqc taux Tin-Hungh",
+      "c": "learn about God, study about God"
     }
   ],
   "learn the truth": [
@@ -27847,6 +27929,10 @@
       "m": "jauv",
       "c": "lesson (general term for something learned)",
       "f": "jauv; jauv-louc; valuable lessons=jienv nyei jauv (WT); three lessons will we consider=gorngv taux buo nyungc jauv-louc(WT) let"
+    },
+    {
+      "m": "ginc",
+      "c": "lesson or chapter in a study publication"
     }
   ],
   "let": [
@@ -31890,6 +31976,10 @@
       "m": "zunh doz mienh",
       "c": "minister (a true christian minister)",
       "f": "zunh doz mienh (from WT translation) minister (to minister, to serve)"
+    },
+    {
+      "m": "zunh doz",
+      "c": "minister, to preach, ministry"
     }
   ],
   "ministerial servant": [
@@ -34293,10 +34383,22 @@
       "f": "Sieve; New"
     }
   ],
+  "new brochure": [
+    {
+      "m": "siang-sou",
+      "c": "new brochure/publication (siang=new, sou=book/publication)"
+    }
+  ],
   "new covenant": [
     {
       "m": "siang-ngaengc waac",
       "f": "siang-ngaengc waac"
+    }
+  ],
+  "new publication": [
+    {
+      "m": "siang-sou",
+      "c": "new publication (siang=new, sou=book/publication)"
     }
   ],
   "new understanding": [
@@ -38369,6 +38471,10 @@
       "m": "loz huaang",
       "c": "jw.org parallel text",
       "f": "loz huaang"
+    },
+    {
+      "m": "la'maah gen",
+      "c": "paradise, garden-like earth"
     }
   ],
   "paradise earth": [
@@ -40393,6 +40499,12 @@
       "f": "gorngv waac bun domh zuangx"
     }
   ],
+  "publication": [
+    {
+      "m": "sou",
+      "c": "publication, book, written material"
+    }
+  ],
   "publicly": [
     {
       "m": "dorng zuangx",
@@ -41240,6 +41352,10 @@
       "m": "samx",
       "c": "recognize (to discern)",
       "f": "samx (duqv) cuotv (1 Cor 2:15; Lev 10:10) recommend"
+    },
+    {
+      "m": "zieqv duqv",
+      "c": "recognize, identify, discern"
     }
   ],
   "recommend": [
@@ -41775,6 +41891,10 @@
       "m": "Taih ginx",
       "c": "LearnMien.com",
       "f": "Respect"
+    },
+    {
+      "m": "taaih",
+      "c": "respect, honor"
     }
   ],
   "respond": [
@@ -41870,6 +41990,10 @@
       "m": "nangh daaih",
       "c": "jw.org parallel text",
       "f": "nangh daaih"
+    },
+    {
+      "m": "aengx nangh daaih",
+      "c": "resurrection, to rise again"
     }
   ],
   "resurrection (the) as a noun": [
@@ -47733,6 +47857,12 @@
       "f": "Table"
     }
   ],
+  "table of contents": [
+    {
+      "m": "gorngv taux nyei jauv",
+      "c": "table of contents in a publication"
+    }
+  ],
   "taboo": [
     {
       "m": "gec",
@@ -49577,6 +49707,12 @@
       "f": "bun (for expression \"do to\" see Mt 7:12)"
     }
   ],
+  "to act": [
+    {
+      "m": "fioux",
+      "c": "to act, to fix, to remedy (God acting to fix things)"
+    }
+  ],
   "to act on what he is learning": [
     {
       "m": "dorh ninh hoqc nyei jauv daaih longc",
@@ -50669,6 +50805,12 @@
       "f": "gu'nguaaic (gu'nguaaic maengx=the upper or top side; sou gu'nguaaic=the top of the book) tornado (or any great windstorm)"
     }
   ],
+  "topic": [
+    {
+      "m": "hoc-dauh",
+      "c": "study topic or subject"
+    }
+  ],
   "topple over": [
     {
       "m": "King",
@@ -51046,6 +51188,10 @@
       "m": "zien leiz zangc Tin-Hungh",
       "c": "jw.org parallel text",
       "f": "zien leiz zangc Tin-Hungh"
+    },
+    {
+      "m": "zien buoqc zangc",
+      "c": "true worship"
     }
   ],
   "truly, really, absolutely": [
@@ -51789,6 +51935,10 @@
     {
       "m": "beqv haic nyei sic urine, urinate",
       "f": "beqv haic nyei sic urine, urinate"
+    },
+    {
+      "m": "jienv haic",
+      "c": "urgent, pressing"
     }
   ],
   "urine": [
@@ -52118,6 +52268,10 @@
       "m": "zoux ciouv",
       "c": "jw.org parallel text",
       "f": "zoux ciouv"
+    },
+    {
+      "m": "zoux ciouv zoux waaic",
+      "c": "violence, cruel and wicked acts"
     }
   ],
   "violent": [
@@ -54467,6 +54621,10 @@
       "m": "zangc",
       "c": "jw.org parallel text",
       "f": "zangc"
+    },
+    {
+      "m": "buoqc zangc",
+      "c": "worship, religious devotion"
     }
   ],
   "worth": [
