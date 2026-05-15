@@ -12,6 +12,7 @@ const DIR = dirname(__filename);
 
 const SUPABASE_HOST = 'jznienvopdejqvpalgbl.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bmllbnZvcGRlanF2cGFsZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDIzODksImV4cCI6MjA5NDE3ODM4OX0.fjdtVnAY99TBC_w38SZ87a-VrAsFoo2obWkRGtrkwZ8';
+const ADMIN_PASSPHRASE = process.env.ADMIN_PASSPHRASE || '';
 
 function supabaseCall(method, path, body, serviceKey) {
   return new Promise((resolve, reject) => {
@@ -428,6 +429,15 @@ const server = createServer(async (req, res) => {
       res.end(JSON.stringify({ error: 'Server not configured (missing SUPABASE_SERVICE_KEY)' }));
       return;
     }
+    let body = '';
+    for await (const chunk of req) body += chunk;
+    let parsed;
+    try { parsed = JSON.parse(body); } catch { parsed = {}; }
+    if (ADMIN_PASSPHRASE && parsed.passphrase !== ADMIN_PASSPHRASE) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Invalid passphrase' }));
+      return;
+    }
     try {
       const result = await supabaseCall('GET', 'corrections?type=eq.suggested&select=*&order=created_at.asc', null, svcKey);
       res.writeHead(result.status, { 'Content-Type': 'application/json' });
@@ -510,6 +520,11 @@ const server = createServer(async (req, res) => {
     for await (const chunk of req) body += chunk;
     let parsed;
     try { parsed = JSON.parse(body); } catch { parsed = {}; }
+    if (ADMIN_PASSPHRASE && parsed.passphrase !== ADMIN_PASSPHRASE) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Invalid passphrase' }));
+      return;
+    }
     const { id } = parsed;
     if (!id) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
