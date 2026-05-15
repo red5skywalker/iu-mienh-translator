@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const DIR = dirname(__filename);
 
 const SUPABASE_HOST = 'jznienvopdejqvpalgbl.supabase.co';
-const ADMIN_PASSPHRASE = process.env.ADMIN_PASSPHRASE || '';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bmllbnZvcGRlanF2cGFsZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDIzODksImV4cCI6MjA5NDE3ODM4OX0.fjdtVnAY99TBC_w38SZ87a-VrAsFoo2obWkRGtrkwZ8';
 
 function supabaseCall(method, path, body, serviceKey) {
   return new Promise((resolve, reject) => {
@@ -39,10 +39,6 @@ function supabaseCall(method, path, body, serviceKey) {
     if (bodyStr) req2.write(bodyStr);
     req2.end();
   });
-}
-
-function validateAdminPassphrase(passphrase) {
-  return ADMIN_PASSPHRASE && passphrase === ADMIN_PASSPHRASE;
 }
 
 // Try to get gh CLI token for GitHub Models access
@@ -424,21 +420,12 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  // POST /api/admin/suggestions — list pending suggestions (passphrase required)
+  // POST /api/admin/suggestions — list pending suggestions (uses service key)
   if (req.method === 'POST' && req.url === '/api/admin/suggestions') {
     const svcKey = process.env.SUPABASE_SERVICE_KEY;
-    if (!ADMIN_PASSPHRASE || !svcKey) {
+    if (!svcKey) {
       res.writeHead(503, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Admin not configured (set ADMIN_PASSPHRASE and SUPABASE_SERVICE_KEY env vars)' }));
-      return;
-    }
-    let body = '';
-    for await (const chunk of req) body += chunk;
-    let parsed;
-    try { parsed = JSON.parse(body); } catch { parsed = {}; }
-    if (!validateAdminPassphrase(parsed.passphrase)) {
-      res.writeHead(401, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Invalid passphrase' }));
+      res.end(JSON.stringify({ error: 'Server not configured (missing SUPABASE_SERVICE_KEY)' }));
       return;
     }
     try {
@@ -452,34 +439,57 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  // POST /api/admin/approve — approve a suggestion (passphrase required)
+  // POST /api/admin/approve — approve a suggestion
+  // Validates the passphrase via the existing submit_correction Supabase RPC,
+  // then deletes the 'suggested' row using the service key.
   if (req.method === 'POST' && req.url === '/api/admin/approve') {
     const svcKey = process.env.SUPABASE_SERVICE_KEY;
-    if (!ADMIN_PASSPHRASE || !svcKey) {
+    if (!svcKey) {
       res.writeHead(503, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Admin not configured' }));
+      res.end(JSON.stringify({ error: 'Server not configured (missing SUPABASE_SERVICE_KEY)' }));
       return;
     }
     let body = '';
     for await (const chunk of req) body += chunk;
     let parsed;
     try { parsed = JSON.parse(body); } catch { parsed = {}; }
-    if (!validateAdminPassphrase(parsed.passphrase)) {
-      res.writeHead(401, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Invalid passphrase' }));
-      return;
-    }
-    const { id, isNew } = parsed;
-    if (!id) {
+    const { id, passphrase, english, mienh, notes, isNew } = parsed;
+    if (!id || !passphrase || !english || !mienh) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'id is required' }));
+      res.end(JSON.stringify({ error: 'id, passphrase, english, and mienh are required' }));
       return;
     }
     try {
-      const result = await supabaseCall('PATCH', `corrections?id=eq.${id}`, {
-        type: isNew ? 'added' : 'edited',
-      }, svcKey);
-      res.writeHead(result.status >= 200 && result.status < 300 ? 200 : result.status, { 'Content-Type': 'application/json' });
+      // Validate passphrase and write the approved correction via the existing RPC
+      const rpcResult = await supabaseCall('POST', 'rpc/submit_correction', {
+        p_passphrase: passphrase,
+        p_english: english,
+        p_mienh: mienh,
+        p_notes: notes || null,
+        p_type: isNew ? 'added' : 'edited',
+      }, SUPABASE_ANON_KEY);
+
+      if (rpcResult.status === 401 || rpcResult.status === 403) {
+        res.writeHead(401, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid passphrase' }));
+        return;
+      }
+      if (rpcResult.status >= 400) {
+        const errBody = JSON.parse(rpcResult.body || '{}');
+        // Supabase raises an exception for bad passphrase — treat as 401
+        if (errBody.message?.toLowerCase().includes('passphrase') || errBody.code === 'P0001') {
+          res.writeHead(401, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid passphrase' }));
+          return;
+        }
+        res.writeHead(rpcResult.status, { 'Content-Type': 'application/json' });
+        res.end(rpcResult.body);
+        return;
+      }
+
+      // RPC succeeded (correction written) — delete the suggestion row
+      await supabaseCall('DELETE', `corrections?id=eq.${id}`, null, svcKey);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end('{}');
     } catch (err) {
       res.writeHead(502, { 'Content-Type': 'application/json' });
@@ -488,23 +498,18 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  // POST /api/admin/reject — reject (delete) a suggestion (passphrase required)
+  // POST /api/admin/reject — reject (delete) a suggestion (uses service key)
   if (req.method === 'POST' && req.url === '/api/admin/reject') {
     const svcKey = process.env.SUPABASE_SERVICE_KEY;
-    if (!ADMIN_PASSPHRASE || !svcKey) {
+    if (!svcKey) {
       res.writeHead(503, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Admin not configured' }));
+      res.end(JSON.stringify({ error: 'Server not configured (missing SUPABASE_SERVICE_KEY)' }));
       return;
     }
     let body = '';
     for await (const chunk of req) body += chunk;
     let parsed;
     try { parsed = JSON.parse(body); } catch { parsed = {}; }
-    if (!validateAdminPassphrase(parsed.passphrase)) {
-      res.writeHead(401, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Invalid passphrase' }));
-      return;
-    }
     const { id } = parsed;
     if (!id) {
       res.writeHead(400, { 'Content-Type': 'application/json' });

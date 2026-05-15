@@ -1625,7 +1625,7 @@
         const resp = await fetch('/api/admin/suggestions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ passphrase }),
+          body: JSON.stringify({}),
         });
         if (resp.status === 401) {
           status.textContent = '⚠️ Invalid passphrase';
@@ -1634,7 +1634,7 @@
         }
         if (resp.status === 503) {
           const err = await resp.json().catch(() => ({}));
-          status.textContent = `⚠️ ${err.error || 'Admin not configured on server'}`;
+          status.textContent = `⚠️ ${err.error || 'Server not configured'}`;
           list.innerHTML = '';
           return;
         }
@@ -1649,19 +1649,23 @@
       }
     }
 
+    // Store suggestion data for approve callbacks (avoids escaping issues in onclick)
+    const pendingSuggestionsMap = new Map();
+
     function renderPendingSuggestions(suggestions) {
       const list = document.getElementById('pending-list');
+      pendingSuggestionsMap.clear();
       if (!suggestions || suggestions.length === 0) {
         list.innerHTML = '<p style="color: var(--text-light);">No pending suggestions.</p>';
         return;
       }
+      suggestions.forEach(s => pendingSuggestionsMap.set(s.id, s));
       list.innerHTML = suggestions.map(s => {
         const inDict = dictionary?.lookup?.[s.english];
         const typeLabel = inDict ? 'edit' : 'new';
         const typeClass = inDict ? 'type-edited' : 'type-added';
         const noteStr = s.notes ? ` <span style="color:var(--text-light);font-size:0.8rem">(${s.notes})</span>` : '';
         const dateStr = s.created_at ? new Date(s.created_at).toLocaleDateString() : '';
-        const escapedEng = s.english.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         return `<div class="correction-item" id="pending-${s.id}">
           <div class="correction-info">
             <span class="correction-type ${typeClass}">${typeLabel}</span>
@@ -1669,20 +1673,33 @@
             <span style="color:var(--text-light);font-size:0.75rem;margin-left:0.5rem">${dateStr}</span>
           </div>
           <div class="pending-actions">
-            <button class="btn-approve" title="Approve" onclick="approveSuggestion('${s.id}', '${escapedEng}', ${!inDict})">✓</button>
-            <button class="btn-reject" title="Reject" onclick="rejectSuggestion('${s.id}', '${escapedEng}')">✗</button>
+            <button class="btn-approve" title="Approve" data-id="${s.id}">✓</button>
+            <button class="btn-reject" title="Reject" data-id="${s.id}">✗</button>
           </div>
         </div>`;
       }).join('');
+
+      list.querySelectorAll('.btn-approve').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const s = pendingSuggestionsMap.get(btn.dataset.id);
+          if (s) approveSuggestion(s.id, s.english, s.mienh, s.notes, !dictionary?.lookup?.[s.english]);
+        });
+      });
+      list.querySelectorAll('.btn-reject').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const s = pendingSuggestionsMap.get(btn.dataset.id);
+          if (s) rejectSuggestion(s.id, s.english);
+        });
+      });
     }
 
-    async function approveSuggestion(id, english, isNew) {
+    async function approveSuggestion(id, english, mienh, notes, isNew) {
       const passphrase = getPassphrase();
       try {
         const resp = await fetch('/api/admin/approve', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ passphrase, id, isNew }),
+          body: JSON.stringify({ passphrase, id, english, mienh, notes, isNew }),
         });
         if (resp.status === 401) { showToast('⚠️ Invalid passphrase'); return; }
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
