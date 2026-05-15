@@ -842,6 +842,110 @@
       opacity: 0.85;
     }
 
+    .output-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.55rem 0 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .copy-btn,
+    .share-btn {
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover,
+    .share-btn:hover {
+      border-color: rgba(45, 212, 191, 0.4);
+      background: rgba(45, 212, 191, 0.12);
+    }
+
+    .autocomplete-dropdown {
+      margin-top: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(15, 23, 41, 0.96);
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .autocomplete-item {
+      padding: 0.65rem 0.85rem;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 0.92rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .autocomplete-item + .autocomplete-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .autocomplete-item:hover {
+      background: rgba(45, 212, 191, 0.1);
+      color: var(--accent-teal);
+    }
+
+    .confidence-meter {
+      margin-bottom: 0.75rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .confidence-meter.high {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .confidence-meter.medium {
+      border-color: rgba(232, 168, 56, 0.35);
+      background: rgba(232, 168, 56, 0.08);
+    }
+
+    .confidence-meter.low {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .confidence-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 0.45rem;
+    }
+
+    .confidence-label strong {
+      color: var(--text);
+    }
+
+    .confidence-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .confidence-bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
     .tab-badge {
       display: inline-flex;
       align-items: center;
@@ -978,6 +1082,7 @@
             <button class="dir-btn" id="dir-imn-eng" data-dir="imn-eng">Iu Mienh → English <span class="beta-badge">Beta</span></button>
           </div>
           <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
+          <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
           <button class="translate-btn" id="translate-btn">Translate</button>
         </div>
         <div class="output-area" id="output-area">
@@ -1027,6 +1132,7 @@
           <div class="btn-row" style="margin-top: 1rem;">
             <button class="btn-small btn-save" id="sync-btn">🔄 Sync All to Community</button>
             <button class="btn-small btn-export" id="export-btn">Export</button>
+            <button class="btn-small btn-export" id="download-dict-btn">📥 Download Dictionary</button>
             <button class="btn-small btn-reset" id="reset-btn">Reset Local</button>
           </div>
         </div>
@@ -1055,6 +1161,9 @@
     let examplePairs = null;
     let knownMienhWords = new Set();
     let communityCorrections = []; // Corrections loaded from Supabase
+    const inputTextEl = document.getElementById('input-text');
+    const translateBtn = document.getElementById('translate-btn');
+    const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
 
     // Supabase configuration
     const SUPABASE_URL = 'https://jznienvopdejqvpalgbl.supabase.co';
@@ -1176,18 +1285,30 @@
     // Select the most relevant examples for a given input text (up to limit)
     function selectRelevantExamples(englishText, limit = 15) {
       const pairs = examplePairs || EXAMPLE_PAIRS;
-      if (pairs.length <= limit) return pairs;
+      if (!pairs || pairs.length === 0) return { examples: [], exampleCount: 0 };
 
-      const inputWords = new Set(englishText.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '').split(/\s+/));
+      const inputWords = new Set(
+        englishText
+          .toLowerCase()
+          .replace(/[.,!?;:'"()\[\]{}]/g, '')
+          .split(/\s+/)
+          .filter(Boolean)
+      );
+
       const scored = pairs.map(p => {
         const exWords = p.eng.toLowerCase().replace(/[.,!?;:'"()\[\]{}]/g, '').split(/\s+/);
         const overlap = exWords.filter(w => inputWords.has(w)).length;
-        // Boost conversational/non-bible examples so they aren't drowned out
         const boost = (!p.cat || !p.cat.startsWith('bible')) ? 2 : 1;
         return { pair: p, score: overlap * boost };
       });
+
       scored.sort((a, b) => b.score - a.score);
-      return scored.slice(0, limit).map(s => s.pair);
+      const matched = scored.filter(s => s.score > 0).slice(0, limit).map(s => s.pair);
+      const fallback = scored.slice(0, Math.min(limit, 5)).map(s => s.pair);
+      return {
+        examples: matched.length > 0 ? matched : fallback,
+        exampleCount: matched.length
+      };
     }
 
     // Translation engine: longest-match-first word/phrase lookup
@@ -1372,18 +1493,153 @@
     // === DIRECTION TOGGLE ===
     let translateDirection = 'eng-imn'; // 'eng-imn' or 'imn-eng'
 
-    document.querySelectorAll('.dir-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        translateDirection = btn.dataset.dir;
-        const input = document.getElementById('input-text');
-        if (translateDirection === 'imn-eng') {
-          input.placeholder = 'Mienh waac fiev naaiv...  (Type Iu Mienh text here)';
-        } else {
-          input.placeholder = 'Type English text here...';
-        }
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, ch => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[ch]));
+    }
+
+    function renderOutputActions() {
+      return '<div class="output-actions"><button type="button" class="copy-btn">📋 Copy</button><button type="button" class="share-btn">🔗 Share</button></div>';
+    }
+
+    function hideAutocompleteSuggestions() {
+      autocompleteDropdown.innerHTML = '';
+      autocompleteDropdown.classList.add('hidden');
+    }
+
+    function updateAutocompleteSuggestions(query = inputTextEl.value) {
+      const normalized = (query || '').toLowerCase().trim();
+      if (!dictionary || translateDirection !== 'eng-imn' || !normalized) {
+        hideAutocompleteSuggestions();
+        return;
+      }
+
+      const matches = Object.keys(dictionary.lookup)
+        .filter(term => {
+          const lowerTerm = term.toLowerCase();
+          return lowerTerm.startsWith(normalized) || lowerTerm.includes(normalized);
+        })
+        .sort((a, b) => {
+          const aStarts = a.toLowerCase().startsWith(normalized);
+          const bStarts = b.toLowerCase().startsWith(normalized);
+          if (aStarts && !bStarts) return -1;
+          if (bStarts && !aStarts) return 1;
+          if (a.length !== b.length) return a.length - b.length;
+          return a.localeCompare(b);
+        })
+        .slice(0, 5);
+
+      if (matches.length === 0) {
+        hideAutocompleteSuggestions();
+        return;
+      }
+
+      autocompleteDropdown.innerHTML = matches.map(term =>
+        `<div class="autocomplete-item">${escapeHtml(term)}</div>`
+      ).join('');
+      autocompleteDropdown.classList.remove('hidden');
+      autocompleteDropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+        item.addEventListener('click', () => {
+          inputTextEl.value = item.textContent;
+          hideAutocompleteSuggestions();
+          translateBtn.click();
+        });
       });
+    }
+
+    function setTranslateDirection(direction) {
+      if (direction !== 'eng-imn' && direction !== 'imn-eng') return;
+      translateDirection = direction;
+      document.querySelectorAll('.dir-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.dir === direction);
+      });
+      inputTextEl.placeholder = translateDirection === 'imn-eng'
+        ? 'Mienh waac fiev naaiv...  (Type Iu Mienh text here)'
+        : 'Type English text here...';
+      if (translateDirection === 'imn-eng') {
+        hideAutocompleteSuggestions();
+      } else {
+        updateAutocompleteSuggestions();
+      }
+    }
+
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.setAttribute('readonly', '');
+      temp.style.position = 'absolute';
+      temp.style.left = '-9999px';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+
+    function getShareUrl() {
+      const url = new URL(window.location.href);
+      url.search = '';
+      url.searchParams.set('q', inputTextEl.value.trim());
+      url.searchParams.set('dir', translateDirection);
+      return url.toString();
+    }
+
+    async function copyShareLink() {
+      const text = inputTextEl.value.trim();
+      if (!text) {
+        showToast('Enter text to share');
+        return;
+      }
+      await copyTextToClipboard(getShareUrl());
+      showToast('Link copied!');
+    }
+
+    function bindOutputActions(translation) {
+      const output = document.getElementById('output-area');
+      const copyBtn = output.querySelector('.copy-btn');
+      const shareBtn = output.querySelector('.share-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await copyTextToClipboard(translation);
+            showToast('Copied!');
+          } catch {
+            showToast('Copy failed');
+          }
+        });
+      }
+      if (shareBtn) {
+        shareBtn.addEventListener('click', async () => {
+          try {
+            await copyShareLink();
+          } catch {
+            showToast('Link copy failed');
+          }
+        });
+      }
+    }
+
+    function applySharedQueryFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q');
+      const direction = params.get('dir');
+      if (!query) return;
+      inputTextEl.value = query;
+      if (direction) setTranslateDirection(direction);
+      updateAutocompleteSuggestions();
+      translateBtn.click();
+    }
+
+    document.querySelectorAll('.dir-btn').forEach(btn => {
+      btn.addEventListener('click', () => setTranslateDirection(btn.dataset.dir));
     });
 
     // === TRANSLATION CACHE ===
@@ -1429,7 +1685,8 @@
     }
 
     document.getElementById('translate-btn').addEventListener('click', async () => {
-      const text = document.getElementById('input-text').value.trim();
+      const text = inputTextEl.value.trim();
+      hideAutocompleteSuggestions();
       if (!text) return;
 
       if (translateDirection === 'imn-eng') {
@@ -1488,12 +1745,16 @@
       }
     });
 
-    document.getElementById('input-text').addEventListener('keydown', (e) => {
+    inputTextEl.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        document.getElementById('translate-btn').click();
+        translateBtn.click();
       }
     });
+
+    inputTextEl.addEventListener('input', () => updateAutocompleteSuggestions());
+    inputTextEl.addEventListener('focus', () => updateAutocompleteSuggestions());
+    inputTextEl.addEventListener('blur', () => setTimeout(hideAutocompleteSuggestions, 150));
 
     document.getElementById('dict-search').addEventListener('input', (e) => {
       const query = e.target.value;
@@ -1935,6 +2196,24 @@
       showToast('Corrections exported!');
     });
 
+    document.getElementById('download-dict-btn').addEventListener('click', async () => {
+      try {
+        const resp = await fetch('/dict-slim.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        const blob = new Blob([text], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'dict-slim.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Dictionary downloaded!');
+      } catch (err) {
+        showToast(`Download failed: ${err.message}`);
+      }
+    });
+
     // Reset all corrections
     document.getElementById('reset-btn').addEventListener('click', () => {
       if (!confirm('Remove all your corrections? This cannot be undone.')) return;
@@ -2288,11 +2567,13 @@ Respond with ONLY:
 
       let html = '<div class="ai-output">';
       html += `<div class="ai-translation" style="color:var(--embroidery-gold)">${translation.replace(/\n/g, '<br>')}</div>`;
+      html += renderOutputActions();
       if (explanation) {
         html += `<div class="ai-explanation">${explanation.replace(/\n/g, '<br>')}</div>`;
       }
       html += '</div>';
       output.innerHTML = html;
+      bindOutputActions(translation);
     }
 
     function getAIEnabled() {
@@ -2386,7 +2667,7 @@ Respond with ONLY:
         ? `\n**DICTIONARY (YOU MUST USE THESE TRANSLATIONS — do not invent words):**\n${vocab.entries.join('\n')}\n`
         : '';
 
-      const examples = selectRelevantExamples(englishText);
+      const { examples, exampleCount } = selectRelevantExamples(englishText);
       const examplesSection = examples.map(p =>
         `English: ${p.eng}\nIu Mienh: ${p.imn}`
       ).join('\n\n');
@@ -2431,7 +2712,7 @@ Respond with ONLY:
 2. Then a blank line
 3. Then a brief explanation of the grammar/word choices (2-3 sentences max)`;
 
-      return { system, user, coverage: vocab.coverage, totalWords: vocab.totalWords };
+      return { system, user, coverage: vocab.coverage, totalWords: vocab.totalWords, exampleCount };
     }
 
     async function translateWithAI(englishText) {
@@ -2445,7 +2726,7 @@ Respond with ONLY:
         throw new Error('Please enter your API base URL in the settings above.');
       }
 
-      const { system, user, coverage, totalWords } = buildAIPrompt(englishText);
+      const { system, user, coverage, totalWords, exampleCount } = buildAIPrompt(englishText);
 
       // Build provider-specific payload with proper system/user message roles
       let payload;
@@ -2484,7 +2765,7 @@ Respond with ONLY:
           throw new Error(msg);
         }
         const data = await resp.json();
-        return { text: data.choices[0].message.content.trim(), coverage, totalWords };
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords, exampleCount };
       }
 
       // For custom/LiteLLM, call the user's URL directly (OpenAI-compatible)
@@ -2501,7 +2782,7 @@ Respond with ONLY:
           throw new Error(msg);
         }
         const data = await resp.json();
-        return { text: data.choices[0].message.content.trim(), coverage, totalWords };
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords, exampleCount };
       }
 
       // Try local proxy first (avoids CORS), fallback to direct API
@@ -2547,10 +2828,34 @@ Respond with ONLY:
       } else {
         text = data.choices[0].message.content.trim();
       }
-      return { text, coverage, totalWords };
+      return { text, coverage, totalWords, exampleCount };
     }
 
-    function renderAIResult({ text, coverage, totalWords }) {
+    function getConfidenceInfo(coverage = 0, exampleCount = 0) {
+      const clampedCoverage = Math.max(0, Math.min(coverage || 0, 1));
+      const exampleMatchScore = Math.min((exampleCount || 0) / 15, 1);
+      const score = clampedCoverage * 0.6 + exampleMatchScore * 0.4;
+      if (score >= 0.7) return { score, label: 'High confidence', tone: 'high', color: '#10b981' };
+      if (score >= 0.4) return { score, label: 'Medium confidence', tone: 'medium', color: '#e8a838' };
+      return { score, label: 'Low confidence', tone: 'low', color: '#ef4444' };
+    }
+
+    function renderConfidenceMeter(coverage = 0, totalWords = 0, exampleCount = 0) {
+      const { score, label, tone, color } = getConfidenceInfo(coverage, exampleCount);
+      const percentage = Math.round(score * 100);
+      const coveragePct = Math.round((coverage || 0) * 100);
+      const exampleLabel = `${exampleCount || 0} matching example${exampleCount === 1 ? '' : 's'}`;
+      return `<div class="confidence-meter ${tone}">
+        <div class="confidence-label"><strong>${label}</strong><span>${percentage}%</span></div>
+        <div class="confidence-bar"><span style="width:${percentage}%;background:${color}"></span></div>
+        <div class="confidence-label" style="margin-top:0.45rem;margin-bottom:0;font-size:0.75rem">
+          <span>${coveragePct}% dictionary coverage${totalWords > 0 ? ` • ${totalWords} word${totalWords === 1 ? '' : 's'}` : ''}</span>
+          <span>${exampleLabel}</span>
+        </div>
+      </div>`;
+    }
+
+    function renderAIResult({ text, coverage = 0, totalWords = 0, exampleCount = 0 }) {
       const output = document.getElementById('output-area');
       const parts = text.split(/\n\n/);
       const translation = parts[0] || text;
@@ -2572,15 +2877,9 @@ Respond with ONLY:
       }
 
       let html = '<div class="ai-output">';
-
-      // Coverage warning
-      if (coverage < 0.3 && totalWords > 2) {
-        html += '<div class="ai-warning ai-warning-red">⚠️ Most words in your text aren\'t in our dictionary. This translation may be unreliable.</div>';
-      } else if (coverage < 0.7 && totalWords > 2) {
-        html += `<div class="ai-warning ai-warning-yellow">⚠️ Some words aren't in our dictionary (${Math.round(coverage * 100)}% coverage). Translation may be less reliable.</div>`;
-      }
-
-      html += `<div class="ai-translation">${highlightedTranslation}</div>`;
+      html += renderConfidenceMeter(coverage, totalWords, exampleCount);
+      html += `<div class="ai-translation">${highlightedTranslation.replace(/\n/g, '<br>')}</div>`;
+      html += renderOutputActions();
 
       // Suspicious words warning
       if (suspicious.length > 0) {
@@ -2592,6 +2891,7 @@ Respond with ONLY:
       }
       html += '</div>';
       output.innerHTML = html;
+      bindOutputActions(translation);
     }
 
     // AI toggle and settings persistence
@@ -2736,8 +3036,13 @@ Respond with ONLY:
       localStorage.setItem(PASSPHRASE_KEY, e.target.value.trim());
     });
     // Load dictionary, then community corrections, then examples
-    loadDictionary().then(() => loadCommunityCorrections());
-    loadExamples();
+    Promise.all([
+      loadDictionary().then(() => loadCommunityCorrections()),
+      loadExamples()
+    ]).then(() => {
+      applySharedQueryFromUrl();
+      updateAutocompleteSuggestions();
+    });
   </script>
 </body>
 </html>
