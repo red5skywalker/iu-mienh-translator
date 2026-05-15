@@ -813,6 +813,50 @@
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
+    .cache-notice {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      margin-bottom: 0.5rem;
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--accent-teal);
+    }
+
+    .cache-notice button {
+      margin-left: auto;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-teal);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .cache-notice button:hover {
+      opacity: 0.85;
+    }
+
+    .tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      margin-left: 5px;
+      background: var(--embroidery-gold);
+      color: var(--bg-dark);
+      border-radius: 9px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
     @media (max-width: 600px) {
       body { padding: 0.5rem; }
       header h1 { font-size: 1.4rem; }
@@ -1342,6 +1386,48 @@
       });
     });
 
+    // === TRANSLATION CACHE ===
+    const TRANSLATION_CACHE_KEY = 'iu-mienh-translation-cache';
+
+    function getTranslationCache() {
+      try { return JSON.parse(localStorage.getItem(TRANSLATION_CACHE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function getCachedTranslation(text, direction) {
+      const cache = getTranslationCache();
+      const key = direction + ':' + text.trim().toLowerCase();
+      return cache[key] || null;
+    }
+
+    function setCachedTranslation(text, direction, result) {
+      const cache = getTranslationCache();
+      const key = direction + ':' + text.trim().toLowerCase();
+      cache[key] = { result, ts: Date.now() };
+      // Keep cache under 200 entries (LRU-ish: drop oldest)
+      const entries = Object.entries(cache);
+      if (entries.length > 200) {
+        entries.sort((a, b) => a[1].ts - b[1].ts);
+        const trimmed = Object.fromEntries(entries.slice(-200));
+        localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify(trimmed));
+      } else {
+        localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify(cache));
+      }
+    }
+
+    let skipCache = false; // flag for re-translate
+
+    function prependCacheNotice(output, text, direction) {
+      const notice = document.createElement('div');
+      notice.className = 'cache-notice';
+      notice.innerHTML = '⚡ Cached translation <button id="retranslate-btn">Re-translate</button>';
+      output.prepend(notice);
+      document.getElementById('retranslate-btn').addEventListener('click', () => {
+        skipCache = true;
+        document.getElementById('translate-btn').click();
+      });
+    }
+
     document.getElementById('translate-btn').addEventListener('click', async () => {
       const text = document.getElementById('input-text').value.trim();
       if (!text) return;
@@ -1350,9 +1436,20 @@
         // Reverse translation (Mienh → English)
         const output = document.getElementById('output-area');
         if (getAIEnabled()) {
+          // Check cache
+          if (!skipCache) {
+            const cached = getCachedTranslation(text, 'imn-eng');
+            if (cached) {
+              renderReverseResult(cached.result);
+              prependCacheNotice(output, text, 'imn-eng');
+              return;
+            }
+          }
+          skipCache = false;
           output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating Mienh → English with AI...</div>';
           try {
             const result = await translateMienhToEnglish(text);
+            setCachedTranslation(text, 'imn-eng', result);
             renderReverseResult(result);
           } catch (err) {
             output.innerHTML = `<span style="color:#f87171">⚠️ ${err.message}</span>`;
@@ -1366,9 +1463,20 @@
         // Forward translation (English → Mienh)
         if (getAIEnabled()) {
           const output = document.getElementById('output-area');
+          // Check cache
+          if (!skipCache) {
+            const cached = getCachedTranslation(text, 'eng-imn');
+            if (cached) {
+              renderAIResult(cached.result);
+              prependCacheNotice(output, text, 'eng-imn');
+              return;
+            }
+          }
+          skipCache = false;
           output.innerHTML = '<div class="ai-loading"><div class="spinner"></div>Translating with AI...</div>';
           try {
             const result = await translateWithAI(text);
+            setCachedTranslation(text, 'eng-imn', result);
             renderAIResult(result);
           } catch (err) {
             output.innerHTML = `<span style="color:#f87171">⚠️ ${err.message}</span>`;
@@ -1405,9 +1513,46 @@
         document.getElementById('tab-translate').classList.toggle('hidden', tab !== 'translate');
         document.getElementById('tab-dictionary').classList.toggle('hidden', tab !== 'dictionary');
         document.getElementById('tab-edit').classList.toggle('hidden', tab !== 'edit');
-        if (tab === 'edit') renderCorrectionsList();
+        if (tab === 'edit') {
+          renderCorrectionsList();
+          checkPendingSuggestionsCount();
+        }
       });
     });
+
+    // === PENDING SUGGESTIONS BADGE ===
+    async function checkPendingSuggestionsCount() {
+      const passphrase = getPassphrase();
+      if (!passphrase) { updateEditBadge(0); return; }
+      try {
+        const resp = await fetch('/api/admin/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ passphrase }),
+        });
+        if (!resp.ok) { updateEditBadge(0); return; }
+        const suggestions = await resp.json();
+        updateEditBadge(suggestions.length);
+      } catch { updateEditBadge(0); }
+    }
+
+    function updateEditBadge(count) {
+      const editBtn = document.querySelector('.tab-btn[data-tab="edit"]');
+      let badge = editBtn.querySelector('.tab-badge');
+      if (count > 0) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'tab-badge';
+          editBtn.appendChild(badge);
+        }
+        badge.textContent = count;
+      } else if (badge) {
+        badge.remove();
+      }
+    }
+
+    // Check for pending suggestions on page load (non-blocking)
+    setTimeout(() => checkPendingSuggestionsCount(), 2000);
 
     // === CORRECTIONS SYSTEM ===
     const CORRECTIONS_KEY = 'iu-mienh-corrections';
@@ -1715,6 +1860,7 @@
         document.getElementById(`pending-${id}`)?.remove();
         await loadCommunityCorrections();
         renderCorrectionsList();
+        checkPendingSuggestionsCount();
         showToast(`✓ Approved: "${english}"`);
       } catch (err) {
         showToast(`Approval failed: ${err.message}`);
@@ -1732,6 +1878,7 @@
         if (resp.status === 401) { showToast('⚠️ Invalid passphrase'); return; }
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         document.getElementById(`pending-${id}`)?.remove();
+        checkPendingSuggestionsCount();
         showToast(`Rejected: "${english}"`);
       } catch (err) {
         showToast(`Rejection failed: ${err.message}`);
