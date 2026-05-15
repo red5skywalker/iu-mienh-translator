@@ -2142,6 +2142,10 @@
       "m": "dau",
       "c": "answer (to respond, how did he answer?)",
       "f": "dau (Job 6:1); a person's answer=mienh dau daaih nyei waac (WT trans) ant"
+    },
+    {
+      "m": "waac-dau",
+      "c": "answer, response"
     }
   ],
   "answer to these questions": [
@@ -3944,6 +3948,12 @@
       "f": "dongh loz wuov; hnangv loz wuov nor"
     }
   ],
+  "be well-prepared": [
+    {
+      "m": "mbenc ziangx longx",
+      "c": "be well-prepared, prepare thoroughly"
+    }
+  ],
   "beach": [
     {
       "m": "Koiv-hlen",
@@ -5161,6 +5171,12 @@
       "m": "Wuonh",
       "c": "LearnMien.com",
       "f": "Boil food"
+    }
+  ],
+  "bold print": [
+    {
+      "m": "nzaangc-jieqv nqaengc",
+      "c": "bold print, text in bold"
     }
   ],
   "bold, courageous": [
@@ -6694,6 +6710,12 @@
       "f": "Call; Ask; (Someone is) called"
     }
   ],
+  "call back": [
+    {
+      "m": "daaux nqaang",
+      "c": "call back, return visit (ministry term)"
+    }
+  ],
   "calm": [
     {
       "m": "suonc hnyouv, hnyouv suonc",
@@ -7062,6 +7084,12 @@
       "m": "zoux bun …",
       "c": "cause (as a verb, to make something happen)",
       "f": "zoux bun … cause (without cause, without a reason)"
+    }
+  ],
+  "caution": [
+    {
+      "m": "faix fim",
+      "c": "caution, be careful, a word of warning"
     }
   ],
   "cautious": [
@@ -8471,6 +8499,12 @@
       "m": "zoux sic",
       "c": "conduct (the way one acts)",
       "f": "zoux sic; how should we conduct ourselves=mbuo horpc zuqc zoux sic daaih hnangv haaix nor conductor (of our meeting)"
+    }
+  ],
+  "conduct a study": [
+    {
+      "m": "njaaux mienh Ging-Sou",
+      "c": "conduct a Bible study"
     }
   ],
   "conducting a bible study": [
@@ -10449,6 +10483,10 @@
       "m": "zunh yaangh",
       "c": "declare (to speak out and make known to others)",
       "f": "zunh yaangh Ps 145:4)(used as a general term, when referring to the preaching work use zunh doz) decrease (to cut out or take away from)"
+    },
+    {
+      "m": "zunh",
+      "c": "declare, proclaim, preach"
     }
   ],
   "decorate": [
@@ -11179,6 +11217,12 @@
       "m": "dorh jauv",
       "c": "direct (lead, guide)",
       "f": "dorh jauv; yienz jauv direction (compass direction)"
+    }
+  ],
+  "direct approach": [
+    {
+      "m": "dorng jienv mienh",
+      "c": "direct approach, approaching people directly (in ministry)"
     }
   ],
   "direction": [
@@ -12188,6 +12232,12 @@
       "m": "Gaengh nyoi",
       "c": "LearnMien.com",
       "f": "Doorknob"
+    }
+  ],
+  "doorstep": [
+    {
+      "m": "gaengh ndaangc",
+      "c": "doorstep, front door area"
     }
   ],
   "doorway": [
@@ -14233,6 +14283,12 @@
     {
       "m": "tiuv",
       "f": "tiuv"
+    }
+  ],
+  "exciting": [
+    {
+      "m": "muonh haic",
+      "c": "exciting, thrilling"
     }
   ],
   "exclusive devotion": [
@@ -24269,6 +24325,12 @@
       "f": "hoqc hiuv nyei jauv (also: njaaux mienh)"
     }
   ],
+  "instructor": [
+    {
+      "m": "njaaux nyei mienh",
+      "c": "instructor, teacher, the one who teaches"
+    }
+  ],
   "instruments": [
     {
       "m": "longc zoux gong nyei jaa-sic",
@@ -24327,6 +24389,10 @@
       "m": "oix nyei",
       "c": "interested (not interested)",
       "f": "oix nyei (what are their interests=ninh mbuo oix nyei se haaix nyungc (WT); maiv nangc oix (not really want (WT); maiv guen maiv sic nyei -Mt 22:5) interpret"
+    },
+    {
+      "m": "oix muangx",
+      "c": "interested, wanting to listen"
     }
   ],
   "interpret": [
@@ -32375,6 +32441,12 @@
       "f": "gauh jaaix jiex (Lk 12:23)"
     }
   ],
+  "moreover": [
+    {
+      "m": "maiv daan mbuoqc naaic",
+      "c": "moreover, in addition, not only that"
+    }
+  ],
   "moreover, more than this": [
     {
       "m": "gauh camv jiex naaiv",
@@ -35514,6 +35586,12 @@
     {
       "m": "zuiz maiv ndortv zuqc yie",
       "c": "from example phrase"
+    }
+  ],
+  "not only that": [
+    {
+      "m": "maiv daan mbuoqc naaic",
+      "c": "not only that, moreover, in addition"
     }
   ],
   "not only this, not only that": [
@@ -40214,6 +40292,10 @@
       "m": "taaih",
       "c": "privilege (advantage or favor)",
       "f": "taaih (what privilege do we enjoy=Yehowaa hnangv haaix nor taaih mbuo)WT privileges (of service) (theocratic expression)"
+    },
+    {
+      "m": "kuv gong",
+      "c": "privilege, good work, honor"
     }
   ],
   "privileges": [
@@ -40899,6 +40981,10 @@
     {
       "m": "naaic joux waac",
       "f": "naaic joux waac (Luke 22:68); waac-naaic (see second par. Truth tract) questions"
+    },
+    {
+      "m": "waac-naaic",
+      "c": "question"
     }
   ],
   "questions": [
@@ -41477,6 +41563,12 @@
       "m": "aeqv",
       "c": "regarding (used like \"as for\")",
       "f": "aeqv (used after subject - ninh aeqv=as for him)"
+    }
+  ],
+  "regardless": [
+    {
+      "m": "maiv gunv",
+      "c": "regardless, no matter what"
     }
   ],
   "register": [
@@ -43228,6 +43320,10 @@
     {
       "m": "ga'naanh",
       "f": "ga'naanh (1 Sam 2:8) scare (to scare someone)"
+    },
+    {
+      "m": "maiv nangc maaih",
+      "c": "scarce, not much available"
     }
   ],
   "scare": [
@@ -43391,6 +43487,12 @@
       "m": "Ging-Sou njaaux daaih nyei jauv",
       "c": "WT trans; Ging-Sou nyei jauv-louc; also: scriptual information",
       "f": "Ging-Sou njaaux daaih nyei jauv (WT trans; Ging-Sou nyei jauv-louc; also: scriptual information)"
+    }
+  ],
+  "scripture": [
+    {
+      "m": "Ging-Sou yiemc",
+      "c": "scripture, Bible verse"
     }
   ],
   "scriptures": [
@@ -47218,6 +47320,12 @@
       "f": "hoqc Ging-Sou"
     }
   ],
+  "studying the Bible": [
+    {
+      "m": "hoqc Ging-Sou",
+      "c": "studying the Bible"
+    }
+  ],
   "stuff": [
     {
       "m": "Ga'naaiv",
@@ -47870,6 +47978,12 @@
       "f": "gec (Truth tract last paragraph back page) tail"
     }
   ],
+  "tactful": [
+    {
+      "m": "dorh leiz",
+      "c": "tactful, using good judgment"
+    }
+  ],
   "tail": [
     {
       "m": "dueiv",
@@ -48440,6 +48554,10 @@
       "m": "mbuo nyei zunh doz dorngx",
       "c": "territory (as the territory in the ministry)",
       "f": "mbuo nyei zunh doz dorngx (our preach place) test (as a trial, to put to the test)"
+    },
+    {
+      "m": "jaang",
+      "c": "territory (field ministry area)"
     }
   ],
   "test": [
@@ -49097,6 +49215,12 @@
       "m": "Saan",
       "c": "LearnMien.com",
       "f": "Third son's name"
+    }
+  ],
+  "thirsting ones": [
+    {
+      "m": "jaang nqaatv nyei mienh",
+      "c": "thirsting ones, people seeking truth"
     }
   ],
   "thirsty": [
@@ -50989,6 +51113,16 @@
     {
       "m": "faan waac",
       "f": "faan waac; faan zaqc=literal translation (faan waac benx Mienh waac=translate into the Mienh language) trash bag"
+    },
+    {
+      "m": "faan cuotv",
+      "c": "translate into another language"
+    }
+  ],
+  "translated": [
+    {
+      "m": "faan cuotv",
+      "c": "translated into another language"
     }
   ],
   "trash": [
@@ -51243,6 +51377,10 @@
       "m": "zien waac",
       "c": "jw.org parallel text",
       "f": "zien waac"
+    },
+    {
+      "m": "zien leiz",
+      "c": "truth, the truth (religious)"
     }
   ],
   "try": [
