@@ -2524,6 +2524,12 @@
       "f": "Aa^laa^maa^getc^ndon"
     }
   ],
+  "Armageddon": [
+    {
+      "m": "Aa^maa^ge^ndon",
+      "c": "the final battle where God destroys wickedness"
+    }
+  ],
   "armpit": [
     {
       "m": "Buoz sei ndiev",
@@ -4601,6 +4607,12 @@
       "c": "Bible principles, scriptural laws"
     }
   ],
+  "Bible principles": [
+    {
+      "m": "Ging-Sou nyei lingc leiz",
+      "c": "fundamental truths from the Bible"
+    }
+  ],
   "bible prophecy": [
     {
       "m": "Ging-Sou nyei zinh hoz waac",
@@ -4626,6 +4638,12 @@
       "m": "njaaux jienv horqc saeng mingh",
       "c": "Bible Study (conducting a Bible study)",
       "f": "njaaux jienv horqc saeng mingh (WT) Bible study (see 2+word section for prepare for and sit in on BS)"
+    }
+  ],
+  "Bible study": [
+    {
+      "m": "hoqc Ging-Sou",
+      "c": "a systematic study of the Bible"
     }
   ],
   "bible teachings": [
@@ -13467,6 +13485,12 @@
       "f": "E^li^yaa"
     }
   ],
+  "eliminate": [
+    {
+      "m": "zorqv guangc nzengc",
+      "c": "to completely remove or destroy"
+    }
+  ],
   "eliphaz": [
     {
       "m": "E^li^fatv",
@@ -14924,6 +14948,12 @@
       "f": "jaav douc waac mienh"
     }
   ],
+  "false prophets": [
+    {
+      "m": "jaav nyei douc waac mienh",
+      "c": "religious context — those who claim to speak for God but teach falsehood"
+    }
+  ],
   "false religion": [
     {
       "m": "jaav buoqc zaangc nyei jauv",
@@ -15485,6 +15515,12 @@
       "m": "nzong ndeic",
       "c": "field (under cultivation, or for farming)",
       "f": "nzong ndeic (Mt 13:44); nzong is the classifier for fields, cultivated or not as a piece of property fierce"
+    }
+  ],
+  "field ministry": [
+    {
+      "m": "zunh doz nyei gong",
+      "c": "preaching and teaching work done by Jehovah's Witnesses"
     }
   ],
   "fiem": [
@@ -16398,6 +16434,12 @@
       "m": "jaa-ndaangc gorngv",
       "c": "see Listen Broch. Pg 20",
       "f": "jaa-ndaangc gorngv (see Listen Broch. Pg 20)"
+    }
+  ],
+  "foretold": [
+    {
+      "m": "jaa-ndaangc gorngv ziangx",
+      "c": "prophesied, predicted in advance"
     }
   ],
   "forever": [
@@ -18172,6 +18214,12 @@
       "m": "Tin-Hungh nyei guoqv",
       "c": "God's kingdom",
       "f": "Tin-Hungh nyei guoqv (Lk 9:62)"
+    }
+  ],
+  "God's Kingdom": [
+    {
+      "m": "Tin-Hungh nyei Guoqv",
+      "c": "heavenly government established by God"
     }
   ],
   "god's law": [
@@ -21909,6 +21957,12 @@
       "f": "cing-nzengc"
     }
   ],
+  "holy ones": [
+    {
+      "m": "cing-nzengc mienh",
+      "c": "those chosen to rule with Christ in heaven"
+    }
+  ],
   "holy spirit": [
     {
       "m": "Singx Qaqv",
@@ -24232,6 +24286,12 @@
       "m": "nzipc inidicate",
       "c": "inherit (as: a general term; see Truth Tract subject 4)",
       "f": "nzipc inidicate (tells us what)"
+    }
+  ],
+  "inherited": [
+    {
+      "m": "nzipc jienv",
+      "c": "received from ancestors, passed down"
     }
   ],
   "inidicate": [
@@ -43145,6 +43205,12 @@
       "f": "Sanx^mbaan^latv"
     }
   ],
+  "sanctified": [
+    {
+      "m": "bun cing-nzengc",
+      "c": "to make holy or set apart"
+    }
+  ],
   "sanctify": [
     {
       "m": "cing-nzengc",
@@ -46397,6 +46463,12 @@
       "f": "lorz taux mienv nyei sic (what sort of spiritistic practices do we avoid?=mbuo simv nqoi haaix nyungc sic dongh lorz taux mienv wuov?) WT trans) spiritual (something is spiritual)"
     }
   ],
+  "spiritual": [
+    {
+      "m": "lingh wuonh",
+      "c": "relating to the spirit or spiritual matters"
+    }
+  ],
   "spiritual food": [
     {
       "m": "Ging-Sou caux dieh deix sou",
@@ -47378,6 +47450,12 @@
     {
       "m": "jauv",
       "f": "jauv (what two subjects…=maaih haaix nyungc i diuc jauv…)WT subject(ion)"
+    }
+  ],
+  "subjects": [
+    {
+      "m": "baeqc fingx",
+      "c": "citizens or subjects of a kingdom"
     }
   ],
   "submerge": [
