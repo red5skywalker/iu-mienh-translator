@@ -556,6 +556,21 @@
     .type-edited { background: rgba(232, 168, 56, 0.2); color: #e8a838; }
     .type-added { background: rgba(16, 185, 129, 0.2); color: #10b981; }
     .type-deleted { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .type-suggested { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+
+    .pending-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .btn-approve {
+      background: rgba(16, 185, 129, 0.15); color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.2rem 0.6rem;
+      border-radius: 4px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+    }
+    .btn-approve:hover { background: rgba(16, 185, 129, 0.3); }
+    .btn-reject {
+      background: rgba(239, 68, 68, 0.15); color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.2rem 0.6rem;
+      border-radius: 4px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+    }
+    .btn-reject:hover { background: rgba(239, 68, 68, 0.3); }
 
     .toast {
       position: fixed;
@@ -971,6 +986,17 @@
             <button class="btn-small btn-reset" id="reset-btn">Reset Local</button>
           </div>
         </div>
+
+        <div class="edit-section" id="pending-suggestions-section" style="display:none">
+          <h3>⏳ Pending Suggestions</h3>
+          <div id="pending-status" style="font-size:0.82rem;color:var(--text-light);margin-bottom:0.5rem"></div>
+          <div class="corrections-list" id="pending-list">
+            <p style="color: var(--text-light);">No pending suggestions.</p>
+          </div>
+          <div class="btn-row" style="margin-top: 0.75rem;">
+            <button class="btn-small btn-save" id="refresh-pending-btn">🔄 Refresh</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1002,7 +1028,7 @@
         return;
       }
       try {
-        const resp = await fetch(`${SUPABASE_URL}/rest/v1/corrections?select=*`, {
+        const resp = await fetch(`${SUPABASE_URL}/rest/v1/corrections?type=neq.suggested&select=*`, {
           headers: {
             'apikey': SUPABASE_ANON_KEY,
             'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -1479,7 +1505,7 @@
         mienh, context: notes || undefined, full: notes ? `${mienh} (${notes})` : mienh
       }];
 
-      // Push to Supabase if passphrase is set
+      // Push to Supabase if passphrase is set, otherwise submit as a suggestion for review
       const passphrase = getPassphrase();
       if (passphrase && SUPABASE_URL) {
         try {
@@ -1489,7 +1515,20 @@
           showToast(`✓ Saved locally (share failed: ${err.message})`);
         }
       } else {
-        showToast(`✓ Saved locally: "${english}" → "${mienh}"`);
+        try {
+          const resp = await fetch('/api/suggest', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ english, mienh, notes }),
+          });
+          if (resp.ok) {
+            showToast(`✓ Saved & submitted for review: "${english}" → "${mienh}"`);
+          } else {
+            showToast(`✓ Saved locally: "${english}" → "${mienh}"`);
+          }
+        } catch {
+          showToast(`✓ Saved locally: "${english}" → "${mienh}"`);
+        }
       }
 
       document.getElementById('edit-english').value = '';
@@ -1573,9 +1612,108 @@
       }).join('');
     }
 
-    // Sync all local corrections to Supabase
-    document.getElementById('sync-btn').addEventListener('click', async () => {
+    // === PENDING SUGGESTIONS (admin) ===
+    async function loadPendingSuggestions() {
       const passphrase = getPassphrase();
+      if (!passphrase) return;
+
+      const status = document.getElementById('pending-status');
+      const list = document.getElementById('pending-list');
+      status.textContent = '⏳ Loading...';
+
+      try {
+        const resp = await fetch('/api/admin/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ passphrase }),
+        });
+        if (resp.status === 401) {
+          status.textContent = '⚠️ Invalid passphrase';
+          list.innerHTML = '';
+          return;
+        }
+        if (resp.status === 503) {
+          const err = await resp.json().catch(() => ({}));
+          status.textContent = `⚠️ ${err.error || 'Admin not configured on server'}`;
+          list.innerHTML = '';
+          return;
+        }
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const suggestions = await resp.json();
+        status.textContent = suggestions.length > 0
+          ? `${suggestions.length} pending suggestion${suggestions.length !== 1 ? 's' : ''}`
+          : 'No pending suggestions.';
+        renderPendingSuggestions(suggestions);
+      } catch (err) {
+        status.textContent = `⚠️ Could not load: ${err.message}`;
+      }
+    }
+
+    function renderPendingSuggestions(suggestions) {
+      const list = document.getElementById('pending-list');
+      if (!suggestions || suggestions.length === 0) {
+        list.innerHTML = '<p style="color: var(--text-light);">No pending suggestions.</p>';
+        return;
+      }
+      list.innerHTML = suggestions.map(s => {
+        const inDict = dictionary?.lookup?.[s.english];
+        const typeLabel = inDict ? 'edit' : 'new';
+        const typeClass = inDict ? 'type-edited' : 'type-added';
+        const noteStr = s.notes ? ` <span style="color:var(--text-light);font-size:0.8rem">(${s.notes})</span>` : '';
+        const dateStr = s.created_at ? new Date(s.created_at).toLocaleDateString() : '';
+        const escapedEng = s.english.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        return `<div class="correction-item" id="pending-${s.id}">
+          <div class="correction-info">
+            <span class="correction-type ${typeClass}">${typeLabel}</span>
+            <strong>${s.english}</strong> → ${s.mienh}${noteStr}
+            <span style="color:var(--text-light);font-size:0.75rem;margin-left:0.5rem">${dateStr}</span>
+          </div>
+          <div class="pending-actions">
+            <button class="btn-approve" title="Approve" onclick="approveSuggestion('${s.id}', '${escapedEng}', ${!inDict})">✓</button>
+            <button class="btn-reject" title="Reject" onclick="rejectSuggestion('${s.id}', '${escapedEng}')">✗</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    async function approveSuggestion(id, english, isNew) {
+      const passphrase = getPassphrase();
+      try {
+        const resp = await fetch('/api/admin/approve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ passphrase, id, isNew }),
+        });
+        if (resp.status === 401) { showToast('⚠️ Invalid passphrase'); return; }
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        document.getElementById(`pending-${id}`)?.remove();
+        await loadCommunityCorrections();
+        renderCorrectionsList();
+        showToast(`✓ Approved: "${english}"`);
+      } catch (err) {
+        showToast(`Approval failed: ${err.message}`);
+      }
+    }
+
+    async function rejectSuggestion(id, english) {
+      const passphrase = getPassphrase();
+      try {
+        const resp = await fetch('/api/admin/reject', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ passphrase, id }),
+        });
+        if (resp.status === 401) { showToast('⚠️ Invalid passphrase'); return; }
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        document.getElementById(`pending-${id}`)?.remove();
+        showToast(`Rejected: "${english}"`);
+      } catch (err) {
+        showToast(`Rejection failed: ${err.message}`);
+      }
+    }
+
+    // Sync all local corrections to Supabase
+    document.getElementById('sync-btn').addEventListener('click', async () => {      const passphrase = getPassphrase();
       if (!passphrase) { showToast('Enter the community passphrase first'); return; }
       if (!SUPABASE_URL) { showToast('Supabase not configured'); return; }
 
@@ -1624,6 +1762,18 @@
         renderCorrectionsList();
         showToast('All corrections reset');
       });
+    });
+
+    // Show/hide pending suggestions section based on passphrase
+    document.getElementById('community-passphrase').addEventListener('input', () => {
+      const hasPassphrase = !!getPassphrase();
+      const section = document.getElementById('pending-suggestions-section');
+      section.style.display = hasPassphrase ? '' : 'none';
+      if (hasPassphrase) loadPendingSuggestions();
+    });
+
+    document.getElementById('refresh-pending-btn').addEventListener('click', () => {
+      loadPendingSuggestions();
     });
 
     // === AI TRANSLATION ===
