@@ -2417,6 +2417,13 @@ SENTENCE PARTICLES:
         `Iu Mienh: ${p.imn}\nEnglish: ${p.eng}`
       ).join('\n\n');
 
+      // Compute coverage: how many input words we found in reverse lookup
+      const words = mienhText.toLowerCase().split(/[\s,;!?.]+/).filter(w => w.length > 1);
+      const rev = getReverseLookup();
+      let matchedWords = 0;
+      for (const w of words) { if (rev[w]) matchedWords++; }
+      const coverage = words.length > 0 ? matchedWords / words.length : 0;
+
       const system = `You are an expert translator for Iu Mienh (a Hmong-Mien language spoken by the Mien people).
 Your task is to translate FROM Iu Mienh INTO natural English.
 
@@ -2442,7 +2449,7 @@ Respond with ONLY:
 2. Then a blank line
 3. Then a brief explanation of the grammar/word choices (2-3 sentences max)`;
 
-      return { system, user };
+      return { system, user, coverage, totalWords: words.length, exampleCount: examples.length };
     }
 
     // AI reverse translation
@@ -2457,7 +2464,7 @@ Respond with ONLY:
         throw new Error('Please enter your API base URL in the settings above.');
       }
 
-      const { system, user } = buildReverseAIPrompt(mienhText);
+      const { system, user, coverage, totalWords, exampleCount } = buildReverseAIPrompt(mienhText);
 
       let payload;
       if (provider === 'anthropic') {
@@ -2495,7 +2502,7 @@ Respond with ONLY:
           throw new Error(msg);
         }
         const data = await resp.json();
-        return { text: data.choices[0].message.content.trim() };
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords, exampleCount };
       }
 
       if (provider === 'custom') {
@@ -2511,7 +2518,7 @@ Respond with ONLY:
           throw new Error(msg);
         }
         const data = await resp.json();
-        return { text: data.choices[0].message.content.trim() };
+        return { text: data.choices[0].message.content.trim(), coverage, totalWords, exampleCount };
       }
 
       let resp;
@@ -2555,17 +2562,20 @@ Respond with ONLY:
       } else {
         text = data.choices[0].message.content.trim();
       }
-      return { text };
+      return { text, coverage, totalWords, exampleCount };
     }
 
     // Render reverse translation result
-    function renderReverseResult({ text }) {
+    function renderReverseResult({ text, coverage = 0, totalWords = 0, exampleCount = 0 }) {
       const output = document.getElementById('output-area');
       const parts = text.split(/\n\n/);
       const translation = parts[0] || text;
       const explanation = parts.slice(1).join('\n\n');
 
       let html = '<div class="ai-output">';
+      if (totalWords > 0) {
+        html += renderConfidenceMeter(coverage, totalWords, exampleCount);
+      }
       html += `<div class="ai-translation" style="color:var(--embroidery-gold)">${translation.replace(/\n/g, '<br>')}</div>`;
       html += renderOutputActions();
       if (explanation) {
