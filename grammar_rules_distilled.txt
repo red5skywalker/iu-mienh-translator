@@ -38,7 +38,7 @@
 27. Double negation does not always cancel. Negating both an auxiliary and a result/main verb can still yield a stronger negative, while a fronted negative topic plus negative focus can yield a strong affirmative reading.
 
 ### Questions
-28. Yes/no questions usually keep statement word order and add sentence-final **fai** with rising intonation. A falling question can use **saah/saaqh**.
+28. Yes/no questions usually keep statement word order and add sentence-final **nyei fai** with rising intonation. The assertive particle nyei almost always precedes fai — pattern: Subject + VP + nyei fai? Example: "Meih oix hoqc Ging-Sou nyei fai?" (Do you want to study the Bible?). A falling question can use **saah/saaqh**.
 29. Content questions use interrogative words in normal clause positions. Important forms: **haaix dauh** “who?”, **haaix nyungc** “what/which kind?”, **haaix zanc** “when?”, **yiem haaix / haaix ndau** “where?”, **hnangv haaix nor** “how?”, **weic haaix diuc** or colloquial **zoux haiv nyungc** “why?”, **mbuoqc ziex** “how many?”.
 30. Sentence-final **mv bei** adds “I wonder …” or self-questioning uncertainty.
 
