@@ -1596,7 +1596,14 @@
         return;
       }
 
-      container.innerHTML = allEntries.map(c => {
+      // Sort newest first (community entries have created_at, local have date)
+      allEntries.sort((a, b) => new Date(b.created_at || b.date || 0) - new Date(a.created_at || a.date || 0));
+
+      const LIMIT = 10;
+      const displayed = allEntries.slice(0, LIMIT);
+      const hiddenCount = allEntries.length - displayed.length;
+
+      container.innerHTML = displayed.map(c => {
         const typeClass = c.type === 'edited' ? 'type-edited' : c.type === 'added' ? 'type-added' : 'type-deleted';
         const typeLabel = c.type === 'edited' ? 'edited' : c.type === 'added' ? 'new' : 'deleted';
         const defText = c.type === 'delete' ? '<em>removed</em>' : `→ ${c.mienh}`;
@@ -1609,7 +1616,9 @@
             <strong>${c.english}</strong> ${defText}
           </div>
         </div>`;
-      }).join('');
+      }).join('') + (hiddenCount > 0
+        ? `<p style="color:var(--text-light);font-size:0.82rem;margin-top:0.5rem">…and ${hiddenCount} more (${allEntries.length} total)</p>`
+        : '');
     }
 
     // === PENDING SUGGESTIONS (admin) ===
@@ -1738,13 +1747,22 @@
       if (corrections.length === 0) { showToast('No corrections to sync'); return; }
 
       let synced = 0, failed = 0;
+      const syncedTerms = new Set();
       for (const c of corrections) {
         try {
           await submitToSupabase(c.english, c.mienh, c.notes, c.type);
+          syncedTerms.add(c.english);
           synced++;
         } catch {
           failed++;
         }
+      }
+
+      // Remove successfully synced corrections from localStorage so they
+      // don't get re-synced on the next click
+      if (syncedTerms.size > 0) {
+        const remaining = getCorrections().filter(c => !syncedTerms.has(c.english));
+        saveCorrections(remaining);
       }
 
       if (failed > 0) {
