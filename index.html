@@ -184,6 +184,15 @@
       color: var(--primary-dark);
       font-size: 1rem;
       box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .swap-indicator:hover {
+      background: var(--primary-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(180deg);
     }
 
     .beta-badge {
@@ -963,50 +972,79 @@
     }
 
     @media (max-width: 900px) {
-      body { padding: 1rem; }
-      .translator-toolbar { align-items: stretch; }
+      body { padding: 0.75rem; }
+      .container { max-width: 100%; }
+      .translator-toolbar { align-items: stretch; flex-direction: column; gap: 0.75rem; }
       .direction-toggle { min-width: 0; width: 100%; }
       .translator-panels { grid-template-columns: 1fr; }
       .translator-panel + .translator-panel {
         border-left: none;
         border-top: 1px solid var(--border);
       }
+      .translator-panel { min-height: 200px; }
       .translate-actions { justify-content: stretch; }
       .translate-btn { width: 100%; }
     }
 
     @media (max-width: 600px) {
-      body { padding: 0.75rem; }
-      header { padding: 2.2rem 0 1.1rem; }
-      header h1 { font-size: 1.55rem; }
+      body { padding: 0.5rem; }
+      header { padding: 1.5rem 0 0.75rem; }
+      header h1 { font-size: 1.3rem; }
+      header p { font-size: 0.8rem; }
       .card,
-      .translator-card { padding: 1rem; }
+      .translator-card { padding: 0.75rem; border-radius: 14px; }
       .tabs {
-        gap: 0.9rem;
-        overflow-x: auto;
+        gap: 0;
+        background: var(--card-muted);
+        border-radius: 12px;
+        padding: 4px;
       }
-      .tab-btn { white-space: nowrap; }
+      .tab-btn {
+        white-space: nowrap;
+        font-size: 0.82rem;
+        padding: 0.6rem 0.5rem;
+        border-radius: 10px;
+      }
       .direction-toggle {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0.35rem;
+      }
+      .dir-btn {
+        min-height: 40px;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.82rem;
       }
       .swap-indicator {
-        justify-self: center;
-        transform: rotate(90deg);
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
       }
       .ai-toggle-row {
         width: 100%;
-        border-radius: 16px;
+        border-radius: 12px;
+        padding: 0.4rem 0.6rem;
       }
-      .input-area textarea,
+      .ai-toggle-row label { font-size: 0.78rem; }
+      .input-area textarea {
+        min-height: 150px;
+        font-size: 1rem;
+        padding: 0.75rem;
+      }
       .output-area {
-        min-height: 220px;
-        font-size: 1.08rem;
+        min-height: 150px;
+        font-size: 1rem;
+        padding: 0.75rem;
       }
+      .translator-panel { min-height: 160px; padding: 0.75rem; }
+      .translate-btn { padding: 0.75rem; font-size: 0.9rem; border-radius: 12px; }
       .correction-item {
         align-items: flex-start;
         flex-direction: column;
+        gap: 0.4rem;
       }
+      .confidence-meter { padding: 0.5rem; }
+      .output-actions { gap: 0.35rem; }
+      .copy-btn, .share-btn { font-size: 0.72rem; padding: 0.3rem 0.55rem; }
     }
   </style>
 </head>
@@ -1029,7 +1067,7 @@
         <div class="translator-toolbar">
           <div class="direction-toggle" aria-label="Translation direction">
             <button class="dir-btn active" id="dir-eng-imn" data-dir="eng-imn">English → Iu Mienh</button>
-            <div class="swap-indicator" aria-hidden="true">⇄</div>
+            <button class="swap-indicator" id="swap-direction-btn" aria-label="Swap languages" title="Swap languages">⇄</button>
             <button class="dir-btn" id="dir-imn-eng" data-dir="imn-eng">Iu Mienh → English <span class="beta-badge">Beta</span></button>
           </div>
           <div class="ai-toggle-row">
@@ -1664,6 +1702,12 @@
 
     document.querySelectorAll('.dir-btn').forEach(btn => {
       btn.addEventListener('click', () => setTranslateDirection(btn.dataset.dir));
+    });
+
+    // Swap button toggles direction
+    document.getElementById('swap-direction-btn').addEventListener('click', () => {
+      const newDir = translateDirection === 'eng-imn' ? 'imn-eng' : 'eng-imn';
+      setTranslateDirection(newDir);
     });
 
     // === TRANSLATION CACHE ===
