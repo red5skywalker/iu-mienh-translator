@@ -2926,15 +2926,9 @@ Respond with ONLY:
     function renderConfidenceMeter(coverage = 0, totalWords = 0, exampleCount = 0) {
       const { score, label, tone, color } = getConfidenceInfo(coverage, exampleCount);
       const percentage = Math.round(score * 100);
-      const coveragePct = Math.round((coverage || 0) * 100);
-      const exampleLabel = `${exampleCount || 0} matching example${exampleCount === 1 ? '' : 's'}`;
       return `<div class="confidence-meter ${tone}">
         <div class="confidence-label"><strong>${label}</strong><span>${percentage}%</span></div>
         <div class="confidence-bar"><span style="width:${percentage}%;background:${color}"></span></div>
-        <div class="confidence-label" style="margin-top:0.45rem;margin-bottom:0;font-size:0.75rem">
-          <span>${coveragePct}% dictionary coverage${totalWords > 0 ? ` • ${totalWords} word${totalWords === 1 ? '' : 's'}` : ''}</span>
-          <span>${exampleLabel}</span>
-        </div>
       </div>`;
     }
 
