@@ -62,7 +62,7 @@
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 720px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -211,8 +211,6 @@
     }
 
     .translator-panels {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
@@ -220,27 +218,27 @@
     }
 
     .translator-panel {
-      min-height: 340px;
       display: flex;
       flex-direction: column;
       background: var(--card);
     }
 
     .translator-panel + .translator-panel {
-      border-left: 1px solid var(--border);
+      border-top: 1px solid var(--border);
     }
 
     .panel-header {
-      padding: 1rem 1.25rem;
+      padding: 0.75rem 1.25rem;
       border-bottom: 1px solid var(--border);
-      background: #fff;
+      background: var(--card-muted);
     }
 
     .panel-label {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      color: var(--text-light);
+      color: var(--primary-dark);
       letter-spacing: 0.01em;
+      text-transform: uppercase;
     }
 
     .lang-imn-eng {
@@ -258,7 +256,6 @@
     .input-area {
       position: relative;
       display: flex;
-      flex: 1;
       flex-direction: column;
       min-height: 0;
       background: #fff;
@@ -266,15 +263,14 @@
 
     .input-area textarea {
       width: 100%;
-      min-height: 260px;
-      flex: 1;
+      min-height: 160px;
       padding: 1.25rem;
       border: none;
       border-radius: 0;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       line-height: 1.45;
       font-family: inherit;
-      resize: none;
+      resize: vertical;
       outline: none;
       transition: box-shadow 0.2s;
       background: transparent;
@@ -291,22 +287,24 @@
 
     .translate-actions {
       display: flex;
-      justify-content: flex-end;
-      margin-top: 1rem;
+      justify-content: center;
+      padding: 0.75rem 1.25rem;
+      background: #fff;
+      border-top: 1px solid var(--border);
     }
 
     .translate-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 160px;
-      padding: 0.9rem 1.5rem;
+      min-width: 140px;
+      padding: 0.75rem 1.5rem;
       margin-top: 0;
       background: var(--primary);
       color: white;
       border: none;
       border-radius: 999px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
@@ -325,10 +323,9 @@
     }
 
     .output-area {
-      min-height: 260px;
-      flex: 1;
+      min-height: 120px;
       padding: 1.25rem;
-      background: #fff;
+      background: var(--bg);
       border: none;
       border-radius: 0;
       margin-top: 0;
@@ -974,15 +971,8 @@
     @media (max-width: 900px) {
       body { padding: 0.75rem; }
       .container { max-width: 100%; }
-      .translator-toolbar { align-items: stretch; flex-direction: column; gap: 0.75rem; }
+      .translator-toolbar { flex-direction: column; gap: 0.75rem; }
       .direction-toggle { min-width: 0; width: 100%; }
-      .translator-panels { grid-template-columns: 1fr; }
-      .translator-panel + .translator-panel {
-        border-left: none;
-        border-top: 1px solid var(--border);
-      }
-      .translator-panel { min-height: 200px; }
-      .translate-actions { justify-content: stretch; }
       .translate-btn { width: 100%; }
     }
 
@@ -993,6 +983,7 @@
       header p { font-size: 0.8rem; }
       .card,
       .translator-card { padding: 0.75rem; border-radius: 14px; }
+      .translator-panels { border-radius: 14px; }
       .tabs {
         gap: 0;
         background: var(--card-muted);
@@ -1026,17 +1017,19 @@
       }
       .ai-toggle-row label { font-size: 0.78rem; }
       .input-area textarea {
-        min-height: 150px;
+        min-height: 120px;
         font-size: 1rem;
         padding: 0.75rem;
       }
       .output-area {
-        min-height: 150px;
+        min-height: 100px;
         font-size: 1rem;
         padding: 0.75rem;
       }
-      .translator-panel { min-height: 160px; padding: 0.75rem; }
-      .translate-btn { padding: 0.75rem; font-size: 0.9rem; border-radius: 12px; }
+      .panel-header { padding: 0.6rem 0.75rem; }
+      .panel-label { font-size: 0.75rem; }
+      .translate-actions { padding: 0.6rem 0.75rem; }
+      .translate-btn { padding: 0.65rem 1rem; font-size: 0.88rem; border-radius: 12px; }
       .correction-item {
         align-items: flex-start;
         flex-direction: column;
@@ -1134,6 +1127,9 @@
               <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
               <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
             </div>
+            <div class="translate-actions">
+              <button class="translate-btn" id="translate-btn">Translate</button>
+            </div>
           </div>
 
           <div class="translator-panel target-panel">
@@ -1147,10 +1143,6 @@
               <span class="output-placeholder">Translation will appear here...</span>
             </div>
           </div>
-        </div>
-
-        <div class="translate-actions">
-          <button class="translate-btn" id="translate-btn">Translate</button>
         </div>
       </div>
     </div>
