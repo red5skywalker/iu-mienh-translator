@@ -5,22 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English → Iu Mienh Translator</title>
   <style>
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     :root {
-      --primary: #1e3a5f;
-      --primary-dark: #152d4a;
-      --bg: #0f1729;
-      --card: rgba(255, 255, 255, 0.05);
-      --card-solid: #1a2744;
-      --text: #e8edf5;
-      --text-light: #8b9dc3;
-      --border: rgba(255, 255, 255, 0.1);
-      --accent: #e8a838;
-      --accent-red: #c0392b;
-      --accent-teal: #2dd4bf;
-      --success: #10b981;
-      --radius: 12px;
+      --primary: #4285f4;
+      --primary-dark: #1a73e8;
+      --primary-soft: #e8f0fe;
+      --bg: #f8f9fa;
+      --bg-secondary: #eef2f6;
+      --card: #ffffff;
+      --card-muted: #f1f3f4;
+      --text: #202124;
+      --text-light: #5f6368;
+      --border: #dadce0;
+      --border-strong: #c7d2e0;
+      --accent: #4285f4;
+      --accent-red: #d93025;
+      --accent-teal: #188038;
+      --success: #188038;
+      --warning: #f29900;
+      --bg-dark: #202124;
+      --radius: 20px;
+      --panel-radius: 16px;
+      --shadow: 0 1px 2px rgba(60, 64, 67, 0.15);
+      --shadow-lg: 0 8px 24px rgba(60, 64, 67, 0.12);
       --embroidery-red: #d4382c;
       --embroidery-gold: #e8a838;
       --embroidery-indigo: #1e3a6e;
@@ -29,336 +38,305 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, var(--bg-secondary) 100%);
       color: var(--text);
       min-height: 100vh;
-      padding: 1rem;
-      position: relative;
-      overflow-x: hidden;
+      padding: 1.25rem;
     }
 
-    /* Animated embroidery-inspired background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        radial-gradient(ellipse at 20% 50%, rgba(30, 58, 110, 0.4) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(212, 56, 44, 0.08) 0%, transparent 40%),
-        radial-gradient(ellipse at 60% 80%, rgba(42, 181, 160, 0.08) 0%, transparent 40%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Geometric cross-stitch pattern overlay (Mien embroidery inspired) */
-    .pattern-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.04;
-      background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 39px, var(--embroidery-red) 39px, var(--embroidery-red) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, var(--embroidery-red) 39px, var(--embroidery-red) 40px);
-      background-size: 40px 40px;
-    }
-
-    /* Floating geometric shapes inspired by Mien/Hmong textile patterns */
+    body::before,
+    .pattern-overlay,
     .cultural-shapes {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      display: none;
     }
 
-    .cultural-shapes .shape {
-      position: absolute;
-      opacity: 0;
-      animation: floatShape 20s infinite ease-in-out;
-    }
-
-    .cultural-shapes .shape:nth-child(1) {
-      top: 10%; left: 5%;
-      animation-delay: 0s;
-    }
-    .cultural-shapes .shape:nth-child(2) {
-      top: 60%; right: 8%;
-      animation-delay: 4s;
-    }
-    .cultural-shapes .shape:nth-child(3) {
-      top: 30%; right: 15%;
-      animation-delay: 8s;
-    }
-    .cultural-shapes .shape:nth-child(4) {
-      bottom: 20%; left: 10%;
-      animation-delay: 12s;
-    }
-    .cultural-shapes .shape:nth-child(5) {
-      top: 75%; left: 50%;
-      animation-delay: 16s;
-    }
-    .cultural-shapes .shape:nth-child(6) {
-      top: 5%; right: 30%;
-      animation-delay: 2s;
-    }
-    .cultural-shapes .shape:nth-child(7) {
-      bottom: 10%; right: 25%;
-      animation-delay: 10s;
-    }
-    .cultural-shapes .shape:nth-child(8) {
-      top: 45%; left: 3%;
-      animation-delay: 6s;
-    }
-
-    @keyframes floatShape {
-      0%, 100% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.8); }
-      10% { opacity: 0.15; }
-      50% { opacity: 0.2; transform: translateY(-30px) rotate(180deg) scale(1); }
-      90% { opacity: 0.15; }
-    }
-
-    /* Decorative top border band (like embroidery trim on garments) */
     .embroidery-band {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--embroidery-red) 0px,
-        var(--embroidery-red) 12px,
-        var(--embroidery-gold) 12px,
-        var(--embroidery-gold) 24px,
-        var(--embroidery-indigo) 24px,
-        var(--embroidery-indigo) 36px,
-        var(--embroidery-teal) 36px,
-        var(--embroidery-teal) 48px
-      );
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--embroidery-red), var(--embroidery-gold), var(--primary), var(--embroidery-teal), var(--embroidery-red));
+      opacity: 0.9;
       z-index: 1000;
-      animation: bandShift 8s linear infinite;
-    }
-
-    @keyframes bandShift {
-      0% { background-position: 0 0; }
-      100% { background-position: 48px 0; }
     }
 
     .container {
-      max-width: 720px;
+      max-width: 1080px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
     header {
-      text-align: center;
-      padding: 2.5rem 0 1.5rem;
-      position: relative;
+      padding: 2.75rem 0 1.5rem;
     }
 
     header h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 600;
       color: var(--text);
-      letter-spacing: -0.5px;
+      letter-spacing: -0.04em;
     }
 
     header h1 span {
-      background: linear-gradient(135deg, var(--embroidery-gold), var(--accent-teal));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary-dark);
     }
 
-    /* Decorative diamond motif under header */
-    header::after {
-      content: '◆ ◇ ◆ ◇ ◆';
-      display: block;
-      margin-top: 0.75rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.5rem;
-      color: var(--embroidery-gold);
-      opacity: 0.6;
-      animation: shimmer 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes shimmer {
-      0% { opacity: 0.4; }
-      100% { opacity: 0.8; }
-    }
-
+    header::after,
     header p {
-      color: var(--text-light);
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
+      display: none;
     }
 
     .tabs {
       display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
     }
 
     .tab-btn {
-      flex: 1;
-      padding: 0.75rem;
-      border: 1px solid var(--border);
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      border-radius: var(--radius);
+      padding: 0.65rem 0 0.85rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--text-light);
-      transition: all 0.3s;
+      transition: color 0.2s, border-color 0.2s;
     }
 
     .tab-btn.active {
-      border-color: var(--embroidery-gold);
-      background: linear-gradient(135deg, rgba(232, 168, 56, 0.15), rgba(42, 181, 160, 0.1));
-      color: var(--embroidery-gold);
-      box-shadow: 0 0 20px rgba(232, 168, 56, 0.1);
+      color: var(--primary-dark);
+      border-bottom-color: var(--primary);
     }
 
     .tab-btn:hover:not(.active) {
-      border-color: rgba(232, 168, 56, 0.4);
       color: var(--text);
     }
 
     .card {
       background: var(--card);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 24px;
       padding: 1.5rem;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-lg);
       margin-bottom: 1rem;
+    }
+
+    .translator-card {
+      padding: 1.25rem;
+    }
+
+    .translator-toolbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .direction-toggle {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      margin: 0;
+      min-width: min(100%, 560px);
+    }
+
+    .dir-btn {
+      min-height: 48px;
+      padding: 0.85rem 1rem;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: all 0.2s;
+    }
+
+    .dir-btn.active {
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      border-color: #c6dafc;
+    }
+
+    .dir-btn:hover:not(.active) {
+      color: var(--text);
+      background: var(--card-muted);
+    }
+
+    .swap-indicator {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--card);
+      color: var(--primary-dark);
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .beta-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.62rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+    }
+
+    .translator-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .translator-panel {
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+    }
+
+    .translator-panel + .translator-panel {
+      border-left: 1px solid var(--border);
+    }
+
+    .panel-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .panel-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-light);
+      letter-spacing: 0.01em;
+    }
+
+    .lang-imn-eng {
+      display: none;
+    }
+
+    #tab-translate:has(#dir-imn-eng.active) .lang-eng-imn {
+      display: none;
+    }
+
+    #tab-translate:has(#dir-imn-eng.active) .lang-imn-eng {
+      display: inline;
     }
 
     .input-area {
       position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-height: 0;
+      background: #fff;
     }
 
     .input-area textarea {
       width: 100%;
-      min-height: 120px;
-      padding: 1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 1.1rem;
+      min-height: 260px;
+      flex: 1;
+      padding: 1.25rem;
+      border: none;
+      border-radius: 0;
+      font-size: 1.35rem;
+      line-height: 1.45;
       font-family: inherit;
-      resize: vertical;
+      resize: none;
       outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      background: rgba(255, 255, 255, 0.03);
+      transition: box-shadow 0.2s;
+      background: transparent;
       color: var(--text);
     }
 
+    .input-area textarea::placeholder {
+      color: #9aa0a6;
+    }
+
     .input-area textarea:focus {
-      border-color: var(--embroidery-gold);
-      box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.1);
+      box-shadow: inset 0 0 0 2px rgba(66, 133, 244, 0.35);
+    }
+
+    .translate-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
     }
 
     .translate-btn {
-      display: block;
-      width: 100%;
-      padding: 0.9rem;
-      margin-top: 0.75rem;
-      background: linear-gradient(135deg, var(--embroidery-indigo), #2a4a8a);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+      padding: 0.9rem 1.5rem;
+      margin-top: 0;
+      background: var(--primary);
       color: white;
-      border: 1px solid rgba(232, 168, 56, 0.3);
-      border-radius: var(--radius);
+      border: none;
+      border-radius: 999px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
       position: relative;
       overflow: hidden;
     }
 
     .translate-btn::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(232, 168, 56, 0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .translate-btn:hover::before {
-      left: 100%;
+      display: none;
     }
 
     .translate-btn:hover {
-      background: linear-gradient(135deg, #2a4a8a, #1e3a6e);
-      box-shadow: 0 4px 20px rgba(30, 58, 110, 0.4);
-    }
-
-    /* Direction toggle */
-    .direction-toggle {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .dir-btn {
-      flex: 1;
-      padding: 0.55rem 0.75rem;
-      border: 1px solid var(--border);
-      background: transparent;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-light);
-      transition: all 0.3s;
-    }
-
-    .dir-btn.active {
-      border-color: var(--embroidery-gold);
-      background: rgba(232, 168, 56, 0.1);
-      color: var(--embroidery-gold);
-    }
-
-    .dir-btn:hover:not(.active) {
-      border-color: rgba(232, 168, 56, 0.3);
-      color: var(--text);
-    }
-
-    .beta-badge {
-      display: inline-block;
-      font-size: 0.6rem;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      background: rgba(42, 181, 160, 0.2);
-      color: var(--accent-teal);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      vertical-align: middle;
-      margin-left: 0.3rem;
+      background: var(--primary-dark);
+      box-shadow: 0 6px 18px rgba(66, 133, 244, 0.28);
+      transform: translateY(-1px);
     }
 
     .output-area {
-      min-height: 80px;
-      padding: 1rem;
-      background: rgba(30, 58, 110, 0.2);
-      border: 1px solid rgba(42, 181, 160, 0.15);
-      border-radius: var(--radius);
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      line-height: 1.8;
+      min-height: 260px;
+      flex: 1;
+      padding: 1.25rem;
+      background: #fff;
+      border: none;
+      border-radius: 0;
+      margin-top: 0;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text);
     }
 
     .output-area .translated-word {
-      color: var(--accent-teal);
+      color: var(--primary-dark);
       font-weight: 500;
       cursor: pointer;
-      border-bottom: 1px dashed var(--accent-teal);
+      border-bottom: 1px dashed rgba(26, 115, 232, 0.45);
     }
 
     .output-area .untranslated-word {
-      color: var(--embroidery-gold);
+      color: var(--warning);
       font-style: italic;
     }
 
@@ -367,42 +345,41 @@
     }
 
     .output-placeholder {
-      color: var(--text-light);
-      font-style: italic;
+      color: #9aa0a6;
+      font-style: normal;
+      font-size: 1rem;
     }
 
-    /* Tooltip for word details */
     .word-tooltip {
       position: fixed;
-      background: #1a2744;
+      background: #ffffff;
       color: var(--text);
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
       border: 1px solid var(--border);
       font-size: 0.8rem;
       max-width: 300px;
       z-index: 100;
       pointer-events: none;
       display: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Dictionary browse tab */
     .search-input {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.9rem 1rem;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 14px;
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      background: rgba(255, 255, 255, 0.03);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
       color: var(--text);
     }
 
     .search-input:focus {
-      border-color: var(--embroidery-gold);
-      box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.1);
+      border-color: #aecbfa;
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
     }
 
     .dict-results {
@@ -412,7 +389,7 @@
     }
 
     .dict-entry {
-      padding: 0.75rem 0;
+      padding: 0.9rem 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -422,100 +399,116 @@
     }
 
     .dict-context {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-light);
       margin-left: 0.5rem;
     }
 
     .dict-def {
-      color: var(--accent-teal);
-      font-size: 1.05rem;
+      color: var(--primary-dark);
+      font-size: 1.02rem;
       margin-top: 0.25rem;
     }
 
     .dict-full {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-light);
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
     }
 
     .stats {
       text-align: center;
       color: var(--text-light);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       padding: 1rem;
     }
 
     .hidden { display: none; }
 
-    /* Edit/Corrections tab */
-    .edit-section { margin-bottom: 1.5rem; }
+    .edit-section {
+      margin-bottom: 1.75rem;
+    }
+
     .edit-section h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
+      font-size: 0.98rem;
+      margin-bottom: 0.9rem;
       color: var(--text);
     }
 
     .edit-form {
       display: grid;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
     .edit-form label {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 500;
       color: var(--text-light);
     }
 
-    .edit-form input, .edit-form textarea {
+    .edit-form input,
+    .edit-form textarea,
+    .ai-settings input,
+    .ai-settings select {
       width: 100%;
-      padding: 0.6rem 0.75rem;
+      padding: 0.7rem 0.8rem;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.95rem;
+      border-radius: 12px;
+      font-size: 0.92rem;
       font-family: inherit;
       outline: none;
-      transition: border-color 0.3s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       resize: vertical;
-      background: rgba(255, 255, 255, 0.03);
+      background: #fff;
       color: var(--text);
     }
 
-    .edit-form input:focus, .edit-form textarea:focus {
-      border-color: var(--embroidery-gold);
+    .edit-form input:focus,
+    .edit-form textarea:focus,
+    .ai-settings input:focus,
+    .ai-settings select:focus {
+      border-color: #aecbfa;
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
     }
 
     .btn-row {
       display: flex;
       gap: 0.5rem;
       margin-top: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .btn-small {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.2s;
     }
 
-    .btn-small:hover { opacity: 0.85; }
-    .btn-save { background: var(--success); color: white; }
-    .btn-delete { background: #ef4444; color: white; }
-    .btn-export { background: var(--primary); color: white; }
-    .btn-reset { background: var(--text-light); color: white; }
+    .btn-small:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-save { background: var(--primary); color: white; }
+    .btn-delete { background: #ea4335; color: white; }
+    .btn-export { background: #5f6368; color: white; }
+    .btn-reset { background: #9aa0a6; color: white; }
 
     .edit-search-results {
       margin-top: 0.75rem;
       max-height: 200px;
       overflow-y: auto;
+      border-radius: 14px;
+      background: var(--card-muted);
     }
 
     .edit-result-item {
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -524,11 +517,11 @@
     }
 
     .edit-result-item:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: #e8f0fe;
     }
 
     .edit-result-item .term { font-weight: 500; }
-    .edit-result-item .def { color: var(--accent-teal); font-size: 0.9rem; }
+    .edit-result-item .def { color: var(--primary-dark); font-size: 0.9rem; }
 
     .corrections-list {
       margin-top: 0.75rem;
@@ -537,88 +530,109 @@
     }
 
     .correction-item {
-      padding: 0.5rem 0;
+      padding: 0.75rem 0;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.9rem;
+      gap: 0.75rem;
     }
 
     .correction-item .correction-info { flex: 1; }
+
     .correction-item .correction-type {
       font-size: 0.7rem;
       padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-weight: 500;
+      border-radius: 999px;
+      font-weight: 600;
       margin-right: 0.5rem;
     }
-    .type-edited { background: rgba(232, 168, 56, 0.2); color: #e8a838; }
-    .type-added { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-    .type-deleted { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-    .type-suggested { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+
+    .type-edited { background: rgba(242, 153, 0, 0.15); color: #b06000; }
+    .type-added { background: rgba(24, 128, 56, 0.15); color: #188038; }
+    .type-deleted { background: rgba(217, 48, 37, 0.14); color: #d93025; }
+    .type-suggested { background: rgba(66, 133, 244, 0.14); color: #1a73e8; }
 
     .pending-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
-    .btn-approve {
-      background: rgba(16, 185, 129, 0.15); color: #10b981;
-      border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.2rem 0.6rem;
-      border-radius: 4px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
-    }
-    .btn-approve:hover { background: rgba(16, 185, 129, 0.3); }
+
+    .btn-approve,
     .btn-reject {
-      background: rgba(239, 68, 68, 0.15); color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.2rem 0.6rem;
-      border-radius: 4px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
-    .btn-reject:hover { background: rgba(239, 68, 68, 0.3); }
+
+    .btn-approve {
+      background: rgba(24, 128, 56, 0.12);
+      color: #188038;
+      border: 1px solid rgba(24, 128, 56, 0.25);
+    }
+
+    .btn-approve:hover {
+      background: rgba(24, 128, 56, 0.2);
+    }
+
+    .btn-reject {
+      background: rgba(217, 48, 37, 0.1);
+      color: #d93025;
+      border: 1px solid rgba(217, 48, 37, 0.2);
+    }
+
+    .btn-reject:hover {
+      background: rgba(217, 48, 37, 0.16);
+    }
 
     .toast {
       position: fixed;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--card-solid);
+      background: #ffffff;
       color: var(--text);
       padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
+      border-radius: 999px;
       border: 1px solid var(--border);
       font-size: 0.9rem;
       z-index: 200;
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-lg);
     }
 
     .toast.show { opacity: 1; }
 
-    /* AI Mode styles */
     .ai-toggle-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      padding: 0.5rem 0.75rem;
-      background: rgba(139, 92, 246, 0.08);
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      border-radius: 8px;
+      gap: 0.75rem;
+      padding: 0.55rem 0.8rem;
+      background: #f8fbff;
+      border: 1px solid #d2e3fc;
+      border-radius: 999px;
+      margin-bottom: 0;
     }
 
     .ai-toggle-row label {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: var(--text);
     }
 
     .ai-toggle-row .ai-badge {
-      font-size: 0.7rem;
-      background: linear-gradient(135deg, #8b5cf6, #6366f1);
-      color: white;
-      padding: 0.15rem 0.5rem;
-      border-radius: 10px;
-      font-weight: 600;
+      font-size: 0.68rem;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
     }
 
     .toggle-switch {
@@ -636,7 +650,10 @@
     .toggle-slider {
       position: absolute;
       cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: #cbd5e1;
       border-radius: 24px;
       transition: 0.3s;
@@ -652,10 +669,11 @@
       background: white;
       border-radius: 50%;
       transition: 0.3s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     }
 
     .toggle-switch input:checked + .toggle-slider {
-      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      background: var(--primary);
     }
 
     .toggle-switch input:checked + .toggle-slider:before {
@@ -663,10 +681,10 @@
     }
 
     .ai-settings {
-      margin-bottom: 0.75rem;
-      background: rgba(139, 92, 246, 0.05);
-      border: 1px solid rgba(139, 92, 246, 0.15);
-      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: #f8fbff;
+      border: 1px solid #d2e3fc;
+      border-radius: 16px;
       font-size: 0.85rem;
     }
 
@@ -676,20 +694,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.6rem 0.75rem;
+      padding: 0.7rem 0.85rem;
       cursor: pointer;
       user-select: none;
     }
 
     .ai-settings-header span {
       font-size: 0.8rem;
-      color: #c4b5fd;
-      font-weight: 500;
+      color: var(--primary-dark);
+      font-weight: 600;
     }
 
     .ai-settings-header .collapse-arrow {
       font-size: 0.75rem;
-      color: #c4b5fd;
       transition: transform 0.2s;
     }
 
@@ -698,7 +715,7 @@
     }
 
     .ai-settings-body {
-      padding: 0 0.75rem 0.75rem;
+      padding: 0 0.85rem 0.85rem;
     }
 
     .ai-settings-body.collapsed {
@@ -708,61 +725,39 @@
     .ai-settings label {
       display: block;
       font-weight: 500;
-      margin-bottom: 0.3rem;
-      color: #c4b5fd;
-    }
-
-    .ai-settings input {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-family: monospace;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-    }
-
-    .ai-settings .ai-note {
-      margin-top: 0.4rem;
-      font-size: 0.75rem;
+      margin-bottom: 0.35rem;
       color: var(--text-light);
     }
 
-    .ai-settings select {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      margin-bottom: 0.5rem;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
+    .ai-settings .ai-note {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      line-height: 1.5;
     }
 
     .translate-btn.ai-active {
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      border-color: rgba(139, 92, 246, 0.4);
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
     }
 
     .translate-btn.ai-active:hover {
-      background: linear-gradient(135deg, #6d28d9, #4338ca);
+      background: linear-gradient(135deg, #6d28d9, #4f46e5);
     }
 
     .ai-loading {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 1rem;
-      color: #c4b5fd;
+      padding: 1rem 0;
+      color: #5b21b6;
       font-size: 0.9rem;
     }
 
     .ai-loading .spinner {
       width: 18px;
       height: 18px;
-      border: 2px solid rgba(139, 92, 246, 0.2);
-      border-top-color: #8b5cf6;
+      border: 2px solid rgba(124, 58, 237, 0.18);
+      border-top-color: #7c3aed;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -775,17 +770,17 @@
     }
 
     .ai-output .ai-translation {
-      color: var(--accent-teal);
+      color: var(--text);
       font-weight: 500;
     }
 
     .ai-output .ai-explanation {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
       border-top: 1px solid var(--border);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-light);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .suspicious-word {
@@ -795,66 +790,66 @@
     }
 
     .ai-warning {
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
       font-size: 0.82rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     .ai-warning-yellow {
-      background: rgba(232, 168, 56, 0.15);
-      color: #e8a838;
-      border: 1px solid rgba(232, 168, 56, 0.3);
+      background: rgba(242, 153, 0, 0.12);
+      color: #b06000;
+      border: 1px solid rgba(242, 153, 0, 0.25);
     }
 
     .ai-warning-red {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: rgba(217, 48, 37, 0.1);
+      color: #b3261e;
+      border: 1px solid rgba(217, 48, 37, 0.18);
     }
 
     .cache-notice {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.4rem 0.75rem;
-      margin-bottom: 0.5rem;
-      background: rgba(45, 212, 191, 0.1);
-      border: 1px solid rgba(45, 212, 191, 0.3);
-      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.75rem;
+      background: rgba(24, 128, 56, 0.08);
+      border: 1px solid rgba(24, 128, 56, 0.2);
+      border-radius: 10px;
       font-size: 0.8rem;
       color: var(--accent-teal);
     }
 
     .cache-notice button {
       margin-left: auto;
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.65rem;
       background: var(--accent-teal);
-      color: var(--bg-dark);
+      color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
     }
 
     .cache-notice button:hover {
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .output-actions {
       display: flex;
       gap: 0.5rem;
-      margin: 0.55rem 0 0.25rem;
+      margin: 0.9rem 0 0;
       flex-wrap: wrap;
     }
 
     .copy-btn,
     .share-btn {
-      padding: 0.35rem 0.7rem;
+      padding: 0.42rem 0.8rem;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
+      background: #fff;
       color: var(--text);
       font-size: 0.78rem;
       font-weight: 600;
@@ -864,21 +859,27 @@
 
     .copy-btn:hover,
     .share-btn:hover {
-      border-color: rgba(45, 212, 191, 0.4);
-      background: rgba(45, 212, 191, 0.12);
+      border-color: #aecbfa;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
     }
 
     .autocomplete-dropdown {
-      margin-top: 0.5rem;
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      margin-top: 0;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(15, 23, 41, 0.96);
+      border-radius: 16px;
+      background: #fff;
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
     }
 
     .autocomplete-item {
-      padding: 0.65rem 0.85rem;
+      padding: 0.75rem 0.9rem;
       cursor: pointer;
       color: var(--text);
       font-size: 0.92rem;
@@ -886,35 +887,35 @@
     }
 
     .autocomplete-item + .autocomplete-item {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--border);
     }
 
     .autocomplete-item:hover {
-      background: rgba(45, 212, 191, 0.1);
-      color: var(--accent-teal);
+      background: var(--primary-soft);
+      color: var(--primary-dark);
     }
 
     .confidence-meter {
-      margin-bottom: 0.75rem;
-      padding: 0.75rem;
+      margin-bottom: 0.9rem;
+      padding: 0.85rem 0.95rem;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.03);
+      border-radius: 14px;
+      background: var(--card-muted);
     }
 
     .confidence-meter.high {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(24, 128, 56, 0.25);
+      background: rgba(24, 128, 56, 0.08);
     }
 
     .confidence-meter.medium {
-      border-color: rgba(232, 168, 56, 0.35);
-      background: rgba(232, 168, 56, 0.08);
+      border-color: rgba(242, 153, 0, 0.3);
+      background: rgba(242, 153, 0, 0.08);
     }
 
     .confidence-meter.low {
-      border-color: rgba(239, 68, 68, 0.35);
-      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(217, 48, 37, 0.22);
+      background: rgba(217, 48, 37, 0.08);
     }
 
     .confidence-label {
@@ -935,7 +936,7 @@
       width: 100%;
       height: 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(95, 99, 104, 0.15);
       overflow: hidden;
     }
 
@@ -954,68 +955,67 @@
       height: 18px;
       padding: 0 5px;
       margin-left: 5px;
-      background: var(--embroidery-gold);
-      color: var(--bg-dark);
-      border-radius: 9px;
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
       font-size: 0.7rem;
       font-weight: 700;
     }
 
+    @media (max-width: 900px) {
+      body { padding: 1rem; }
+      .translator-toolbar { align-items: stretch; }
+      .direction-toggle { min-width: 0; width: 100%; }
+      .translator-panels { grid-template-columns: 1fr; }
+      .translator-panel + .translator-panel {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+      .translate-actions { justify-content: stretch; }
+      .translate-btn { width: 100%; }
+    }
+
     @media (max-width: 600px) {
-      body { padding: 0.5rem; }
-      header h1 { font-size: 1.4rem; }
-      .card { padding: 1rem; }
+      body { padding: 0.75rem; }
+      header { padding: 2.2rem 0 1.1rem; }
+      header h1 { font-size: 1.55rem; }
+      .card,
+      .translator-card { padding: 1rem; }
+      .tabs {
+        gap: 0.9rem;
+        overflow-x: auto;
+      }
+      .tab-btn { white-space: nowrap; }
+      .direction-toggle {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      .swap-indicator {
+        justify-self: center;
+        transform: rotate(90deg);
+      }
+      .ai-toggle-row {
+        width: 100%;
+        border-radius: 16px;
+      }
+      .input-area textarea,
+      .output-area {
+        min-height: 220px;
+        font-size: 1.08rem;
+      }
+      .correction-item {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Animated embroidery top border -->
   <div class="embroidery-band"></div>
-
-  <!-- Cross-stitch grid pattern overlay -->
-  <div class="pattern-overlay"></div>
-
-  <!-- Floating cultural geometric shapes (Mien/Hmong embroidery motifs) -->
-  <div class="cultural-shapes">
-    <svg class="shape" width="60" height="60" viewBox="0 0 60 60">
-      <polygon points="30,5 55,30 30,55 5,30" fill="none" stroke="var(--embroidery-red)" stroke-width="2"/>
-      <polygon points="30,15 45,30 30,45 15,30" fill="none" stroke="var(--embroidery-gold)" stroke-width="1.5"/>
-    </svg>
-    <svg class="shape" width="50" height="50" viewBox="0 0 50 50">
-      <path d="M25,2 L48,25 L25,48 L2,25 Z" fill="none" stroke="var(--embroidery-teal)" stroke-width="1.5"/>
-      <line x1="25" y1="2" x2="25" y2="48" stroke="var(--embroidery-teal)" stroke-width="0.5" opacity="0.5"/>
-      <line x1="2" y1="25" x2="48" y2="25" stroke="var(--embroidery-teal)" stroke-width="0.5" opacity="0.5"/>
-    </svg>
-    <svg class="shape" width="55" height="55" viewBox="0 0 55 55">
-      <polygon points="27.5,5 50,20 50,40 27.5,50 5,40 5,20" fill="none" stroke="var(--embroidery-gold)" stroke-width="1.5"/>
-      <circle cx="27.5" cy="27.5" r="8" fill="none" stroke="var(--embroidery-red)" stroke-width="1"/>
-    </svg>
-    <svg class="shape" width="45" height="45" viewBox="0 0 45 45">
-      <path d="M22.5,5 L5,40 L40,40 Z" fill="none" stroke="var(--embroidery-red)" stroke-width="1.5"/>
-      <path d="M22.5,40 L5,5 L40,5 Z" fill="none" stroke="var(--embroidery-gold)" stroke-width="1.5" opacity="0.6"/>
-    </svg>
-    <svg class="shape" width="40" height="40" viewBox="0 0 40 40">
-      <rect x="5" y="5" width="30" height="30" fill="none" stroke="var(--embroidery-indigo)" stroke-width="1.5" transform="rotate(45 20 20)"/>
-      <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--embroidery-teal)" stroke-width="1" transform="rotate(45 20 20)"/>
-    </svg>
-    <svg class="shape" width="65" height="65" viewBox="0 0 65 65">
-      <path d="M32.5,5 L60,32.5 L32.5,60 L5,32.5 Z" fill="none" stroke="var(--embroidery-gold)" stroke-width="1.5"/>
-      <path d="M32.5,15 L50,32.5 L32.5,50 L15,32.5 Z" fill="none" stroke="var(--embroidery-red)" stroke-width="1"/>
-      <circle cx="32.5" cy="32.5" r="5" fill="none" stroke="var(--embroidery-teal)" stroke-width="1"/>
-    </svg>
-    <svg class="shape" width="50" height="50" viewBox="0 0 50 50">
-      <polygon points="25,2 32,18 50,18 36,28 40,46 25,36 10,46 14,28 0,18 18,18" fill="none" stroke="var(--embroidery-gold)" stroke-width="1.2"/>
-    </svg>
-    <svg class="shape" width="55" height="55" viewBox="0 0 55 55">
-      <path d="M10,10 L45,10 L45,45 L10,45 Z" fill="none" stroke="var(--embroidery-red)" stroke-width="1"/>
-      <path d="M27.5,10 L45,27.5 L27.5,45 L10,27.5 Z" fill="none" stroke="var(--embroidery-teal)" stroke-width="1.5"/>
-    </svg>
-  </div>
 
   <div class="container">
     <header>
-      <h1>English → <span>Iu Mienh</span></h1>
-      <p>Translator & Dictionary</p>
+      <h1>English → <span>Iu Mienh</span> Translator</h1>
     </header>
 
     <div class="tabs">
@@ -1024,74 +1024,99 @@
       <button class="tab-btn" data-tab="edit">Edit</button>
     </div>
 
-    <!-- Translate Tab -->
     <div id="tab-translate">
-      <div class="card">
-        <div class="ai-toggle-row">
-          <label><span class="ai-badge">✨ AI</span> AI-assisted translation</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="ai-toggle">
-            <span class="toggle-slider"></span>
-          </label>
+      <div class="card translator-card">
+        <div class="translator-toolbar">
+          <div class="direction-toggle" aria-label="Translation direction">
+            <button class="dir-btn active" id="dir-eng-imn" data-dir="eng-imn">English → Iu Mienh</button>
+            <div class="swap-indicator" aria-hidden="true">⇄</div>
+            <button class="dir-btn" id="dir-imn-eng" data-dir="imn-eng">Iu Mienh → English <span class="beta-badge">Beta</span></button>
+          </div>
+          <div class="ai-toggle-row">
+            <label><span class="ai-badge">✨ AI</span> AI-assisted</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="ai-toggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
         </div>
+
         <div class="ai-settings hidden" id="ai-settings">
           <div class="ai-settings-header" id="ai-settings-toggle">
             <span>⚙️ AI Provider Settings</span>
             <span class="collapse-arrow" id="ai-collapse-arrow">▼</span>
           </div>
           <div class="ai-settings-body collapsed" id="ai-settings-body">
-          <label>AI Provider</label>
-          <select id="ai-provider">
-            <option value="copilot">GitHub Copilot (your subscription) — No key needed</option>
-            <option value="github">GitHub Models (Manual PAT)</option>
-            <option value="openai">OpenAI (GPT-4o-mini)</option>
-            <option value="anthropic">Anthropic (Claude)</option>
-            <option value="custom">Custom / LiteLLM (OpenAI-compatible)</option>
-          </select>
-          <div id="custom-url-section" style="display:none;margin-top:0.5rem">
-            <label>API Base URL</label>
-            <input type="text" id="custom-url" placeholder="https://your-litellm-server.com/v1">
-            <label style="margin-top:0.4rem">Model name</label>
-            <input type="text" id="custom-model" placeholder="gpt-4o-mini or any model name">
-          </div>
-          <label>API Key</label>
-          <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
-          <div id="github-model-section" style="margin-top:0.5rem">
-            <label>Model</label>
-            <div style="display:flex;gap:0.5rem;align-items:center">
-              <select id="github-model" style="flex:1">
-                <option value="openai/gpt-4.1-mini">openai/gpt-4.1-mini</option>
-                <option value="openai/gpt-4.1">openai/gpt-4.1</option>
-                <option value="openai/gpt-4o-mini">openai/gpt-4o-mini</option>
-                <option value="openai/gpt-4o">openai/gpt-4o</option>
-                <option value="meta/llama-4-scout-17b-16e-instruct">meta/llama-4-scout</option>
-                <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
-                <option value="mistral-ai/mistral-small-2503">mistral-ai/mistral-small</option>
-              </select>
-              <button type="button" id="test-connection-btn" style="padding:0.4rem 0.7rem;font-size:0.75rem;border-radius:6px;border:1px solid #e9d5ff;background:#faf5ff;cursor:pointer;white-space:nowrap">🔍 Test</button>
+            <label>AI Provider</label>
+            <select id="ai-provider">
+              <option value="copilot">GitHub Copilot (your subscription) — No key needed</option>
+              <option value="github">GitHub Models (Manual PAT)</option>
+              <option value="openai">OpenAI (GPT-4o-mini)</option>
+              <option value="anthropic">Anthropic (Claude)</option>
+              <option value="custom">Custom / LiteLLM (OpenAI-compatible)</option>
+            </select>
+            <div id="custom-url-section" style="display:none;margin-top:0.5rem">
+              <label>API Base URL</label>
+              <input type="text" id="custom-url" placeholder="https://your-litellm-server.com/v1">
+              <label style="margin-top:0.4rem">Model name</label>
+              <input type="text" id="custom-model" placeholder="gpt-4o-mini or any model name">
             </div>
-            <p id="test-result" style="margin-top:0.3rem;font-size:0.75rem;color:var(--text-light)"></p>
-          </div>
-          <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
-          <strong>GitHub Models:</strong> Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#6b21a8">Fine-grained PAT</a> → Account permissions → Models: Read.</p>
+            <label>API Key</label>
+            <input type="password" id="ai-key" placeholder="ghp_... or sk-... or sk-ant-...">
+            <div id="github-model-section" style="margin-top:0.5rem">
+              <label>Model</label>
+              <div style="display:flex;gap:0.5rem;align-items:center">
+                <select id="github-model" style="flex:1">
+                  <option value="openai/gpt-4.1-mini">openai/gpt-4.1-mini</option>
+                  <option value="openai/gpt-4.1">openai/gpt-4.1</option>
+                  <option value="openai/gpt-4o-mini">openai/gpt-4o-mini</option>
+                  <option value="openai/gpt-4o">openai/gpt-4o</option>
+                  <option value="meta/llama-4-scout-17b-16e-instruct">meta/llama-4-scout</option>
+                  <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
+                  <option value="mistral-ai/mistral-small-2503">mistral-ai/mistral-small</option>
+                </select>
+                <button type="button" id="test-connection-btn" style="padding:0.4rem 0.7rem;font-size:0.75rem;border-radius:999px;border:1px solid #d2e3fc;background:#fff;cursor:pointer;white-space:nowrap">🔍 Test</button>
+              </div>
+              <p id="test-result" style="margin-top:0.3rem;font-size:0.75rem;color:var(--text-light)"></p>
+            </div>
+            <p class="ai-note">Your key is stored locally in your browser only. Never sent anywhere except the AI provider.<br>
+            <strong>GitHub Models:</strong> Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#1a73e8">Fine-grained PAT</a> → Account permissions → Models: Read.</p>
           </div>
         </div>
-        <div class="input-area">
-          <div class="direction-toggle">
-            <button class="dir-btn active" id="dir-eng-imn" data-dir="eng-imn">English → Iu Mienh</button>
-            <button class="dir-btn" id="dir-imn-eng" data-dir="imn-eng">Iu Mienh → English <span class="beta-badge">Beta</span></button>
+
+        <div class="translator-panels">
+          <div class="translator-panel source-panel">
+            <div class="panel-header">
+              <div class="panel-label">
+                <span class="lang-eng-imn">English</span>
+                <span class="lang-imn-eng">Iu Mienh</span>
+              </div>
+            </div>
+            <div class="input-area">
+              <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
+              <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
+            </div>
           </div>
-          <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
-          <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
+
+          <div class="translator-panel target-panel">
+            <div class="panel-header">
+              <div class="panel-label">
+                <span class="lang-eng-imn">Iu Mienh</span>
+                <span class="lang-imn-eng">English</span>
+              </div>
+            </div>
+            <div class="output-area" id="output-area">
+              <span class="output-placeholder">Translation will appear here...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="translate-actions">
           <button class="translate-btn" id="translate-btn">Translate</button>
-        </div>
-        <div class="output-area" id="output-area">
-          <span class="output-placeholder">Translation will appear here...</span>
         </div>
       </div>
     </div>
 
-    <!-- Dictionary Tab -->
     <div id="tab-dictionary" class="hidden">
       <div class="card">
         <input type="text" class="search-input" id="dict-search" placeholder="Search for a word...">
@@ -1099,7 +1124,6 @@
       </div>
     </div>
 
-    <!-- Edit/Corrections Tab -->
     <div id="tab-edit" class="hidden">
       <div class="card">
         <div class="edit-section">
@@ -1676,7 +1700,7 @@
     function prependCacheNotice(output, text, direction) {
       const notice = document.createElement('div');
       notice.className = 'cache-notice';
-      notice.innerHTML = '⚡ Cached translation <button id="retranslate-btn">Re-translate</button>';
+      notice.innerHTML = 'Cached translation <button id="retranslate-btn">Re-translate</button>';
       output.prepend(notice);
       document.getElementById('retranslate-btn').addEventListener('click', () => {
         skipCache = true;
