@@ -39,7 +39,7 @@
 
 ### Questions
 28. Yes/no questions usually keep statement word order and add sentence-final **nyei fai** with rising intonation. The assertive particle nyei almost always precedes fai — pattern: Subject + VP + nyei fai? Example: "Meih oix hoqc Ging-Sou nyei fai?" (Do you want to study the Bible?). A falling question can use **saah/saaqh**.
-29. Content questions use interrogative words in normal clause positions. Important forms: **haaix dauh** “who?”, **haaix nyungc** “what/which kind?”, **haaix zanc** “when?”, **yiem haaix / haaix ndau** “where?”, **hnangv haaix nor** “how?”, **weic haaix diuc** or colloquial **zoux haiv nyungc** “why?”, **mbuoqc ziex** “how many?”.
+29. Content questions use interrogative words **in situ** (in normal clause positions — NOT fronted like English). Important forms: **haaix dauh** “who?”, **haaix nyungc** “what/which kind?”, **haaix zanc** “when?”, **yiem haaix / haaix ndau** “where?”, **hnangv haaix nor** “how?”, **weic haaix diuc** or colloquial **zoux haiv nyungc** “why?”, **mbuoqc ziex** “how many?”. CRITICAL: “Where is X?” = **X yiem haaix?** (topic first, question word stays in verb position). NEVER front the question word like English. Example: “Where is the bathroom?” = “Horngc naamh yiem haaix?” NOT “Yiem haaix horngc naamh?”
 30. Sentence-final **mv bei** adds “I wonder …” or self-questioning uncertainty.
 
 ### Multi-Verb Constructions

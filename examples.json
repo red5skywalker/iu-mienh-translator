@@ -1,5 +1,30 @@
 [
   {
+    "eng": "Where is the bathroom?",
+    "imn": "Horngc naamh yiem haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Where is the store?",
+    "imn": "Maaic ga'naaiv nyei dorngx yiem haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Where is the church?",
+    "imn": "Wuic gorn yiem haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Where do you live?",
+    "imn": "Meih yiem haaix?",
+    "cat": "conversation"
+  },
+  {
+    "eng": "Where is your house?",
+    "imn": "Meih nyei biauv yiem haaix?",
+    "cat": "conversation"
+  },
+  {
     "eng": "How are you?",
     "imn": "Meih yiem longx nyei fai?",
     "cat": "conversation"

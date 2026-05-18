@@ -3873,9 +3873,9 @@
   ],
   "bathroom": [
     {
-      "m": "sounds like horngc naamh",
-      "c": "bathroom (borrowed Thai word)",
-      "f": "sounds like horngc naamh be (as: he will be here)"
+      "m": "horngc naamh",
+      "c": "toilet/restroom (borrowed Thai word)",
+      "f": "Horngc naamh yiem haaix? (Where is the bathroom?)"
     }
   ],
   "bathsheba": [
@@ -54011,6 +54011,13 @@
       "m": "Meih yiem haaix",
       "c": "Where do you live?",
       "f": "Meih yiem haaix?"
+    }
+  ],
+  "where is": [
+    {
+      "m": "... yiem haaix",
+      "c": "Question pattern: TOPIC + yiem haaix? (NOT yiem haaix + topic)",
+      "f": "Horngc naamh yiem haaix? (Where is the bathroom?) — the topic comes FIRST"
     }
   ],
   "wherever": [
