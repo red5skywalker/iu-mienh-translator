@@ -286,11 +286,7 @@
     }
 
     .translate-actions {
-      display: flex;
-      justify-content: center;
-      padding: 0.75rem 1.25rem;
-      background: #fff;
-      border-top: 1px solid var(--border);
+      display: none;
     }
 
     .translate-btn {
@@ -1812,7 +1808,24 @@
       }
     });
 
-    inputTextEl.addEventListener('input', () => updateAutocompleteSuggestions());
+    // Auto-translate after user stops typing (1s debounce)
+    let autoTranslateTimer = null;
+    let lastTranslatedText = '';
+    inputTextEl.addEventListener('input', () => {
+      updateAutocompleteSuggestions();
+      clearTimeout(autoTranslateTimer);
+      const text = inputTextEl.value.trim();
+      if (!text) {
+        document.getElementById('output-area').innerHTML = '<span class="output-placeholder">Translation will appear here...</span>';
+        lastTranslatedText = '';
+        return;
+      }
+      if (text === lastTranslatedText) return;
+      autoTranslateTimer = setTimeout(() => {
+        lastTranslatedText = text;
+        translateBtn.click();
+      }, 1000);
+    });
     inputTextEl.addEventListener('focus', () => updateAutocompleteSuggestions());
     inputTextEl.addEventListener('blur', () => setTimeout(hideAutocompleteSuggestions, 150));
 
