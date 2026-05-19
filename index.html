@@ -870,14 +870,16 @@
       position: absolute;
       left: 1rem;
       right: 1rem;
-      bottom: 1rem;
-      margin-top: 0;
+      top: 100%;
+      margin-top: 4px;
       border: 1px solid var(--border);
       border-radius: 16px;
       background: #fff;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      z-index: 10;
+      z-index: 100;
+      max-height: 200px;
+      overflow-y: auto;
     }
 
     .autocomplete-item {
@@ -1120,7 +1122,7 @@
               </div>
             </div>
             <div class="input-area">
-              <textarea id="input-text" placeholder="Type English text here..." autofocus></textarea>
+              <textarea id="input-text" placeholder="Type English text here..." autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
               <div class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></div>
             </div>
             <div class="translate-actions">
