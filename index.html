@@ -36,9 +36,30 @@
       --embroidery-teal: #2ab5a0;
     }
 
+    [data-theme="dark"] {
+      --primary: #8ab4f8;
+      --primary-dark: #aecbfa;
+      --primary-soft: #1f3044;
+      --bg: #1a1a1d;
+      --bg-secondary: #141416;
+      --card: #28282c;
+      --card-muted: #2e2e33;
+      --text: #e8eaed;
+      --text-light: #9aa0a6;
+      --border: #3c4043;
+      --border-strong: #5f6368;
+      --accent: #8ab4f8;
+      --accent-red: #f28b82;
+      --accent-teal: #81c995;
+      --success: #81c995;
+      --warning: #fdd663;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, var(--bg-secondary) 100%);
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg) 45%, var(--bg-secondary) 100%);
       color: var(--text);
       min-height: 100vh;
       padding: 1.25rem;
@@ -70,6 +91,9 @@
 
     header {
       padding: 2.75rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     header h1 {
@@ -77,6 +101,25 @@
       font-weight: 600;
       color: var(--text);
       letter-spacing: -0.04em;
+    }
+
+    .theme-toggle {
+      background: var(--card-muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
     }
 
     header h1 span {
@@ -258,7 +301,7 @@
       display: flex;
       flex-direction: column;
       min-height: 0;
-      background: #fff;
+      background: var(--card);
     }
 
     .input-area textarea {
@@ -278,7 +321,7 @@
     }
 
     .input-area textarea::placeholder {
-      color: #9aa0a6;
+      color: var(--text-light);
     }
 
     .input-area textarea:focus {
@@ -354,7 +397,7 @@
 
     .word-tooltip {
       position: fixed;
-      background: #ffffff;
+      background: var(--card);
       color: var(--text);
       padding: 0.6rem 0.8rem;
       border-radius: 12px;
@@ -375,7 +418,7 @@
       font-size: 1rem;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
-      background: #fff;
+      background: var(--card);
       color: var(--text);
     }
 
@@ -461,7 +504,7 @@
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
       resize: vertical;
-      background: #fff;
+      background: var(--card);
       color: var(--text);
     }
 
@@ -592,7 +635,7 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      background: #ffffff;
+      background: var(--card);
       color: var(--text);
       padding: 0.75rem 1.5rem;
       border-radius: 999px;
@@ -851,7 +894,7 @@
       padding: 0.42rem 0.8rem;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: #fff;
+      background: var(--card);
       color: var(--text);
       font-size: 0.78rem;
       font-weight: 600;
@@ -874,7 +917,7 @@
       margin-top: 4px;
       border: 1px solid var(--border);
       border-radius: 16px;
-      background: #fff;
+      background: var(--card);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       z-index: 100;
@@ -1045,6 +1088,7 @@
   <div class="container">
     <header>
       <h1>English → <span>Iu Mienh</span> Translator</h1>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
     </header>
 
     <div class="tabs">
@@ -1209,6 +1253,14 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    // Dark mode toggle
+    (function() {
+      const saved = localStorage.getItem('iu-mienh-theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
     let dictionary = null;
     let examplePairs = null;
     let knownMienhWords = new Set();
@@ -1216,6 +1268,25 @@
     const inputTextEl = document.getElementById('input-text');
     const translateBtn = document.getElementById('translate-btn');
     const autocompleteDropdown = document.getElementById('autocomplete-dropdown');
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    function updateThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+    }
+    updateThemeIcon();
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('iu-mienh-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('iu-mienh-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
 
     // Supabase configuration
     const SUPABASE_URL = 'https://jznienvopdejqvpalgbl.supabase.co';
