@@ -59,27 +59,49 @@ function getDuration(mp3Path) {
   return parseFloat(execSync(cmd, { encoding: 'utf-8' }).trim());
 }
 
-function computeSplitPoints(silences, duration, numVerses) {
-  // Strategy: We have N verses and M silence points.
-  // Place split points at silence midpoints that best divide the audio into N equal parts.
-  if (numVerses <= 1) return [];
-  if (silences.length === 0) {
-    // No silences found — split evenly by time
-    const step = duration / numVerses;
-    return Array.from({ length: numVerses - 1 }, (_, i) => (i + 1) * step);
+// Each chapter audio starts with a spoken intro (e.g. "Genesis 1, it says...")
+// followed by a pause before verse 1. This finds that intro boundary.
+function findIntroEnd(silences, duration, numVerses) {
+  if (silences.length === 0) return 0;
+
+  // The intro is typically 2-6 seconds. Look for the first silence gap
+  // that occurs within the first 15% of the audio (or first 10 seconds).
+  const maxIntroTime = Math.min(duration * 0.15, 10);
+
+  for (const s of silences) {
+    if (s.mid <= maxIntroTime && s.mid >= 1.0) {
+      return s.end; // Start content after this silence ends
+    }
   }
 
+  // No early silence found — maybe no intro on this chapter
+  return 0;
+}
+
+function computeSplitPoints(silences, contentStart, duration, numVerses) {
+  // Strategy: Split the audio from contentStart to end into N equal parts,
+  // placing split points at silence midpoints closest to each target.
+  const contentDuration = duration - contentStart;
+  if (numVerses <= 1) return [];
+  if (silences.length === 0) {
+    const step = contentDuration / numVerses;
+    return Array.from({ length: numVerses - 1 }, (_, i) => contentStart + (i + 1) * step);
+  }
+
+  // Only use silences after the intro
+  const contentSilences = silences.filter(s => s.mid > contentStart);
+
   // Target timestamps for N-1 split points
-  const targetStep = duration / numVerses;
+  const targetStep = contentDuration / numVerses;
   const splitPoints = [];
 
   for (let i = 1; i < numVerses; i++) {
-    const target = i * targetStep;
+    const target = contentStart + i * targetStep;
     // Find the silence midpoint closest to this target
-    let best = silences[0].mid;
-    let bestDist = Math.abs(best - target);
+    let best = null;
+    let bestDist = Infinity;
 
-    for (const s of silences) {
+    for (const s of contentSilences) {
       const dist = Math.abs(s.mid - target);
       if (dist < bestDist) {
         best = s.mid;
@@ -88,7 +110,7 @@ function computeSplitPoints(silences, duration, numVerses) {
     }
 
     // Only use if within reasonable distance of target (±40% of step)
-    if (bestDist < targetStep * 0.4) {
+    if (best !== null && bestDist < targetStep * 0.4) {
       splitPoints.push(best);
     } else {
       // Fall back to exact time-based split
@@ -99,9 +121,9 @@ function computeSplitPoints(silences, duration, numVerses) {
   return splitPoints;
 }
 
-function splitAudio(mp3Path, splitPoints, duration, outputPrefix) {
+function splitAudio(mp3Path, splitPoints, contentStart, duration, outputPrefix) {
   const segments = [];
-  const starts = [0, ...splitPoints];
+  const starts = [contentStart, ...splitPoints];
   const ends = [...splitPoints, duration];
 
   for (let i = 0; i < starts.length; i++) {
@@ -158,9 +180,10 @@ async function processBook(book) {
     try {
       const duration = getDuration(mp3Path);
       const silences = detectSilences(mp3Path);
-      const splitPoints = computeSplitPoints(silences, duration, verses.length);
+      const contentStart = findIntroEnd(silences, duration, verses.length);
+      const splitPoints = computeSplitPoints(silences, contentStart, duration, verses.length);
       const prefix = `${book}_${String(ch).padStart(3, '0')}`;
-      const segments = splitAudio(mp3Path, splitPoints, duration, prefix);
+      const segments = splitAudio(mp3Path, splitPoints, contentStart, duration, prefix);
 
       // Match segments to verses (1:1 if counts match, otherwise best effort)
       const count = Math.min(segments.length, verses.length);
