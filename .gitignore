@@ -1,2 +1,4 @@
 node_modules/
 dictionary.json
+tts-data/
+.venv/
