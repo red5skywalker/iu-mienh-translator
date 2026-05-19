@@ -208,7 +208,7 @@
     .dir-btn.active {
       color: var(--primary-dark);
       background: var(--primary-soft);
-      border-color: #c6dafc;
+      border-color: var(--border);
     }
 
     .dir-btn:hover:not(.active) {
@@ -562,7 +562,7 @@
     }
 
     .edit-result-item:hover {
-      background: #e8f0fe;
+      background: var(--primary-soft);
     }
 
     .edit-result-item .term { font-weight: 500; }
@@ -656,8 +656,8 @@
       justify-content: space-between;
       gap: 0.75rem;
       padding: 0.55rem 0.8rem;
-      background: #f8fbff;
-      border: 1px solid #d2e3fc;
+      background: var(--card-muted);
+      border: 1px solid var(--border);
       border-radius: 999px;
       margin-bottom: 0;
     }
@@ -699,7 +699,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: #cbd5e1;
+      background: var(--border-strong);
       border-radius: 24px;
       transition: 0.3s;
     }
@@ -727,8 +727,8 @@
 
     .ai-settings {
       margin-bottom: 1rem;
-      background: #f8fbff;
-      border: 1px solid #d2e3fc;
+      background: var(--card-muted);
+      border: 1px solid var(--border);
       border-radius: 16px;
       font-size: 0.85rem;
     }
@@ -1148,7 +1148,7 @@
                   <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
                   <option value="mistral-ai/mistral-small-2503">mistral-ai/mistral-small</option>
                 </select>
-                <button type="button" id="test-connection-btn" style="padding:0.4rem 0.7rem;font-size:0.75rem;border-radius:999px;border:1px solid #d2e3fc;background:#fff;cursor:pointer;white-space:nowrap">🔍 Test</button>
+                <button type="button" id="test-connection-btn" style="padding:0.4rem 0.7rem;font-size:0.75rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;white-space:nowrap">🔍 Test</button>
               </div>
               <p id="test-result" style="margin-top:0.3rem;font-size:0.75rem;color:var(--text-light)"></p>
             </div>
